@@ -2,9 +2,15 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 var User = new mongoose.Schema({
-  name: { type: String },
+  firstName: { type: String },
+  lastName: { type: String },
   email: { type: String, index: true, trim: true },
-  password: { type: String }
+  password: { type: String },
+  createdAt: {type: Date, default: new Date()},
+  classes: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Class'}
+  ],
+  avatar: {type:String, default:'http://globalci.org/wp-content/themes/gci/images/default.jpg'}
 });
 
 User.pre('save', function(next) {
