@@ -3,13 +3,16 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
-var cors = require('cors');
 
 // CONFIG //
 var config = require('./config');
 
 // CONTROLLERS //
-var UserCtrl = require('./controllers/UserCtrl');
+var UserCtrl = require('./components/users/UserCtrl');
+var CalendarCtrl = require('./components/calendar/CalendarCtrl');
+var ClassCtrl = require('./components/class/ClassCtrl');
+var NotesCtrl = require('./components/notes/NotesCtrl');
+var TasksCtrl = require('./components/tasks/TasksCtrl');
 
 // SERVICES //
 var passport = require('./services/passport');
@@ -42,9 +45,27 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//-----USERS-----//
 app.post('/users', UserCtrl.register);
 app.get('/me', isAuthed, UserCtrl.me);
 app.put('/users/:_id', isAuthed, UserCtrl.update);
+
+//-----CALENDAR-----//
+
+
+
+//-----CLASSES-----//
+
+
+
+//-----NOTEBOOK-----//
+
+
+
+//-----TASKS-----//
+
+
+
 
 app.post('/login', passport.authenticate('local', {
   // successRedirect: '/me'
