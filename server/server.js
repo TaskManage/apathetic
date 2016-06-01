@@ -65,8 +65,10 @@ app.get('/events', CalendarCtrl.getEvent);
 
 
 //-----TASKS-----//
-
-
+app.get('/tasks', TasksCtrl.read);
+app.post('/tasks', TasksCtrl.create);
+app.put('/tasks/:id', TasksCtrl.update);
+app.delete('/tasks/:id', TasksCtrl.delete);
 
 
 app.post('/login', passport.authenticate('local', {
