@@ -29,12 +29,19 @@ var isAuthed = function(req, res, next) {
 var app = express();
 
 app.use(bodyParser.json());
+
+app.use(express.static(__dirname + './../public'));
+
+app.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Custom-Header");
+  next();
+});
 app.use(session({
   secret: config.SESSION_SECRET,
   saveUninitialized: false,
   resave: false
 }));
-app.use(express.static(__dirname + './../public'));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -56,13 +63,18 @@ app.put('/users/:_id', isAuthed, UserCtrl.update);
 
 
 //-----TASKS-----//
-
-
+app.get('/tasks', TasksCtrl.read);
+app.post('/tasks', TasksCtrl.create);
+app.put('/tasks/:id', TasksCtrl.update);
+app.delete('/tasks/:id', TasksCtrl.delete);
 
 
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/me'
-}));
+  // successRedirect: '/me'
+}),
+function(req, res, next){
+  res.status(200).json({login:true});
+});
 app.get('/logout', function(req, res, next) {
   req.logout();
   return res.status(200).send('logged out');

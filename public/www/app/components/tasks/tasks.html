@@ -1,0 +1,58 @@
+<ion-view title="Tasks" hide-back-button="true" id="page12" class=" ">
+  <ion-content padding="true" class="has-header">
+    <ion-list id="tasks-list8" class=" ">
+      <label class="item item-input" name="Note Search Bar">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Search Tasks">
+      </label>
+    </ion-list>
+    <a ui-sref="newTask" id="tasks-button12" class=" button button-positive  button-block ">Add a Task</a>
+    <div class="spacer" style="width: 285px; height: 10px;"></div>
+
+    <hr/>
+    {{tasks}}
+    <hr/>
+    <!-- task list -->
+    <button class="button button-positive" ng-click="switchReorder()">
+                Reorder
+            </button>
+
+    <ion-list id="tasks-list10" class=" " can-swipe="listCanSwipe" show-reorder="showReorder">
+      <ion-item class="item-divider " id="tasks-list-item-divider6">Personal Tasks
+      </ion-item>
+
+      <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item10" ng-repeat="task in tasks">
+        <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
+        <span class="item-note">Due: {{task.dueDate}}</span>
+        <ion-option-button class="button-positive"  task-list="tasks" ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask">
+          Edit
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteTask(); hideOptionButtons()">
+          Delete
+        </ion-option-button>
+        <ion-reorder-button class="ion-navicon"
+                        on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+    </ion-reorder-button>
+
+      </ion-item>
+  </ion-list>
+
+      <!-- PLACEHOLDER TASK LIST -->
+
+      <ion-item class="item-divider " id="tasks-list-item-divider8">Biology</ion-item>
+      <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item36">
+        <i class="icon ion-ios-checkmark-outline"></i>Biology Test
+        <span class="item-note">Weds 5/16</span>
+        <i class="icon ion-ios-close-empty"></i>
+      </ion-item>
+      <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item39">
+        <i class="icon ion-ios-checkmark-outline"></i>Buy Book
+        <i class="icon ion-ios-close-empty"></i>
+      </ion-item>
+      <ion-item class="item-divider " id="tasks-list-item-divider9">Basketball</ion-item>
+
+
+    <!-- END PLACEHOLDER -->
+
+  </ion-content>
+</ion-view>
