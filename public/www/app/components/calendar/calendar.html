@@ -3,8 +3,35 @@
 
 <!-- PLACE HOLDER CALENDAR IMAGE -->
     <div>
-        <button class="btn btn-success" ng-click="changeView('agendaWeek')">AgendaWeek</button>
-       <div id ="c" class="calendar" ui-calendar="calOptions" ng-model="eventSources"> 
+        <!-- <button class="btn btn-success" ng-click="changeView('agendaWeek')">AgendaWeek</button>
+       <div id ="c" class="calendar" ui-calendar="calOptions" ng-model="eventSources">  -->
+
+
+        
+        <tab select="renderCalender('myCalendar1');">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
+                    <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+                    <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+                </div>
+            </div>
+            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">   
+            </div>
+        </tab>
+        
+        <div>
+            <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+                <h4>{{alertMessage}}</h4>
+                <p>Edit</p>
+                <P>Delete</P>
+            </div>
+            <div>
+                <a ui-sref="newEvent" id="newEvent-button14" class=" button button-positive  button-block ">Add Event</a>
+            </div>
+        </div>              
+                   
+        
     </div>
         
         <!-- <div class="list card " id="calendar-card21">
@@ -18,7 +45,7 @@
 <!-- END PLACEHOLDER CALENDAR -->
 
 <!-- PLACEHOLDER EVENT LIST -->
-        <ion-list id="calendar-list12" class=" ">
+      <!--   <ion-list id="calendar-list12" class=" ">
             <ion-item id="calendar-list-item33" class="  ">Math Class
                 <span class="item-note">9:00am - 10:00am</span>
             </ion-item>
@@ -28,7 +55,7 @@
             <ion-item id="calendar-list-item35" class="  ">Lunch
                 <span class="item-note">11:00 am - Noon</span>
             </ion-item>
-        </ion-list>
+        </ion-list> -->
 <!-- END EVENT LIST -->
 
     </ion-content>

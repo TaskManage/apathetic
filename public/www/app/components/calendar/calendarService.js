@@ -9,10 +9,11 @@ angular.module('studentSuccess').service('calendarService', function($http) {
 		});
 	};
 
-	this.createEvent = function() {
+	this.createEvent = function(calEvent) {
 		return $http ({
 			method: 'POST',
-			url: ip + '/events'
+			url: ip + '/events',
+			data: calEvent
 		});
 	};
 
