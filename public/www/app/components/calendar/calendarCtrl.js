@@ -59,6 +59,11 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 
 		};
 
+		$scope.changeView = function(view) {
+      		uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+   		};
+
+
 		$scope.alertOnEventClick = function( date, jsEvent, view){
         	console.log('asdfasdfas');
 

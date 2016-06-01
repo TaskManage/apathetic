@@ -120,11 +120,18 @@ angular.module('studentSuccess')
     controller: 'calendarCtrl'
   })
 
-  .state('editToDo', {
-    url: '/editToDo',
-    templateUrl: 'app/components/tasks/editToDo.html',
+  .state('editTask', {
+    url: '/editTask',
+    templateUrl: 'app/components/tasks/editTask.html',
     controller: 'tasksCtrl'
   })
+
+  .state('newTask', {
+    url: '/newTask',
+    templateUrl: 'app/components/tasks/newTask.html',
+    controller: 'tasksCtrl'
+  })
+
 
   // .state('mathClass', {
   //   url: '/mathclass',
