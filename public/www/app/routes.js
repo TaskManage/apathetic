@@ -10,22 +10,25 @@ angular.module('studentSuccess')
 
 
 
-      .state('tabsController', {
+    .state('tabsController', {
     url: '/page1',
     templateUrl: 'app/shared/navTabs/tabsController.html',
-    abstract:true
+    abstract: true,
+    cache: false
   })
 
   .state('login', {
     url: '/login',
     templateUrl: 'app/components/login/login.html',
-    controller: 'loginCtrl'
+    controller: 'loginCtrl',
+    cache: false
   })
 
   .state('signup', {
     url: '/signup',
     templateUrl: 'app/components/signup/signup.html',
-    controller: 'signupCtrl'
+    controller: 'signupCtrl',
+    cache: false
   })
 
   .state('tabsController.dashboard', {
@@ -33,7 +36,31 @@ angular.module('studentSuccess')
     views: {
       'tab1': {
         templateUrl: 'app/components/dashboard/dashboard.html',
-        controller: 'dashboardCtrl'
+        controller: 'dashboardCtrl',
+        cache: false,
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
@@ -53,14 +80,61 @@ angular.module('studentSuccess')
   */
   .state('tabsController.calendar', {
     url: '/calendar',
+    cache: false,
     views: {
       'tab1': {
         templateUrl: 'app/components/calendar/calendar.html',
-        controller: 'calendarCtrl'
+        controller: 'calendarCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       },
       'tab2': {
         templateUrl: 'app/components/calendar/calendar.html',
-        controller: 'calendarCtrl'
+        controller: 'calendarCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
@@ -70,7 +144,30 @@ angular.module('studentSuccess')
     views: {
       'tab3': {
         templateUrl: 'app/components/notebook/classNotes/notebook.html',
-        controller: 'notebookCtrl'
+        controller: 'notebookCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
@@ -90,40 +187,183 @@ angular.module('studentSuccess')
   */
   .state('tabsController.tasks', {
     url: '/tasks',
+    cache: false,
     views: {
       'tab1': {
         templateUrl: 'app/components/tasks/tasks.html',
-        controller: 'tasksCtrl'
+        controller: 'tasksCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       },
       'tab4': {
         templateUrl: 'app/components/tasks/tasks.html',
-        controller: 'tasksCtrl'
+        controller: 'tasksCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
 
   .state('note', {
     url: '/newnote',
+    cache: false,
     templateUrl: 'app/components/notebook/classNotes/note.html',
-    controller: 'notebookCtrl'
+    controller: 'notebookCtrl',
+    resolve: {
+      login: function($state, authService) {
+        console.log(JSON.parse(localStorage.getItem('loginToken')))
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+              console.log(response);
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+        user: function($state, authService){
+          if (localStorage.getItem('loginToken')) {
+            return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+          } else {
+
+          }
+        }
+
+    }
   })
 
   .state('editNotecard', {
     url: '/editNotecard',
+    cache: false,
     templateUrl: 'app/components/notebook/notecards/editNotecard.html',
-    controller: 'notebookCtrl'
+    controller: 'notebookCtrl',
+    resolve: {
+      login: function($state, authService) {
+        console.log(JSON.parse(localStorage.getItem('loginToken')))
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+              console.log(response);
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+        user: function($state, authService){
+          if (localStorage.getItem('loginToken')) {
+            return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+          } else {
+
+          }
+        }
+
+    }
   })
 
   .state('newEvent', {
     url: '/newEvent',
+    cache: false,
     templateUrl: 'app/components/calendar/newEvent.html',
-    controller: 'calendarCtrl'
+    controller: 'calendarCtrl',
+    resolve: {
+      login: function($state, authService) {
+        console.log(JSON.parse(localStorage.getItem('loginToken')))
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+              console.log(response);
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+        user: function($state, authService){
+          if (localStorage.getItem('loginToken')) {
+            return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+          } else {
+
+          }
+        }
+
+    }
   })
 
   .state('editToDo', {
     url: '/editToDo',
+    cache: false,
     templateUrl: 'app/components/tasks/editToDo.html',
-    controller: 'tasksCtrl'
+    controller: 'tasksCtrl',
+    resolve: {
+      login: function($state, authService) {
+        console.log(JSON.parse(localStorage.getItem('loginToken')))
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+              console.log(response);
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+        user: function($state, authService){
+          if (localStorage.getItem('loginToken')) {
+            return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+          } else {
+
+          }
+        }
+
+    }
   })
 
   // .state('mathClass', {
@@ -134,55 +374,175 @@ angular.module('studentSuccess')
 
   .state('tabsController.classes', {
     url: '/classes',
+    cache: false,
     views: {
       'tab5': {
         templateUrl: 'app/components/classes/classes.html',
-        controller: 'classesCtrl'
+        controller: 'classesCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
 
   .state('tabsController.addAClass', {
     url: '/addAClass',
+    cache: false,
     views: {
       'tab5': {
         templateUrl: 'app/components/classes/addAClass.html',
-        controller: 'classesCtrl'
+        controller: 'classesCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
 
   .state('tabsController.classNoteCards', {
     url: '/notecards',
+    cache: false,
     views: {
       'tab3': {
         templateUrl: 'app/components/notebook/notecards/notecards.html',
-        controller: 'notecardsCtrl'
+        controller: 'notecardsCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
 
   .state('tabsController.notecardStudy1', {
     url: '/notecard1',
+    cache: false,
     views: {
       'tab3': {
         templateUrl: 'app/components/notebook/notecards/notecardStudy1.html',
-        controller: 'notecardsCtrl'
+        controller: 'notecardsCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
 
   .state('tabsController.notecardStudy2', {
     url: '/notecardStudy2',
+    cache: false,
     views: {
       'tab3': {
         templateUrl: 'app/components/notebook/notecards/notecardStudy2.html',
-        controller: 'notecardsCtrl'
+        controller: 'notecardsCtrl',
+        resolve: {
+          login: function($state, authService) {
+            console.log(JSON.parse(localStorage.getItem('loginToken')))
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+                  console.log(response);
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            }
+
+        }
       }
     }
   })
 
-$urlRouterProvider.otherwise('/login')
+  $urlRouterProvider.otherwise('/login')
 
 
 

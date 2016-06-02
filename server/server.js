@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
+var User = require('./components/users/UserModel');
+var jwt = require('jsonwebtoken');
 
 // CONFIG //
 var config = require('./config');
@@ -20,8 +22,20 @@ var passport = require('./services/passport');
 
 // POLICIES //
 var isAuthed = function(req, res, next) {
-  if (!req.isAuthenticated()) return res.status(401).send();
-  return next();
+  console.log('isAuthed', req.get('loginToken'));
+  if (req.get('loginToken')) {
+    var token = jwt.verify(req.get('loginToken'), config.key);
+    console.log(token);
+    User.findById(token._id).exec(function(err, response) {
+      if (err) {
+        res.status(401);
+      } else {
+        next();
+      }
+    })
+  } else {
+    res.status(401);
+  }
 };
 
 
@@ -32,15 +46,15 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + './../public'));
 
-app.use(function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Custom-Header");
-  next();
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, loginToken");
+    next();
 });
 app.use(session({
-  secret: config.SESSION_SECRET,
-  saveUninitialized: false,
-  resave: false
+    secret: config.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -67,15 +81,24 @@ app.put('/users/:_id', isAuthed, UserCtrl.update);
 
 
 
+//jsonwebtokens
+
 app.post('/login', passport.authenticate('local', {
-  // successRedirect: '/me'
-}),
-function(req, res, next){
-  res.status(200).json({login:true});
+
+}), function(req, res, next) {
+    console.log('hit', req.userInfo);
+    var token = jwt.sign({
+        _id: req.userInfo._id,
+        username: req.userInfo.username
+    }, config.key);
+    res.status(200).json({
+        login: true,
+        loginToken: token
+    });
 });
 app.get('/logout', function(req, res, next) {
-  req.logout();
-  return res.status(200).send('logged out');
+    req.logout();
+    return res.status(200).send('logged out');
 });
 
 
@@ -85,8 +108,8 @@ var port = config.PORT;
 
 mongoose.connect(mongoURI);
 mongoose.connection.once('open', function() {
-  console.log('Connected to Mongo DB at', mongoURI);
-  app.listen(port, function() {
-    console.log('Listening on port '+ port);
-  });
+    console.log('Connected to Mongo DB at', mongoURI);
+    app.listen(port, function() {
+        console.log('Listening on port ' + port);
+    });
 });
