@@ -3,7 +3,6 @@ angular.module("studentSuccess").service("authService", function($http, ipServic
 
   var ip = ipService.ip;
 
-
   this.login = function(user) {
     return $http({
       method: 'post',
