@@ -35,6 +35,7 @@ app.use(express.static(__dirname + './../public'));
 app.use(function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Custom-Header");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST");
   next();
 });
 app.use(session({
@@ -64,9 +65,11 @@ app.put('/users/:_id', isAuthed, UserCtrl.update);
 
 //-----TASKS-----//
 app.get('/tasks', TasksCtrl.read);
+app.get('/tasks/:id', TasksCtrl.find);
 app.post('/tasks', TasksCtrl.create);
 app.put('/tasks/:id', TasksCtrl.update);
 app.delete('/tasks/:id', TasksCtrl.delete);
+
 
 
 app.post('/login', passport.authenticate('local', {
