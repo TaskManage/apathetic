@@ -55,12 +55,19 @@ app.put('/users/:_id', isAuthed, UserCtrl.update);
 
 
 //-----CLASSES-----//
-
+app.post("/class", ClassCtrl.Create);
+app.get("/class", ClassCtrl.Read);
+app.get("/readClass/:id", ClassCtrl.ReadOne)
+app.put("/class/:id", ClassCtrl.Update);
+app.delete("/class/:id", ClassCtrl.Delete);
 
 
 //-----NOTEBOOK-----//
-
-
+app.post("/note", NotesCtrl.Create);
+app.get("/note", NotesCtrl.Read);
+app.get("/readNote/:id", NotesCtrl.ReadOne)
+app.put("/note/:id", NotesCtrl.Update);
+app.delete("/note/:id", NotesCtrl.Delete);
 
 //-----TASKS-----//
 app.get('/tasks', TasksCtrl.read);
