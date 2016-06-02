@@ -1,45 +1,69 @@
-angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate) {
+angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate, $ionicHistory, $state) {
+
+$ionicHistory.clearCache();
 
 $scope.listCanSwipe = true;
 $scope.switchReorder = function(){
   $scope.showReorder = !$scope.showReorder;
 }
 
-$scope.tasks = taskService.getTasks();
+// $scope.tasks = taskService.getTasks();
 
-//   $scope.getTask = function() {
-//       taskService.getTasks().then(function(response) {
-//           $scope.tasks = response;
-//       });
-//   };
-//
-// $scope.getTask();
+  $scope.getTasks = function() {
+    console.log("get")
+      taskService.getTasks().then(function(response) {
+          $scope.tasks = response;
+      });
+  };
 
-$scope.addTask = function(task) {
+$scope.getTasks();
 
-  console.log("TASK HIT", task);
-    // taskService.addTask(task).then(function(response) {
-        $scope.task = {};
-        // $scope.getTask();
-    // });
+$scope.createTask = function(task) {
+    taskService.createTask(task).then(function(response) {
+    $scope.task = {};
+      $scope.getTasks();
+      $state.go("tabsController.tasks_tab4", {reload: true});
 
+    });
 };
 
-$scope.selectTask = function(task) {
-  console.log("HIT THE TASK")
-  $scope.selectedTask = task;
-  console.log(task);
+$scope.cancelTask = function(task) {
+  $scope.task = {};
 }
 
-$scope.updateTask= function(task){
-  console.log(task);
-  taskService.updateTask(task).then(function(response) {
-    $scope.getTask();
-  });
-};
+$scope.selectTask = function(task) {
+  $scope.selectedTask = task;
+}
 
 $scope.hideOptionButtons = function(){
   $ionicListDelegate.closeOptionButtons();
 }
+
+$scope.removeTask= function(task){
+  console.log("REMOVE HIT", task);
+  taskService.deleteTask(task).then(function(response) {
+    $state.go($state.current, {}, {reload: true});
+  });
+};
+
+$scope.moveItem = function(task, fromIndex, toIndex) {
+    $scope.tasks.splice(fromIndex, 1);
+    $scope.tasks.splice(toIndex, 0, task);
+  };
+
+
+// TESTING REORDER SORTING//
+// $scope.moveItem = function(item, fromIndex, toIndex) {
+//     $scope.items.splice(fromIndex, 1);
+//     $scope.items.splice(toIndex, 0, item);
+//   };
+//
+//   $scope.items = [
+//       { id: 0 },
+//       { id: 1 },
+//       { id: 2 },
+//       { id: 3 },
+//       { id: 4 }
+//     ];
 
 })
