@@ -1,6 +1,8 @@
-angular.module("studentSuccess").service("authService", function($http) {
+angular.module("studentSuccess").service("authService", function($http, ipService) {
 
-  var ip = 'http://192.168.0.75:3000';
+
+  var ip = ipService.ip;
+
 
   this.login = function(user) {
     return $http({

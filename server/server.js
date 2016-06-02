@@ -43,6 +43,7 @@ app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', '*,content-type,x-access-token,Authorization,g-file-name,g-path');
   res.setHeader('Access-Control-Allow-Headers', 'x-access-token,content-type');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Custom-Header");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST");
   next();
 });
 
@@ -69,9 +70,11 @@ app.delete('/events/:id', CalendarCtrl.deleteEvent);
 
 //-----TASKS-----//
 app.get('/tasks', TasksCtrl.read);
+app.get('/tasks/:id', TasksCtrl.find);
 app.post('/tasks', TasksCtrl.create);
 app.put('/tasks/:id', TasksCtrl.update);
 app.delete('/tasks/:id', TasksCtrl.delete);
+
 
 
 app.post('/login', passport.authenticate('local', {
