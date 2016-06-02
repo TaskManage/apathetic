@@ -306,6 +306,12 @@ angular.module('studentSuccess')
     }
   })
 
+  .state('editEvent', {
+    url: '/editEvent',
+    templateUrl: 'app/components/calendar/editEvent.html',
+    controller: 'calendarCtrl'
+  })
+
   .state('newEvent', {
     url: '/newEvent',
     cache: false,
@@ -336,12 +342,16 @@ angular.module('studentSuccess')
     }
   })
 
-  .state('editToDo', {
-    url: '/editToDo',
+
+  .state('editTask', {
+    url: '/editTask/:id',
+    templateUrl: 'app/components/tasks/editTask.html',
+    controller: 'editTasksCtrl',
     cache: false,
-    templateUrl: 'app/components/tasks/editToDo.html',
-    controller: 'tasksCtrl',
     resolve: {
+      task: function(taskService, $stateParams) {
+        return taskService.getTask($stateParams.id);
+      },
       login: function($state, authService) {
         console.log(JSON.parse(localStorage.getItem('loginToken')))
         if (localStorage.getItem('loginToken')) {
@@ -362,9 +372,16 @@ angular.module('studentSuccess')
 
           }
         }
-
     }
   })
+
+  .state('newTask', {
+    url: '/newTask',
+    cache: false,
+    templateUrl: 'app/components/tasks/newTask.html',
+    controller: 'tasksCtrl'
+  })
+
 
   // .state('mathClass', {
   //   url: '/mathclass',

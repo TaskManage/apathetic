@@ -1,6 +1,7 @@
-angular.module("studentSuccess").service("authService", function($http) {
+angular.module("studentSuccess").service("authService", function($http, ipService) {
+  
+  var ip = ipService.ip;
 
-  var ip = 'http://192.168.1.33:3000';
   var loginToken = JSON.parse(localStorage.getItem('loginToken'));
 
   this.login = function(user) {

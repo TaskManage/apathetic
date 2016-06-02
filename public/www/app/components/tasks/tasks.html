@@ -1,46 +1,56 @@
 <ion-view title="Tasks" hide-back-button="true" id="page12" class=" ">
-    <ion-content padding="true" class="has-header">
-        <ion-list id="tasks-list8" class=" ">
-            <label class="item item-input" name="Note Search Bar">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search Tasks">
-            </label>
-        </ion-list>
-        <a ui-sref="editToDo" id="tasks-button12" class=" button button-positive  button-block ">Add a Task</a>
-        <div class="spacer" style="width: 285px; height: 27px;"></div>
+  <ion-content padding="true" class="has-header">
+    <ion-list id="tasks-list8" class=" ">
+      <label class="item item-input" name="Note Search Bar">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Search Tasks" ng-model="searchTasks">
+      </label>
+    </ion-list>
+    <a ui-sref="newTask" id="tasks-button12" class=" button button-positive  button-block ">Add a Task</a>
+    <div class="spacer" style="width: 285px; height: 10px;"></div>
 
-<!-- PLACEHOLDER TASK LIST -->
-        <ion-list id="tasks-list10" class=" ">
-            <ion-item class="item-divider " id="tasks-list-item-divider6">Personal Tasks</ion-item>
-            <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item10">
-                <i class="icon ion-ios-checkmark-outline"></i>Pizza Party
-                <span class="item-note">Tues 5/15</span>
-                <i class="icon ion-ios-close-empty"></i>
-            </ion-item>
-            <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item37">
-                <i class="icon ion-ios-checkmark-outline"></i>Buy Milk
-                <i class="icon ion-ios-close-empty"></i>
-            </ion-item>
-            <ion-item class="item-divider " id="tasks-list-item-divider7">Math Class</ion-item>
-            <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item12">
-                <i class="icon ion-ios-checkmark-outline"></i>Buy Pencils
-                <span class="item-note">Fri 5/18</span>
-                <i class="icon ion-ios-close-empty"></i>
-            </ion-item>
-            <ion-item class="item-divider " id="tasks-list-item-divider8">Biology</ion-item>
-            <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item36">
-                <i class="icon ion-ios-checkmark-outline"></i>Biology Test
-                <span class="item-note">Weds 5/16</span>
-                <i class="icon ion-ios-close-empty"></i>
-            </ion-item>
-            <ion-item class="item-icon-left item-icon-right  " id="tasks-list-item39">
-                <i class="icon ion-ios-checkmark-outline"></i>Buy Book
-                <i class="icon ion-ios-close-empty"></i>
-            </ion-item>
-            <ion-item class="item-divider " id="tasks-list-item-divider9">Basketball</ion-item>
-        </ion-list>
+    <button class="button button-positive" ng-click="switchReorder()">
+                Reorder
+            </button>
 
-<!-- END PLACEHOLDER -->
+    <ion-list id="tasks-list10"
+          class=" "
+          can-swipe="listCanSwipe"
+          show-reorder="showReorder">
 
-    </ion-content>
+      <ion-item class="item-divider " id="tasks-list-item-divider6">Personal Tasks
+      </ion-item>
+
+      <ion-item class="item-icon-left item-icon-right item-remove-animate  " id="tasks-list-item10" ng-repeat="task in tasks | filter:searchTasks track by $index" can-reorder="true">
+        <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
+        <span class="item-note">Due: {{task.dueDate | date: "MMM d"}}</span>
+        <ion-option-button class="button-positive"  task-list="tasks" ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
+          Edit
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="removeTask(task); tasks.splice($index, 1); hideOptionButtons()">
+          Delete
+        </ion-option-button>
+        <ion-reorder-button class="ion-navicon"
+                        on-reorder="moveTask(task, $fromIndex, $toIndex)">
+    </ion-reorder-button>
+
+      </ion-item>
+  </ion-list>
+
+      <!-- PLACEHOLDER TASK LIST -->
+
+      <!-- <ion-list  show-reorder="showReorder">
+
+              <ion-item ng-repeat="item in items"
+                        item="item"
+                         class="item-remove-animate">
+                Item {{ item.id }}
+                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+              </ion-item>
+
+            </ion-list> -->
+
+    <!-- END PLACEHOLDER -->
+
+  </ion-content>
 </ion-view>

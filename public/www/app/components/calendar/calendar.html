@@ -2,19 +2,51 @@
     <ion-content padding="true" class="has-header">
 
 <!-- PLACE HOLDER CALENDAR IMAGE -->
-        <div class="list card " id="calendar-card21">
+    <div>
+        <!-- <button class="btn btn-success" ng-click="changeView('agendaWeek')">AgendaWeek</button>
+       <div id ="c" class="calendar" ui-calendar="calOptions" ng-model="eventSources">  -->
+
+
+        
+        <tab select="renderCalender('myCalendar1');">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
+                    <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+                    <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+                </div>
+            </div>
+            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">   
+            </div>
+        </tab>
+        
+        <div>
+            <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+                <h4>{{alertMessage}}</h4>
+                <button ui-sref="editEvent" ng-click="editId(id)">Edit - {{id}}</button>
+                <button ng-click="deleteEvent(id)">Delete</button>
+            </div>
+            <div>
+                <a ui-sref="newEvent" id="newEvent-button14" class=" button button-positive  button-block ">Add Event</a>
+            </div>
+        </div>              
+                   
+        
+    </div>
+        
+        <!-- <div class="list card " id="calendar-card21">
             <div class=" item item-image" style="margin-left: -10px; width: calc(100% + 20px);">
                 <a style="display:block;" ui-sref="newEvent">
                     <img src="img/mMu5cPPJT1O4KM1oxLXu_Screen Shot 2016-05-27 at 11.07.08 AM.png" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
                 </a>
             </div>
-        </div>
+        </div> -->
 
 <!-- END PLACEHOLDER CALENDAR -->
 
 <!-- PLACEHOLDER EVENT LIST -->
-        <ion-list id="calendar-list12" class=" ">
-            <ion-item id="calendar-list-item33" ui-sref="mathClass" class="  ">Math Class
+      <!--   <ion-list id="calendar-list12" class=" ">
+            <ion-item id="calendar-list-item33" class="  ">Math Class
                 <span class="item-note">9:00am - 10:00am</span>
             </ion-item>
             <ion-item id="calendar-list-item34" class="  ">Biology
@@ -23,7 +55,7 @@
             <ion-item id="calendar-list-item35" class="  ">Lunch
                 <span class="item-note">11:00 am - Noon</span>
             </ion-item>
-        </ion-list>
+        </ion-list> -->
 <!-- END EVENT LIST -->
 
     </ion-content>
