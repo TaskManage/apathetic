@@ -115,6 +115,12 @@ angular.module('studentSuccess')
     controller: 'notebookCtrl'
   })
 
+  .state('editEvent', {
+    url: '/editEvent',
+    templateUrl: 'app/components/calendar/editEvent.html',
+    controller: 'calendarCtrl'
+  })
+
   .state('newEvent', {
     url: '/newEvent',
     templateUrl: 'app/components/calendar/newEvent.html',

@@ -1,11 +1,3 @@
-angular.module('studentSuccess').controller('loginCtrl', function($scope, authService, $state) {
+angular.module('studentSuccess').controller('loginCtrl', function($scope) {
 
-  $scope.login = function(user) {
-  authService.login(user).then(function (response) {
-    // console.log(response.data);
-      $state.go("tabsController.dashboard");
-  })
-};
-
-
-});
+})

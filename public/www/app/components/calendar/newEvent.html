@@ -3,20 +3,20 @@
         <div class="spacer" style="width: 285px; height: 27px;"></div>
         <form id="newEvent-form13" class="list ">
             <label class="item item-input " id="newEvent-input9">
-                <input type="text" placeholder="Title">
+                <input type="text" placeholder="Title" ng-model="calEvent.title">
             </label>
             <label class="item item-input " id="newEvent-input10">
-                <input type="text" placeholder="Location">
+                <input type="text" placeholder="Location" ng-model="calEvent.location">
             </label>
             <div class="spacer" style="width: 285px; height: 27px;"></div>
             <ion-toggle toggle-class="toggle-positive" id="newEvent-toggle1" class=" ">All Day</ion-toggle>
             <label class="item item-input " id="newEvent-input11">
                 <span class="input-label">Starts</span>
-                <input type="date" placeholder="">
+                <input type="date" placeholder="" ng-model="calEvent.start">
             </label>
             <label class="item item-input " id="newEvent-input15">
                 <span class="input-label">Ends</span>
-                <input type="date" placeholder="">
+                <input type="date" placeholder="" ng-model="calEvent.end">
             </label>
             <label class="item item-select " id="newEvent-select1">
                 <span class="input-label">Repeats</span>
@@ -30,10 +30,10 @@
                 </select>
             </label>
             <label class="item item-input " id="newEvent-textarea1">
-                <span class="input-label"></span><textarea placeholder="Notes"></textarea>
+                <span class="input-label"></span><textarea placeholder="Notes" ng-model="calEvent.notes"></textarea>
             </label>
         </form>
-        <a ui-sref="tabsController.calendar_tab2" id="newEvent-button14" class=" button button-positive  button-block ">Save Event</a>
-        <a ui-sref="tabsController.calendar_tab2" id="newEvent-button39" class=" button button-assertive  button-block ">Delete Event</a>
+        <a ui-sref="tabsController.calendar_tab2" id="newEvent-button14" class=" button button-positive  button-block " ng-click="createEvent(calEvent)">Save Event</a>
+        <a ui-sref="tabsController.calendar_tab2" id="newEvent-button39" class=" button button-assertive  button-block ">Cancel</a>
     </ion-content>
 </ion-view>
