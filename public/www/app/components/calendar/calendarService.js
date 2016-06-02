@@ -17,4 +17,18 @@ angular.module('studentSuccess').service('calendarService', function($http) {
 		});
 	};
 
+	this.deleteEvent = function(calId) {
+		return $http ({
+			method: 'DELETE',
+			url: ip + '/events/' + calId,
+		});
+	};
+
+	this.editEvent = function(edCalEvent, calId) {
+		return $http ({
+			method: 'PUT',
+			url: ip + '/events/' + calId
+		});
+	};
+
 }); 

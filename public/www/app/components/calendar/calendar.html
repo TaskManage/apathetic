@@ -23,8 +23,8 @@
         <div>
             <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
                 <h4>{{alertMessage}}</h4>
-                <p>Edit</p>
-                <P>Delete</P>
+                <button ui-sref="editEvent" ng-click="editId(id)">Edit - {{id}}</button>
+                <button ng-click="deleteEvent(id)">Delete</button>
             </div>
             <div>
                 <a ui-sref="newEvent" id="newEvent-button14" class=" button button-positive  button-block ">Add Event</a>

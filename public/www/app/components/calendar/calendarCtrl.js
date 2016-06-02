@@ -16,11 +16,28 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 	$scope.getEvent();
 
 	$scope.createEvent = function(calEvent) {
-		calendarService.createEvent(calEvent).then(function(calEvent){
+		calendarService.createEvent(calEvent).then(function(calEvent) {
 			console.log(calEvent + 'Event created');
 		});
 	};
 
+	$scope.deleteEvent = function(calId) {
+		calendarService.deleteEvent(calId).then(function(calId) {
+			console.log(calId + 'Event Deleted');
+		});
+	};
+
+	$scope.editEvent = function(edCalEvent, calId) {
+		calendarService.createEvent(edCalEvent, calId).then(function(edCalEvent, calId) {
+			console.log(edCalEvent + "Event has been edited");
+			console.log(calId);
+		});
+	};
+
+	$scope.editId = function(id) {
+		console.log(id);
+		$scope.editid = id;
+	};
 	// $scope.createEvent = function() {
 	// 	calendarService.createEvent().then(function() {
 	// 		console.log('Event Created');
@@ -119,11 +136,12 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
         $scope.alertMessage = (date.title + " " + date.location + ' ' + date.notes);
-        console.log('Event Clicked');
+        console.log('Event Clicked' + date._id);
+        $scope.id = date._id;
     };
     $scope.dayClick = function (date, allDay, jsEvent, view) {
       console.log('Day Clicked');
-        $scope.alertMessage = ('Day Clicked');
+        $scope.alertMessage = ('Day Clicked and stuffs');
     };
     /* alert on Drop */
     //  $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){

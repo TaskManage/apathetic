@@ -39,6 +39,9 @@ app.use(session({
 app.use(express.static(__dirname + './../public'));
 app.use(function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', '*,content-type,x-access-token,Authorization,g-file-name,g-path');
+  res.setHeader('Access-Control-Allow-Headers', 'x-access-token,content-type');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Custom-Header");
   next();
 });
@@ -54,8 +57,8 @@ app.put('/users/:_id', isAuthed, UserCtrl.update);
 //-----CALENDAR-----//
 app.post('/events', CalendarCtrl.createEvent);
 app.get('/events', CalendarCtrl.getEvent);
-
-
+app.put('/events/:id', CalendarCtrl.updateEvent);
+app.delete('/events/:id', CalendarCtrl.deleteEvent);
 //-----CLASSES-----//
 
 
