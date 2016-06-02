@@ -90,6 +90,7 @@ angular.module('studentSuccess')
   */
   .state('tabsController.tasks', {
     url: '/tasks',
+    cache: false,
     views: {
       'tab1': {
         templateUrl: 'app/components/tasks/tasks.html',
@@ -114,6 +115,12 @@ angular.module('studentSuccess')
     controller: 'notebookCtrl'
   })
 
+  .state('editEvent', {
+    url: '/editEvent',
+    templateUrl: 'app/components/calendar/editEvent.html',
+    controller: 'calendarCtrl'
+  })
+
   .state('newEvent', {
     url: '/newEvent',
     templateUrl: 'app/components/calendar/newEvent.html',
@@ -121,13 +128,20 @@ angular.module('studentSuccess')
   })
 
   .state('editTask', {
-    url: '/editTask',
+    url: '/editTask/:id',
     templateUrl: 'app/components/tasks/editTask.html',
-    controller: 'tasksCtrl'
+    controller: 'editTasksCtrl',
+    cache: false,
+    resolve: {
+      task: function(taskService, $stateParams) {
+        return taskService.getTask($stateParams.id);
+      }
+    }
   })
 
   .state('newTask', {
     url: '/newTask',
+    cache: false,
     templateUrl: 'app/components/tasks/newTask.html',
     controller: 'tasksCtrl'
   })

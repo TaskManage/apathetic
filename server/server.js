@@ -30,18 +30,23 @@ var app = express();
 
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + './../public'));
-
-app.use(function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Custom-Header");
-  next();
-});
 app.use(session({
   secret: config.SESSION_SECRET,
   saveUninitialized: false,
   resave: false
 }));
+
+app.use(express.static(__dirname + './../public'));
+app.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', '*,content-type,x-access-token,Authorization,g-file-name,g-path');
+  res.setHeader('Access-Control-Allow-Headers', 'x-access-token,content-type');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Custom-Header");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST");
+  next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -51,9 +56,10 @@ app.get('/me', isAuthed, UserCtrl.me);
 app.put('/users/:_id', isAuthed, UserCtrl.update);
 
 //-----CALENDAR-----//
-
-
-
+app.post('/events', CalendarCtrl.createEvent);
+app.get('/events', CalendarCtrl.getEvent);
+app.put('/events/:id', CalendarCtrl.updateEvent);
+app.delete('/events/:id', CalendarCtrl.deleteEvent);
 //-----CLASSES-----//
 app.post("/class", ClassCtrl.Create);
 app.get("/class", ClassCtrl.Read);
@@ -71,9 +77,11 @@ app.delete("/note/:id", NotesCtrl.Delete);
 
 //-----TASKS-----//
 app.get('/tasks', TasksCtrl.read);
+app.get('/tasks/:id', TasksCtrl.find);
 app.post('/tasks', TasksCtrl.create);
 app.put('/tasks/:id', TasksCtrl.update);
 app.delete('/tasks/:id', TasksCtrl.delete);
+
 
 
 app.post('/login', passport.authenticate('local', {
