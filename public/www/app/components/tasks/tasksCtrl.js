@@ -1,8 +1,9 @@
-angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate, $ionicHistory, $state) {
+angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate, $ionicHistory, $state, subjectService) {
 
 $ionicHistory.clearCache();
 
 $scope.listCanSwipe = true;
+
 $scope.switchReorder = function(){
   $scope.showReorder = !$scope.showReorder;
 };
@@ -18,9 +19,17 @@ $scope.switchReorder = function(){
 
 $scope.getTasks();
 
+$scope.getSubjects = function() {
+  subjectService.getSubjects().then(function(response){
+    $scope.subjects = response;
+  });
+};
+
+$scope.getSubjects();
+
 $scope.createTask = function(task) {
+  console.log("create Task", task);
     taskService.createTask(task).then(function(response) {
-    $scope.task = {};
       $scope.getTasks();
       $state.go("tabsController.tasks_tab4", {reload: true});
 

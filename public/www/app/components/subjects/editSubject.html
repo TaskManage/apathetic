@@ -3,17 +3,17 @@
 
         <form id="addAClass-form19" class="list " ng-submit="updateSubject(selectedSubject)">
             <label class="item item-input " id="addAClass-input25">
-                <input type="text" placeholder="Class Title" ng-model="selectSubject.title">
+                <input type="text" placeholder="Class Title" ng-model="selectedSubject.title">
             </label>
             <div class="spacer" style="width: 285px; height: 37px;"></div>
             <label class="item item-input " id="addAClass-input26">
-                <input type="text" placeholder="Building" ng-model="selectSubject.building">
+                <input type="text" placeholder="Building" ng-model="selectedSubject.building">
             </label>
             <label class="item item-input " id="addAClass-input27">
-                <input type="text" placeholder="Room" ng-model="selectSubject.room">
+                <input type="text" placeholder="Room" ng-model="selectedSubject.room">
             </label>
             <label class="item item-input " id="addAClass-input28">
-                <input type="text" placeholder="Teacher" ng-model="selectSubject.teacher">
+                <input type="text" placeholder="Teacher" ng-model="selectedSubject.teacher">
             </label>
         </form>
         <div id="addAClass-button-bar2" class=" button-bar ">
@@ -28,11 +28,11 @@
         <form id="addAClass-form20" class="list ">
             <label class="item item-input " id="addAClass-input29">
                 <span class="input-label">Start Time</span>
-                <input type="time" placeholder="" ng-model="selectSubject.startTime">
+                <input type="time" placeholder="" ng-model="selectedSubject.startTime">
             </label>
             <label class="item item-input " id="addAClass-input30">
                 <span class="input-label">End Time</span>
-                <input type="time" placeholder="" ng-model="selectSubject.endTime">
+                <input type="time" placeholder="" ng-model="selectedSubject.endTime">
             </label>
 
             <div class="spacer" style="width: 285px; height: 29px;"></div>
@@ -47,7 +47,7 @@
             </label> -->
 
             <a ng-click="updateSubject(selectedSubject)" ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-positive  button-block ">Save Class</a>
-            <a ui-sref="tabsController.subjects" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
+            <a ng-click="deleteSubject(selectedSubject)" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
         </form>
     </ion-content>
 </ion-view>

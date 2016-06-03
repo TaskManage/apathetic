@@ -1,12 +1,14 @@
-angular.module('studentSuccess').controller('subjectCtrl', function($scope, subjectService, $ionicListDelegate, $state, $ionicHistory) {
+angular.module('studentSuccess').controller('subjectCtrl', function($scope, subjectService, $ionicListDelegate, $state, $ionicHistory, user) {
+
+$scope.user = user.data.user;
 
 $ionicHistory.clearCache();
 
 $scope.listCanSwipe = true;
 
 $scope.selectSubject = function(subject){
-  console.log('select subject hit', subject);
   $scope.selectedSubject = subject;
+
 };
 
 $scope.getSubjects = function() {
