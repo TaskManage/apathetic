@@ -53,14 +53,17 @@ angular.module('studentSuccess')
   */
   .state('tabsController.calendar', {
     url: '/calendar',
+    cache: false,
     views: {
       'tab1': {
         templateUrl: 'app/components/calendar/calendar.html',
-        controller: 'calendarCtrl'
+        controller: 'calendarCtrl',
+        cache: false,
       },
       'tab2': {
         templateUrl: 'app/components/calendar/calendar.html',
-        controller: 'calendarCtrl'
+        controller: 'calendarCtrl',
+        cache: false,
       }
     }
   })
@@ -116,9 +119,15 @@ angular.module('studentSuccess')
   })
 
   .state('editEvent', {
-    url: '/editEvent',
+    url: '/editEvent/:id',
     templateUrl: 'app/components/calendar/editEvent.html',
-    controller: 'calendarCtrl'
+    controller: 'editCalendarCtrl',
+    cache: false,
+    resolve: {
+      event: function(calendarService, $stateParams) {
+        return calendarService.getEventId($stateParams.id);
+      }
+    }
   })
 
   .state('newEvent', {

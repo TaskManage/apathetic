@@ -58,6 +58,7 @@ app.put('/users/:_id', isAuthed, UserCtrl.update);
 //-----CALENDAR-----//
 app.post('/events', CalendarCtrl.createEvent);
 app.get('/events', CalendarCtrl.getEvent);
+app.get('/events/:id', CalendarCtrl.getEventId);
 app.put('/events/:id', CalendarCtrl.updateEvent);
 app.delete('/events/:id', CalendarCtrl.deleteEvent);
 //-----CLASSES-----//
