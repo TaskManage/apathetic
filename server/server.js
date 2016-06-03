@@ -12,7 +12,7 @@ var config = require('./config');
 // CONTROLLERS //
 var UserCtrl = require('./components/users/UserCtrl');
 var CalendarCtrl = require('./components/calendar/CalendarCtrl');
-var ClassCtrl = require('./components/class/ClassCtrl');
+var SubjectsCtrl = require('./components/subjects/SubjectsCtrl');
 var NotesCtrl = require('./components/notes/NotesCtrl');
 var TasksCtrl = require('./components/tasks/TasksCtrl');
 
@@ -74,6 +74,7 @@ app.post('/events', CalendarCtrl.createEvent);
 app.get('/events', CalendarCtrl.getEvent);
 app.put('/events/:id', CalendarCtrl.updateEvent);
 app.delete('/events/:id', CalendarCtrl.deleteEvent);
+
 //-----CLASSES-----//
 app.post("/class", ClassCtrl.Create);
 app.get("/class", ClassCtrl.Read);
@@ -81,6 +82,12 @@ app.get("/readClass/:id", ClassCtrl.ReadOne)
 app.put("/class/:id", ClassCtrl.Update);
 app.delete("/class/:id", ClassCtrl.Delete);
 
+//-----SUBJECTS-----//
+app.get('/subjects', SubjectsCtrl.read);
+app.get('/subjects/:id', SubjectsCtrl.find);
+app.post('/subjects', SubjectsCtrl.create);
+app.put('/subjects/:id', SubjectsCtrl.update);
+app.delete('/subjects/:id', SubjectsCtrl.delete);
 
 //-----NOTEBOOK-----//
 app.post("/note", NotesCtrl.Create);
