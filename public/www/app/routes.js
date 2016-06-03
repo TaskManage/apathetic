@@ -153,25 +153,44 @@ angular.module('studentSuccess')
   //   controller: 'mathClassCtrl'
   // })
 
-  .state('tabsController.classes', {
-    url: '/classes',
+  .state('tabsController.subjects', {
+    url: '/subjects',
+    cache: false,
     views: {
       'tab5': {
-        templateUrl: 'app/components/classes/classes.html',
-        controller: 'classesCtrl'
+        templateUrl: 'app/components/subjects/subjects.html',
+        controller: 'subjectCtrl'
       }
     }
   })
 
-  .state('tabsController.addAClass', {
-    url: '/addAClass',
+  .state('tabsController.addSubject', {
+    url: '/addSubject',
+    cache: false,
     views: {
       'tab5': {
-        templateUrl: 'app/components/classes/addAClass.html',
-        controller: 'classesCtrl'
+        templateUrl: 'app/components/subjects/addSubject.html',
+        controller: 'addSubjectCtrl'
       }
     }
   })
+
+  .state('tabsController.editSubject', {
+    url: '/editSubject/:id',
+    cache: false,
+    resolve: {
+      subject: function(subjectService, $stateParams) {
+        return subjectService.findSubject($stateParams.id);
+      }
+    },
+    views: {
+      'tab5': {
+        templateUrl: 'app/components/subjects/editSubject.html',
+        controller: 'editSubjectCtrl'
+      },
+    }
+  })
+
 
   .state('tabsController.classNoteCards', {
     url: '/notecards',
