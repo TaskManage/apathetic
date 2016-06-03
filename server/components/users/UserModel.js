@@ -7,12 +7,17 @@ var User = new mongoose.Schema({
   email: { type: String, index: true, trim: true },
   password: { type: String },
   createdAt: {type: Date, default: new Date()},
-  classes: [
-    {type: mongoose.Schema.Types.ObjectId, ref: 'Class'}
+  subjects: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Subject'}
+  ],
+  notes:[
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Notes'}
+  ],
+  tasks: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Task'}
   ],
   avatar: {type:String, default:'http://globalci.org/wp-content/themes/gci/images/default.jpg'}
 });
-
 User.pre('save', function(next) {
 	var user = this;
 	if (!user.isModified('password'))	return next();
