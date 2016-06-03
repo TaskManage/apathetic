@@ -1,7 +1,9 @@
 angular.module('studentSuccess').controller('editTasksCtrl', function($scope, taskService, task, $ionicHistory, $state) {
 
 $ionicHistory.clearCache();
+
 $scope.selectedTask = task;
+
 $scope.selectedTask.dueDate = new Date($scope.selectedTask.dueDate);
 
   $scope.getTask = function(task) {

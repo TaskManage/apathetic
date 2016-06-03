@@ -5,12 +5,12 @@ $ionicHistory.clearCache();
 $scope.listCanSwipe = true;
 $scope.switchReorder = function(){
   $scope.showReorder = !$scope.showReorder;
-}
+};
 
 // $scope.tasks = taskService.getTasks();
 
   $scope.getTasks = function() {
-    console.log("get")
+    console.log("get");
       taskService.getTasks().then(function(response) {
           $scope.tasks = response;
       });
@@ -29,15 +29,15 @@ $scope.createTask = function(task) {
 
 $scope.cancelTask = function(task) {
   $scope.task = {};
-}
+};
 
 $scope.selectTask = function(task) {
   $scope.selectedTask = task;
-}
+};
 
 $scope.hideOptionButtons = function(){
   $ionicListDelegate.closeOptionButtons();
-}
+};
 
 $scope.removeTask= function(task){
   console.log("REMOVE HIT", task);
@@ -66,4 +66,4 @@ $scope.moveItem = function(task, fromIndex, toIndex) {
 //       { id: 4 }
 //     ];
 
-})
+});
