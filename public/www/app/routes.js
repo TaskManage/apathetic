@@ -429,7 +429,7 @@ angular.module('studentSuccess')
     views: {
       'tab5': {
         templateUrl: 'app/components/subjects/addSubject.html',
-        controller: 'addSubjectCtrl'
+        controller: 'addSubjectCtrl',
         resolve: {
           login: function($state, authService) {
             console.log(JSON.parse(localStorage.getItem('loginToken')))
@@ -572,9 +572,12 @@ angular.module('studentSuccess')
     resolve: {
       subject: function(subjectService, $stateParams) {
         return subjectService.findSubject($stateParams.id);
+      }
+    }
+  });
 
 
-  $urlRouterProvider.otherwise('/login')
+  $urlRouterProvider.otherwise('/login');
 
 
 

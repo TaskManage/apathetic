@@ -75,12 +75,12 @@ app.get('/events', CalendarCtrl.getEvent);
 app.put('/events/:id', CalendarCtrl.updateEvent);
 app.delete('/events/:id', CalendarCtrl.deleteEvent);
 
-//-----CLASSES-----//
-app.post("/class", ClassCtrl.Create);
-app.get("/class", ClassCtrl.Read);
-app.get("/readClass/:id", ClassCtrl.ReadOne)
-app.put("/class/:id", ClassCtrl.Update);
-app.delete("/class/:id", ClassCtrl.Delete);
+// //-----CLASSES-----//
+// app.post("/class", ClassCtrl.Create);
+// app.get("/class", ClassCtrl.Read);
+// app.get("/readClass/:id", ClassCtrl.ReadOne)
+// app.put("/class/:id", ClassCtrl.Update);
+// app.delete("/class/:id", ClassCtrl.Delete);
 
 //-----SUBJECTS-----//
 app.get('/subjects', SubjectsCtrl.read);
