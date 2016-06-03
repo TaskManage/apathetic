@@ -10,7 +10,7 @@ angular.module('studentSuccess')
 
 
 
-    .state('tabsController', {
+  .state('tabsController', {
     url: '/page1',
     templateUrl: 'app/shared/navTabs/tabsController.html',
     abstract: true,
@@ -241,12 +241,54 @@ angular.module('studentSuccess')
     }
   })
 
+  .state('mainNotebook', {
+      url: '/mainNotebook',
+      templateUrl: 'app/components/notebook/classNotes/notebook.html',
+      controller: 'notebookCtrl',
+      resolve: {
+      login: function($state, authService) {
+        console.log(JSON.parse(localStorage.getItem('loginToken')))
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+              console.log(response);
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+  }
+})
+
   .state('note', {
     url: '/newnote',
     cache: false,
     templateUrl: 'app/components/notebook/classNotes/note.html',
-    controller: 'notebookCtrl',
+    controller: 'noteCtrl',
     resolve: {
+    login: function($state, authService) {
+      console.log(JSON.parse(localStorage.getItem('loginToken')))
+      if (localStorage.getItem('loginToken')) {
+        authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+            console.log(response);
+          if (response.data.loggedIn) {
+
+          } else {
+            $state.go('login');
+          }
+        })
+      }
+    }
+  }
+})
+
+  .state('editNote', {
+      url:'/editnote',
+      templateUrl: 'app/components/notebook/classNotes/editNote.html',
+      controller: 'editNoteCtrl'
+      resolve: {
       login: function($state, authService) {
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
@@ -266,7 +308,6 @@ angular.module('studentSuccess')
 
           }
         }
-
     }
   })
 
@@ -301,7 +342,13 @@ angular.module('studentSuccess')
   .state('editEvent', {
     url: '/editEvent',
     templateUrl: 'app/components/calendar/editEvent.html',
-    controller: 'calendarCtrl'
+    controller: 'calendarCtrl',
+    resolve: {
+      task: function(taskService, $stateParams) {
+        return notebookService.getTask($stateParams.id);
+      }
+    }
+
   })
 
   .state('newEvent', {

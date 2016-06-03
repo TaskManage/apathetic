@@ -1,6 +1,17 @@
 angular.module("studentSuccess").service("notebookService", function($http){
 
 //Creates a new note
+
+  this.readAllNotes = function(){
+    console.log("hit from read all notes service")
+    return $http({
+      method: 'GET',
+      url: "http://192.168.0.220:3000/note/"
+    }).then(function(response){
+      return response.data
+    })
+  }
+
   this.addNote = function(noteInfo){
     console.log("hit from addNote beginning-service")
     return $http({
