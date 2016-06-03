@@ -6,6 +6,10 @@
     <title></title>
 
     <link rel="stylesheet" href="fonts/lato/css/fonts.css">
+    <!-- <link rel='stylesheet' href='lib/textAngular/textAngular.css'> -->
+
+    <link rel="stylesheet" href="lib/quill/quill.base.css">
+    <link rel="stylesheet" href="lib/quill/quill.snow.css">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -39,61 +43,8 @@
 
   </head>
   <body ng-app="studentSuccess" animation="slide-left-right-ios7">
-  <div>
-    <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
-        <ion-side-menu-content>
-            <ion-nav-bar class="bar-stable">
-                <ion-nav-back-button></ion-nav-back-button>
-                <ion-nav-buttons side="left">
-                    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-                </ion-nav-buttons>
-            </ion-nav-bar>
-            <ion-nav-view></ion-nav-view>
-        </ion-side-menu-content>
 
-        <!-- Side Slideout Menu - SHOULD BE IN A DIRECTIVE -->
-
-        <ion-side-menu side="left" id="side-menu21">
-            <ion-header-bar class="bar-stable">
-                <div class="title">Menu</div>
-            </ion-header-bar>
-            <ion-content padding="false" class="side-menu-left has-header">
-                <ion-list id="menu-list16" class=" " data-componentid="list16">
-                    <ion-item class="item-avatar  " id="menu-list-item31" data-componentid="list-item31">
-                        <h2>Polly</h2>
-                        <p>Petersen</p>
-                    </ion-item>
-                </ion-list>
-                <form id="menu-form14" class="list " data-componentid="form14">
-                    <label class="item item-input " id="menu-input13" data-componentid="input13">
-                        <input type="email" placeholder="Email">
-                    </label>
-                    <label class="item item-input " id="menu-input12" data-componentid="input12">
-                        <input type="password" placeholder="Change your password">
-                    </label>
-                    <label class="item item-input " id="menu-input14" data-componentid="input14">
-                        <input type="password" placeholder="Confirm Password">
-                    </label>
-                </form>
-                <form id="menu-form10" class="list " data-componentid="form10">
-                    <label class="item item-select " id="menu-select3" data-componentid="select3">
-                        <span class="input-label">Theme</span>
-                        <select>
-                            <option>Light</option>
-                            <option>Dark</option>
-                            <option>Blue</option>
-                            <option>Green</option>
-                            <option>Pink</option>
-                            <option>Red</option>
-                        </select>
-                    </label>
-                </form>
-                <div class="spacer" data-componentid="spacer13" style="width: 0px; height: 100px;"></div>
-                <a ui-sref="login" menu-close="" id="menu-button10" class=" button button-assertive  button-block " data-componentid="button10">Logout</a>
-            </ion-content>
-        </ion-side-menu>
-    </ion-side-menus>
-</div>
+    <hamburger-menu></hamburger-menu>
 
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -129,6 +80,11 @@
     <script src="app/shared/ipService.js"></script>
 
 
+
+    <script src="app/components/notebook/classNotes/notebookService.js"></script>
+
+    <script src="lib/quill/quill.js"></script>
+    <script src="lib/quill/ng-quill.min.js"></script>
 
     <!-- <script src="app/components/services.js"></script> -->
     <script src="app/shared/directives.js"></script>
