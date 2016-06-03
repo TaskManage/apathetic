@@ -9,7 +9,25 @@
         <a ui-sref="note" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Add a note!</a>
 
 <!-- PLACEHOLDER NOTELIST -->
-        <ion-list id="notepad-list15" class=" ">
+  <div ng-repeat="note in notes track by $index">
+    <a ui-seref="editTask({id: task._id})" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Edit Note
+      <p>{{note.message}}</p>
+      <!-- <ng-quill-editor ng-model="message" read-only="true" error-class="input-error"> -->
+        <!-- should be right here: {{note.message}} -->
+      <!-- </ng-quill-editor> -->
+      </a>
+    </button>
+
+
+  <!-- {{note.message}} -->
+
+  <hr>
+</div>
+{{hi}}
+<!-- {{olo}} -->
+{{hello}}
+
+        <!-- <ion-list id="notepad-list15" class=" ">
             <ion-item class="item-icon-left item-icon-right dark  " id="notepad-list-item69" ui-sref="tabsController.classNoteCards">
                 <i class="icon ion-bug"></i>Biology
                 <i class="icon ion-images icon-accessory"></i>
@@ -30,7 +48,7 @@
             <ion-item id="notepad-list-item26" class="  ">How to add
                 <span class="item-note">Fri 5/20</span>
             </ion-item>
-        </ion-list>
+        </ion-list> -->
 <!-- END PLACEHOLDER    -->
     </ion-content>
 </ion-view>

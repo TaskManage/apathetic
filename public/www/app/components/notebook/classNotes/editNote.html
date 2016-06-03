@@ -2,13 +2,14 @@
     <ion-content padding="true" class="manual-ios-statusbar-padding">
         <div class="spacer" style="width: 285px; height: 51px;"></div>
         <form id="note-form11" class="list ">
-            <h2 id="note-heading5" style="color:#C9C9C9;" class=" ">Add a note here</h2>
+            <h2 id="note-heading5" style="color:#C9C9C9;" class=" ">Edit your note here</h2>
         </form>
-        <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Type your new note here!</p>
-        <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+        <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Edit your note here!</p>
+        <!-- <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor> -->
+        <textarea ng-model="message.messge"></textarea>
         this is message {{message}}<br>
         this is message.message {{message.message}}<br>
         <div class="spacer" style="width: 285px; height: 320px;"></div>
-        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="addNote(message)">Save</a>
+        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="updateNote(message)">Save</a>
     </ion-content>
 </ion-view>

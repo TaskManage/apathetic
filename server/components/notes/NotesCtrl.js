@@ -3,6 +3,29 @@ var User = require('../users/UserModel.js');
 
 module.exports = {
 
+  Create: function (req, res, next) {
+  		Note.create(req.body, function (err, response) {
+  			if (err) {
+  				res.status(500).send(err)
+  			} else {
+  				User.findByIdAndUpdate(req.body.user, {
+  					$addToSet: {
+  						'story': response
+  					}
+  				},
+           function (err, user) {
+  					console.log(user);
+  					if (err) {
+  						res.status(500).send(err)
+  					} else {
+  						res.status(200).send(response)
+  					}
+  				})
+  			}
+  		})
+  	},
+
+
     Create: function(req, res, next) {
       Note.create(req.body, function (err, response) {
         if (err) {
