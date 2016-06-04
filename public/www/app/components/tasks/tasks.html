@@ -15,10 +15,12 @@
 
     <ion-list id="tasks-list10"
           class=" "
-          can-swipe="listCanSwipe"
-          show-reorder="showReorder">
+          show-reorder="showReorder"
+          can-swipe="listCanSwipe">
 
-      <ion-item class="item-divider " id="tasks-list-item-divider6">Personal Tasks
+      <ion-item class="item-divider " id="tasks-list-item-divider6"
+      ng-repeat="subject in subjects">
+      {{subject.title}}
       </ion-item>
 
       <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in tasks | filter:searchTasks track by $index" can-reorder="true">

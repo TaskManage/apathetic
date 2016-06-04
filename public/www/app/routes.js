@@ -10,7 +10,7 @@ angular.module('studentSuccess')
 
 
 
-    .state('tabsController', {
+  .state('tabsController', {
     url: '/page1',
     templateUrl: 'app/shared/navTabs/tabsController.html',
     abstract: true,
@@ -119,7 +119,6 @@ angular.module('studentSuccess')
            
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
                 if (response.data.loggedIn) {
 
                 } else {
@@ -149,7 +148,6 @@ angular.module('studentSuccess')
         controller: 'notebookCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
                   console.log(response);
@@ -196,7 +194,6 @@ angular.module('studentSuccess')
         controller: 'tasksCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
                   console.log(response);
@@ -223,10 +220,8 @@ angular.module('studentSuccess')
         controller: 'tasksCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
                 if (response.data.loggedIn) {
 
                 } else {
@@ -248,14 +243,55 @@ angular.module('studentSuccess')
     }
   })
 
+  .state('mainNotebook', {
+      url: '/mainNotebook',
+      templateUrl: 'app/components/notebook/classNotes/notebook.html',
+      controller: 'notebookCtrl',
+      resolve: {
+      login: function($state, authService) {
+        console.log(JSON.parse(localStorage.getItem('loginToken')))
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+              console.log(response);
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+  }
+})
+
   .state('note', {
     url: '/newnote',
     cache: false,
     templateUrl: 'app/components/notebook/classNotes/note.html',
-    controller: 'notebookCtrl',
+    controller: 'noteCtrl',
     resolve: {
+    login: function($state, authService) {
+      console.log(JSON.parse(localStorage.getItem('loginToken')))
+      if (localStorage.getItem('loginToken')) {
+        authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+            console.log(response);
+          if (response.data.loggedIn) {
+
+          } else {
+            $state.go('login');
+          }
+        })
+      }
+    }
+  }
+})
+
+  .state('editNote', {
+      url:'/editnote',
+      templateUrl: 'app/components/notebook/classNotes/editNote.html',
+      controller: 'editNoteCtrl',
+      resolve: {
       login: function($state, authService) {
-        console.log(JSON.parse(localStorage.getItem('loginToken')))
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
               console.log(response);
@@ -274,7 +310,6 @@ angular.module('studentSuccess')
 
           }
         }
-
     }
   })
 
@@ -285,10 +320,8 @@ angular.module('studentSuccess')
     controller: 'notebookCtrl',
     resolve: {
       login: function($state, authService) {
-        console.log(JSON.parse(localStorage.getItem('loginToken')))
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-              console.log(response);
             if (response.data.loggedIn) {
 
             } else {
@@ -318,6 +351,7 @@ angular.module('studentSuccess')
         return calendarService.getEventId($stateParams.id);
       }
     }
+
   })
 
   .state('newEvent', {
@@ -327,10 +361,8 @@ angular.module('studentSuccess')
     controller: 'calendarCtrl',
     resolve: {
       login: function($state, authService) {
-        console.log(JSON.parse(localStorage.getItem('loginToken')))
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-              console.log(response);
             if (response.data.loggedIn) {
 
             } else {
@@ -361,10 +393,8 @@ angular.module('studentSuccess')
         return taskService.getTask($stateParams.id);
       },
       login: function($state, authService) {
-        console.log(JSON.parse(localStorage.getItem('loginToken')))
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-              console.log(response);
             if (response.data.loggedIn) {
 
             } else {
@@ -406,7 +436,6 @@ angular.module('studentSuccess')
         controller: 'subjectCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
                   console.log(response);
@@ -440,10 +469,8 @@ angular.module('studentSuccess')
         controller: 'addSubjectCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
                 if (response.data.loggedIn) {
 
                 } else {
@@ -481,10 +508,8 @@ angular.module('studentSuccess')
         controller: 'notecardsCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
                 if (response.data.loggedIn) {
 
                 } else {
@@ -515,7 +540,6 @@ angular.module('studentSuccess')
         controller: 'notecardsCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
                   console.log(response);
@@ -549,10 +573,8 @@ angular.module('studentSuccess')
         controller: 'notecardsCtrl',
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
                 if (response.data.loggedIn) {
 
                 } else {
@@ -574,13 +596,34 @@ angular.module('studentSuccess')
     }
   })
 
-  .state('tabsController.editSubject', {
+  .state('editSubject', {
     url: '/editSubject/:id',
     cache: false,
+    controller: "editSubjectCtrl",
+    templateUrl: 'app/components/subjects/editSubject.html',
     resolve: {
       subject: function(subjectService, $stateParams) {
         return subjectService.findSubject($stateParams.id);
+      },
+      login: function($state, authService) {
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+            if (response.data.loggedIn) {
+            } else {
+              $state.go('login');
+            }
+          });
+        }
+      },
+      user: function($state, authService){
+        if (localStorage.getItem('loginToken')) {
+          return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+        } else {
+
+        }
       }
+
+
     }
   });
 
