@@ -1,7 +1,8 @@
 angular.module('studentSuccess').service('calendarService', function($http, ipService) {
 
-	
-	 var ip = ipService.ip;
+
+	var ip = ipService.ip;
+
 
 	this.getEvent = function() {
 		return $http ({
@@ -45,4 +46,4 @@ angular.module('studentSuccess').service('calendarService', function($http, ipSe
 		});
 	};
 
-}); 
+});

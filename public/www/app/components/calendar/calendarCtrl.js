@@ -2,6 +2,8 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 
 	$ionicHistory.clearCache();
 
+
+
 	var events = [];	
 
 	$scope.getEvent = function() {
@@ -13,6 +15,9 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 				events.push(event[i]);
 				// console.log(event[i]);
 			}
+
+      $('.fc-day.fc-sat').css('backgroundColor','#bce8f1');
+      $('.fc-day.fc-sun').css('backgroundColor','#bce8f1');
 			
 		});
 
@@ -22,6 +27,9 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 	$scope.getEvent();
 
 	$scope.createEvent = function(calEvent) {
+    console.log("Full time event" + calEvent.start);
+    console.log("End time" + calEvent.end);
+    console.log(calEvent);
 		calendarService.createEvent(calEvent).then(function(calEvent) {
 			console.log(calEvent + 'Event created');
 			$state.go("tabsController.calendar_tab2", {reload: true});
@@ -30,7 +38,7 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 
 	$scope.deleteEvent = function(calId) {
 		calendarService.deleteEvent(calId).then(function(calId) {
-			console.log(calId + 'Event Deleted');
+			// console.log(calId + 'Event Deleted');
 			$state.reload();
 		
 		});
@@ -45,15 +53,16 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
    
    
     
-    /* event source that contains custom events on the scope */
-    // var events = [
-    //   {title: 'All Day Event',start: new Date(y, m, 1)},
-    //   {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-    //   {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-    //   {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-    //   {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-    //   {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29)}
-    // ];
+    /* Test Data */
+    var events = [
+      {id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'blue', dow: [1,4]},
+      {title: 'All Day Event',start: new Date(y, m, 1)},
+      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29)}
+    ];
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
       var s = new Date(start).getTime() / 1000;
@@ -96,6 +105,7 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
     /* config object */
     $scope.uiConfig = {
       calendar:{
+        // defaultView: 'agendaWeek',
         editable: true,
         header:{
           left: 'prev',

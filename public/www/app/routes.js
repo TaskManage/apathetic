@@ -43,7 +43,7 @@ angular.module('studentSuccess')
             console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+                  
                 if (response.data.loggedIn) {
 
                 } else {
@@ -88,10 +88,10 @@ angular.module('studentSuccess')
         cache: false,
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
+           
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+                  
                 if (response.data.loggedIn) {
 
                 } else {
@@ -116,7 +116,7 @@ angular.module('studentSuccess')
         cache: false,
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
+           
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
                   console.log(response);
@@ -397,13 +397,13 @@ angular.module('studentSuccess')
   //   controller: 'mathClassCtrl'
   // })
 
-  .state('tabsController.classes', {
-    url: '/classes',
+  .state('tabsController.subjects', {
+    url: '/subjects',
     cache: false,
     views: {
       'tab5': {
-        templateUrl: 'app/components/classes/classes.html',
-        controller: 'classesCtrl',
+        templateUrl: 'app/components/subjects/subjects.html',
+        controller: 'subjectCtrl',
         resolve: {
           login: function($state, authService) {
             console.log(JSON.parse(localStorage.getItem('loginToken')))
@@ -431,13 +431,13 @@ angular.module('studentSuccess')
     }
   })
 
-  .state('tabsController.addAClass', {
-    url: '/addAClass',
+.state('tabsController.addSubject', {
+  url: '/addSubject',
     cache: false,
     views: {
       'tab5': {
-        templateUrl: 'app/components/classes/addAClass.html',
-        controller: 'classesCtrl',
+        templateUrl: 'app/components/subjects/addSubject.html',
+        controller: 'addSubjectCtrl',
         resolve: {
           login: function($state, authService) {
             console.log(JSON.parse(localStorage.getItem('loginToken')))
@@ -462,8 +462,15 @@ angular.module('studentSuccess')
 
         }
       }
+    },
+    views: {
+      'tab5': {
+        templateUrl: 'app/components/subjects/editSubject.html',
+        controller: 'editSubjectCtrl'
+      },
     }
   })
+
 
   .state('tabsController.classNoteCards', {
     url: '/notecards',
@@ -567,7 +574,18 @@ angular.module('studentSuccess')
     }
   })
 
-  $urlRouterProvider.otherwise('/login')
+  .state('tabsController.editSubject', {
+    url: '/editSubject/:id',
+    cache: false,
+    resolve: {
+      subject: function(subjectService, $stateParams) {
+        return subjectService.findSubject($stateParams.id);
+      }
+    }
+  });
+
+
+  $urlRouterProvider.otherwise('/login');
 
 
 
