@@ -43,7 +43,7 @@ angular.module('studentSuccess')
             console.log(JSON.parse(localStorage.getItem('loginToken')))
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+                  
                 if (response.data.loggedIn) {
 
                 } else {
@@ -85,12 +85,13 @@ angular.module('studentSuccess')
       'tab1': {
         templateUrl: 'app/components/calendar/calendar.html',
         controller: 'calendarCtrl',
+        cache: false,
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
+           
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+                  
                 if (response.data.loggedIn) {
 
                 } else {
@@ -112,9 +113,10 @@ angular.module('studentSuccess')
       'tab2': {
         templateUrl: 'app/components/calendar/calendar.html',
         controller: 'calendarCtrl',
+        cache: false,
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
+           
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
                 if (response.data.loggedIn) {
@@ -287,7 +289,7 @@ angular.module('studentSuccess')
   .state('editNote', {
       url:'/editnote',
       templateUrl: 'app/components/notebook/classNotes/editNote.html',
-      controller: 'editNoteCtrl'
+      controller: 'editNoteCtrl',
       resolve: {
       login: function($state, authService) {
         if (localStorage.getItem('loginToken')) {
@@ -340,12 +342,13 @@ angular.module('studentSuccess')
   })
 
   .state('editEvent', {
-    url: '/editEvent',
+    url: '/editEvent/:id',
     templateUrl: 'app/components/calendar/editEvent.html',
-    controller: 'calendarCtrl',
+    controller: 'editCalendarCtrl',
+    cache: false,
     resolve: {
-      task: function(taskService, $stateParams) {
-        return notebookService.getTask($stateParams.id);
+      event: function(calendarService, $stateParams) {
+        return calendarService.getEventId($stateParams.id);
       }
     }
 

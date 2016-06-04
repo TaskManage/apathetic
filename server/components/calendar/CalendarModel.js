@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 var calEvent = new mongoose.Schema({
 	title: {type: String},
-	start: {type: Date},
-	end: {type: Date},
+	start: {type: Date, require: true},
+	end: {type: Date, require: true},
 	allDay: {type: String},
 	location: {type: String},
 	notes: {type: String}
