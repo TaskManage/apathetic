@@ -46,8 +46,8 @@
                 <input type="date" placeholder="">
             </label> -->
 
-            <a ng-click="updateSubject(selectedSubject)" ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-positive  button-block ">Save Class</a>
-            <a ng-click="deleteSubject(selectedSubject)" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
+            <a ng-click="updateSubject(selectedSubject); showPopup()" ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-positive  button-block ">Save Class</a>
+            <a ng-click="showConfirm()" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
         </form>
     </ion-content>
 </ion-view>

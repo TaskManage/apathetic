@@ -1,4 +1,4 @@
-angular.module('studentSuccess').controller('noteCtrl', function($scope, notebookService) {
+angular.module('studentSuccess').controller('noteCtrl', function($scope, notebookService, $ionicPopup, $timeout) {
 
   $scope.message = {
     name: "",
@@ -14,6 +14,20 @@ angular.module('studentSuccess').controller('noteCtrl', function($scope, noteboo
         // $scope.storyRes = response;
     })
   }
+
+  $scope.showPopup = function() {
+    var myPopup = $ionicPopup.show({
+      title: 'Note Saved',
+      template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+      scope: $scope,
+    });
+    myPopup.then(function(res) {
+    });
+    $timeout(function() {
+       myPopup.close();
+    }, 1000);
+   };
+
 
   $scope.filterCondition={
         operator: 'eq'
