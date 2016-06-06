@@ -96,6 +96,7 @@ app.get("/note", NotesCtrl.Read);
 app.get("/readNote/:id", NotesCtrl.ReadOne)
 app.put("/note/:id", NotesCtrl.Update);
 app.delete("/note/:id", NotesCtrl.Delete);
+app.put("/deleteNote", NotesCtrl.DeleteMany);
 
 //-----TASKS-----//
 app.get('/tasks', TasksCtrl.read);
