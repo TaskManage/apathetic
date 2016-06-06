@@ -10,6 +10,14 @@ angular.module('studentSuccess')
             localStorage.removeItem('loginToken')
             $state.go('login');
         };
+
+        $scope.update = function(id, user) {
+          authService.editUser(id, user).then(function(response) {
+            $state.go("tabsController.dashboard");
+          })
+        }
+
+
       },
       link: function(scope, elem, att){
         $rootScope.tokenChange = false;
@@ -19,12 +27,12 @@ angular.module('studentSuccess')
         function getInfo(){
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
             scope.user = response.data.user;
+            scope.user.password = '';
         })
       }
 
       $rootScope.$watch('tokenChange', function(ov, nv){
-        console.log('updating directive');
-        $rootScope.tokenChange = false;
+
         getInfo();
       })
 
