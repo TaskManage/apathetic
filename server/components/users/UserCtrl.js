@@ -5,7 +5,6 @@ var config = require('../../config');
 module.exports = {
 
     register: function(req, res, next) {
-        console.log('hit', req.body);
         User.create(req.body, function(err, result) {
             if (err) return res.status(500).send(err);
             newUser = result.toObject();
@@ -24,7 +23,6 @@ module.exports = {
     },
 
     me: function(req, res, next) {
-        console.log("loggedin", req.get("loginToken"));
         if (req.get('loginToken')) {
             var token = jwt.verify(req.get('loginToken'), config.key);
             User.findById(token._id, function(err, user) {

@@ -10,7 +10,7 @@ angular.module('studentSuccess')
 
 
 
-    .state('tabsController', {
+  .state('tabsController', {
     url: '/page1',
     templateUrl: 'app/shared/navTabs/tabsController.html',
     abstract: true,
@@ -43,7 +43,6 @@ angular.module('studentSuccess')
 
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
                 if (response.data.loggedIn) {
 
                 } else {
@@ -85,12 +84,11 @@ angular.module('studentSuccess')
       'tab1': {
         templateUrl: 'app/components/calendar/calendar.html',
         controller: 'calendarCtrl',
+        cache: false,
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
                 if (response.data.loggedIn) {
 
                 } else {
@@ -112,12 +110,11 @@ angular.module('studentSuccess')
       'tab2': {
         templateUrl: 'app/components/calendar/calendar.html',
         controller: 'calendarCtrl',
+        cache: false,
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
                 if (response.data.loggedIn) {
 
                 } else {
@@ -147,7 +144,6 @@ angular.module('studentSuccess')
         controller: 'notebookCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
 
@@ -194,7 +190,6 @@ angular.module('studentSuccess')
         controller: 'tasksCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
 
@@ -221,10 +216,8 @@ angular.module('studentSuccess')
         controller: 'tasksCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
                 if (response.data.loggedIn) {
 
                 } else {
@@ -246,14 +239,55 @@ angular.module('studentSuccess')
     }
   })
 
+  .state('mainNotebook', {
+      url: '/mainNotebook',
+      templateUrl: 'app/components/notebook/classNotes/notebook.html',
+      controller: 'notebookCtrl',
+      resolve: {
+      login: function($state, authService) {
+        console.log(JSON.parse(localStorage.getItem('loginToken')))
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+              console.log(response);
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+  }
+})
+
   .state('note', {
     url: '/newnote',
     cache: false,
     templateUrl: 'app/components/notebook/classNotes/note.html',
-    controller: 'notebookCtrl',
+    controller: 'noteCtrl',
     resolve: {
-      login: function($state, authService) {
+    login: function($state, authService) {
+      console.log(JSON.parse(localStorage.getItem('loginToken')))
+      if (localStorage.getItem('loginToken')) {
+        authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+            console.log(response);
+          if (response.data.loggedIn) {
 
+          } else {
+            $state.go('login');
+          }
+        })
+      }
+    }
+  }
+})
+
+  .state('editNote', {
+      url:'/editnote',
+      templateUrl: 'app/components/notebook/classNotes/editNote.html',
+      controller: 'editNoteCtrl',
+      resolve: {
+      login: function($state, authService) {
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
 
@@ -272,7 +306,6 @@ angular.module('studentSuccess')
 
           }
         }
-
     }
   })
 
@@ -283,10 +316,8 @@ angular.module('studentSuccess')
     controller: 'notebookCtrl',
     resolve: {
       login: function($state, authService) {
-
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
             if (response.data.loggedIn) {
 
             } else {
@@ -307,9 +338,16 @@ angular.module('studentSuccess')
   })
 
   .state('editEvent', {
-    url: '/editEvent',
+    url: '/editEvent/:id',
     templateUrl: 'app/components/calendar/editEvent.html',
-    controller: 'calendarCtrl'
+    controller: 'editCalendarCtrl',
+    cache: false,
+    resolve: {
+      event: function(calendarService, $stateParams) {
+        return calendarService.getEventId($stateParams.id);
+      }
+    }
+
   })
 
   .state('newEvent', {
@@ -319,10 +357,8 @@ angular.module('studentSuccess')
     controller: 'calendarCtrl',
     resolve: {
       login: function($state, authService) {
-
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
             if (response.data.loggedIn) {
 
             } else {
@@ -353,10 +389,8 @@ angular.module('studentSuccess')
         return taskService.getTask($stateParams.id);
       },
       login: function($state, authService) {
-
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
             if (response.data.loggedIn) {
 
             } else {
@@ -411,16 +445,15 @@ angular.module('studentSuccess')
   //   controller: 'mathClassCtrl'
   // })
 
-  .state('tabsController.classes', {
-    url: '/classes',
+  .state('tabsController.subjects', {
+    url: '/subjects',
     cache: false,
     views: {
       'tab5': {
-        templateUrl: 'app/components/classes/classes.html',
-        controller: 'classesCtrl',
+        templateUrl: 'app/components/subjects/subjects.html',
+        controller: 'subjectCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
 
@@ -445,19 +478,17 @@ angular.module('studentSuccess')
     }
   })
 
-  .state('tabsController.addAClass', {
-    url: '/addAClass',
+.state('tabsController.addSubject', {
+  url: '/addSubject',
     cache: false,
     views: {
       'tab5': {
-        templateUrl: 'app/components/classes/addAClass.html',
-        controller: 'classesCtrl',
+        templateUrl: 'app/components/subjects/addSubject.html',
+        controller: 'addSubjectCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
                 if (response.data.loggedIn) {
 
                 } else {
@@ -476,8 +507,15 @@ angular.module('studentSuccess')
 
         }
       }
-    }
+    },
+    // views: {
+    //   'tab5': {
+    //     templateUrl: 'app/components/subjects/editSubject.html',
+    //     controller: 'editSubjectCtrl'
+    //   },
+    // }
   })
+
 
   .state('tabsController.classNoteCards', {
     url: '/notecards',
@@ -488,10 +526,8 @@ angular.module('studentSuccess')
         controller: 'notecardsCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
                 if (response.data.loggedIn) {
 
                 } else {
@@ -522,7 +558,6 @@ angular.module('studentSuccess')
         controller: 'notecardsCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
 
@@ -556,10 +591,8 @@ angular.module('studentSuccess')
         controller: 'notecardsCtrl',
         resolve: {
           login: function($state, authService) {
-
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-
                 if (response.data.loggedIn) {
 
                 } else {
@@ -581,7 +614,39 @@ angular.module('studentSuccess')
     }
   })
 
-  $urlRouterProvider.otherwise('/login')
+  .state('editSubject', {
+    url: '/editSubject/:id',
+    cache: false,
+    controller: "editSubjectCtrl",
+    templateUrl: 'app/components/subjects/editSubject.html',
+    resolve: {
+      subject: function(subjectService, $stateParams) {
+        return subjectService.findSubject($stateParams.id);
+      },
+      login: function($state, authService) {
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+            if (response.data.loggedIn) {
+            } else {
+              $state.go('login');
+            }
+          });
+        }
+      },
+      user: function($state, authService){
+        if (localStorage.getItem('loginToken')) {
+          return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+        } else {
+
+        }
+      }
+
+
+    }
+  });
+
+
+  $urlRouterProvider.otherwise('/login');
 
 
 

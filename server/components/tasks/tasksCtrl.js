@@ -38,9 +38,7 @@ module.exports = {
     },
 
     update: function(req, res, next) {
-        console.log(req.body)
         Task.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
-            console.log(err);
             return err ? res.status(500).send(err) : res.send(response);
         });
     },
@@ -53,7 +51,6 @@ module.exports = {
 
     getUserTasks: function(req, res, next) {
         var token = jwt.verify(req.get('loginToken'), config.key);
-        console.log("THIS IS THE TOKEN " + token._id);
         User.findById(token._id).populate('tasks').exec(function(err, response) {
             if (err) {
                 res.status(500).send(err);

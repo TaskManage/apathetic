@@ -9,6 +9,15 @@ angular.module('studentSuccess').service('calendarService', function($http, ipSe
 		});
 	};
 
+	this.getEventId = function(id) {
+		return $http ({
+			method: 'GET',
+			url: ip + '/events/' + id
+		}).then(function(response) {
+			return response.data;
+		});
+	};
+
 	this.createEvent = function(calEvent) {
 		return $http ({
 			method: 'POST',
@@ -24,10 +33,14 @@ angular.module('studentSuccess').service('calendarService', function($http, ipSe
 		});
 	};
 
-	this.editEvent = function(edCalEvent, calId) {
+	this.editEvent = function(edCalEvent) {
+		console.log(edCalEvent);
 		return $http ({
 			method: 'PUT',
-			url: ip + '/events/' + calId
+			url: ip + '/events/' + edCalEvent._id,
+			data: edCalEvent
+		}).then(function(response) {
+			return response;
 		});
 	};
 

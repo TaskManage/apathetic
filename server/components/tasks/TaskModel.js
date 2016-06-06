@@ -10,8 +10,7 @@ var TaskSchema = new mongoose.Schema({
     dueDate: Date,
     notes: String,
     users: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    class: String,
-    // class: {type: objectId, ref: 'Class'},
+    subject: {type: mongoose.Schema.Types.ObjectId, ref: 'Subject'}
 });
 
 module.exports = mongoose.model('Task', TaskSchema);

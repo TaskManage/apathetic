@@ -2,7 +2,6 @@
     <ion-content padding="true" class=" manual-remove-top-padding has-header">
 
         <div class="spacer" style="width: 285px; height: 27px;"></div>
-{{selectedTask}}
         <form id="editToDo-form16" class="list " ng-submit="updateTask(selectedTask)">
             <label class="item item-input " id="editToDo-input16">
                 <input type="text" placeholder="" ng-model="selectedTask.title">
@@ -33,7 +32,7 @@
 
         <div class="spacer" style="width: 285px; height: 37px;"></div>
 
-        <a ng-click="updateTask(selectedTask)" id="editToDo-button11" class=" button button-positive  button-block " >Update Task</a>
+        <a ng-click="updateTask(selectedTask)" id="editToDo-button11" class=" button button-positive  button-block " >Save Task</a>
 
         <a ng-click="deleteTask(selectedTask)" id="editToDo-button40" class=" button button-assertive  button-block ">Delete</a>
 </form>

@@ -1,18 +1,19 @@
-<ion-view title="Add a class" hide-back-button="true" id="page19" class=" ">
+<ion-view title="Edit a Subject" hide-back-button="true" id="page19" class=" ">
     <ion-content padding="true" class="has-header">
-        <form id="addAClass-form19" class="list ">
+
+        <form id="addAClass-form19" class="list " ng-submit="updateSubject(selectedSubject)">
             <label class="item item-input " id="addAClass-input25">
-                <input type="text" placeholder="Class Title">
+                <input type="text" placeholder="Class Title" ng-model="selectedSubject.title">
             </label>
             <div class="spacer" style="width: 285px; height: 37px;"></div>
             <label class="item item-input " id="addAClass-input26">
-                <input type="text" placeholder="Building">
+                <input type="text" placeholder="Building" ng-model="selectedSubject.building">
             </label>
             <label class="item item-input " id="addAClass-input27">
-                <input type="text" placeholder="Room">
+                <input type="text" placeholder="Room" ng-model="selectedSubject.room">
             </label>
             <label class="item item-input " id="addAClass-input28">
-                <input type="text" placeholder="Teacher">
+                <input type="text" placeholder="Teacher" ng-model="selectedSubject.teacher">
             </label>
         </form>
         <div id="addAClass-button-bar2" class=" button-bar ">
@@ -27,23 +28,26 @@
         <form id="addAClass-form20" class="list ">
             <label class="item item-input " id="addAClass-input29">
                 <span class="input-label">Start Time</span>
-                <input type="time" placeholder="">
+                <input type="time" placeholder="" ng-model="selectedSubject.startTime">
             </label>
             <label class="item item-input " id="addAClass-input30">
                 <span class="input-label">End Time</span>
-                <input type="time" placeholder="">
+                <input type="time" placeholder="" ng-model="selectedSubject.endTime">
             </label>
+
             <div class="spacer" style="width: 285px; height: 29px;"></div>
-            <label class="item item-input " id="addAClass-input31">
+
+            <!-- <label class="item item-input " id="addAClass-input31">
                 <span class="input-label">Start Day</span>
                 <input type="date" placeholder="">
             </label>
             <label class="item item-input " id="addAClass-input32">
                 <span class="input-label">End Day</span>
                 <input type="date" placeholder="">
-            </label>
-            <a ui-sref="tabsController.classes" id="addAClass-button30" class=" button button-positive  button-block ">Save Class</a>
-            <a ui-sref="tabsController.classes" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
+            </label> -->
+
+            <a ng-click="updateSubject(selectedSubject)" ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-positive  button-block ">Save Class</a>
+            <a ng-click="deleteSubject(selectedSubject)" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
         </form>
     </ion-content>
 </ion-view>

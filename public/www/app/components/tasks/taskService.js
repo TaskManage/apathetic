@@ -1,12 +1,12 @@
 angular.module("studentSuccess").service("taskService", function($http, ipService, $rootScope) {
 
-var loginToken = JSON.parse(localStorage.getItem('loginToken'));
-$rootScope.$watch('tokenChange', function(ov, nv){
+  var ip = ipService.ip;
+  var loginToken = JSON.parse(localStorage.getItem('loginToken'));
 
-  loginToken = JSON.parse(localStorage.getItem('loginToken'));
-})
+  $rootScope.$watch('tokenChange', function(ov, nv){
 
-var ip = ipService.ip;
+    loginToken = JSON.parse(localStorage.getItem('loginToken'));
+  });
 
   this.getTasks = function() {
     return $http({

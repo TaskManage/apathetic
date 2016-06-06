@@ -16,9 +16,11 @@ var User = new mongoose.Schema({
   tasks: [
     {type: mongoose.Schema.Types.ObjectId, ref: 'Task'}
   ],
+  events: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Events'}
+  ],
   avatar: {type:String, default:'http://globalci.org/wp-content/themes/gci/images/default.jpg'}
 });
-
 User.pre('save', function(next) {
 	var user = this;
 	if (!user.isModified('password'))	return next();

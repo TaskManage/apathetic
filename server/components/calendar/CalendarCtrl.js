@@ -23,6 +23,16 @@ module.exports = {
 			});
 	},
 
+	getEventId: function(req, res) {
+		CalEvent.findById(req.params.id, function(err, response) {
+			if (err) {
+				res.status(500).json(err);
+			} else {
+				res.status(200).json(response);
+			}
+		});
+	},
+
 	updateEvent: function(req, res) {
 		CalEvent.findByIdAndUpdate(req.params.id, req.body, function(err, s) {
 			if (err) {

@@ -1,4 +1,4 @@
-angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate, $ionicHistory, $state, user) {
+angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate, $ionicHistory, $state, user, subjectService) {
   $scope.user = user.data.user;
 
   $ionicHistory.clearCache();
@@ -6,9 +6,7 @@ angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskSe
   $scope.listCanSwipe = true;
   $scope.switchReorder = function() {
     $scope.showReorder = !$scope.showReorder;
-  }
-
-  // $scope.tasks = taskService.getTasks();
+  };
 
   $scope.getTasks = function() {
     console.log("get")
@@ -20,9 +18,16 @@ angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskSe
 
   $scope.getTasks();
 
-  $scope.createTask = function(task) {
+$scope.getSubjects = function() {
+  subjectService.getSubjects().then(function(response){
+    $scope.subjects = response;
+  });
+};
+
+$scope.getSubjects();
+
+$scope.createTask = function(task) {
     taskService.createTask(task).then(function(response) {
-      $scope.task = {};
       $scope.getTasks();
       $state.go("tabsController.tasks_tab4", {
         reload: true
@@ -31,17 +36,18 @@ angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskSe
     });
   };
 
+
   $scope.cancelTask = function(task) {
     $scope.task = {};
-  }
+  };
 
   $scope.selectTask = function(task) {
     $scope.selectedTask = task;
-  }
+  };
 
   $scope.hideOptionButtons = function() {
     $ionicListDelegate.closeOptionButtons();
-  }
+  };
 
   $scope.removeTask = function(task) {
     console.log("REMOVE HIT", task);
@@ -72,4 +78,4 @@ angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskSe
   //       { id: 4 }
   //     ];
 
-})
+});
