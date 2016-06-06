@@ -53,9 +53,15 @@ module.exports = {
     },
 
     update: function(req, res, next) {
-        User.findByIdAndUpdate(req.params._id, req.body, function(err, result) {
-            if (err) next(err);
+        User.findById(req.params._id, function(err, result) {
+          result.password = req.body.password;
+          result.save(function(err, result) {
+            if (err) {
+              res.status(500).send(err);
+            } else {
             res.status(200).send('user updated');
+          }
+          });
         });
     }
 };
