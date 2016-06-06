@@ -283,7 +283,7 @@ angular.module('studentSuccess')
 })
 
   .state('editNote', {
-      url:'/editnote',
+      url:'/editNote/:id',
       templateUrl: 'app/components/notebook/classNotes/editNote.html',
       controller: 'editNoteCtrl',
       resolve: {

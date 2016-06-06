@@ -2,8 +2,6 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
 
 var ip = ipService.ip;
 
-//Creates a new note
-
   this.readAllNotes = function(){
     console.log("hit from read all notes service")
     return $http({
@@ -18,7 +16,7 @@ var ip = ipService.ip;
     console.log("hit from addNote beginning-service")
     return $http({
       method:'POST',
-      url: ip + '/note',
+      url: ip + '/note/',
      data: noteInfo
     }).then(function(response){
       console.log(response.data);
@@ -30,17 +28,17 @@ var ip = ipService.ip;
     this.readUserNote = function(user){
       return $http({
         method:"GET",
-        url: ip + '/note' + user._id,
+        url: ip + '/note/' + user._id
       }).then(function(response){
         return response.data
       })
     }
 
-    this.updateNote = function(noteData, noteID){
-      return $http({
+    this.updateNote = function(selNote, noteID){
+      return  $http({
         method: "PUT",
-        url: ip + '/note' + noteId,
-        data: noteData
+        url: ip + '/note/' + noteID,
+        data: selNote
       }).then (function(response){
         return response.data
       })
@@ -48,20 +46,43 @@ var ip = ipService.ip;
 
 //gets a selected note
 this.readNote = function(noteID){
+  console.log('readNote reaches this far')
   return $http({
     method:'GET',
-    url: ip + '/note' + noteId,
+    url: ip + '/readNote/' + noteID
   }).then(function(response){
     return response.data
   })
 }
 
 //deletes a selected note
-this.removePage = function(noteID){
+this.removeNote = function(noteID){
   return $http({
     method: "DELETE",
-    url: ip + '/note' + noteId,
+    url: ip + '/note/' + noteID
   }).then(function(response){
   })
 }
+
+this.removeNotes = function(idArray) {
+    console.log("hit from removeNotes", idArray);
+    return $http({
+      method: 'PUT',
+      url: ip + '/deleteNote/',
+      data: {_id: idArray},
+    }).then(function(res) {
+    console.log(res.data);
+    }, function(error) {
+    console.log(error);
+    });
+  };
+
+// this.removeNote = function(noteID){
+//   return $http({
+//     method: "DELETE",
+//     url: ip + '/note/' + noteID,
+//   }).then(function(response){
+//   })
+// }
+
 });

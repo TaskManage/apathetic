@@ -1,4 +1,6 @@
-angular.module('studentSuccess').controller('notebookCtrl', function($scope, notebookService) {
+angular.module('studentSuccess').controller('notebookCtrl', function($scope, notebookService, $state, $ionicHistory) {
+
+$ionicHistory.clearCache();
 
 $scope.readAllNotes = function(){
   console.log("hit from readAllNotes");
@@ -9,6 +11,29 @@ $scope.readAllNotes = function(){
  }
 
 $scope.readAllNotes();
+
+
+$scope.selection=[];
+
+  $scope.toggleSelection = function toggleSelection(employeeName) {
+     var idx = $scope.selection.indexOf(employeeName);
+ 
+     if (idx > -1) {
+       $scope.selection.splice(idx, 1);
+     }
+ 
+     else {
+       $scope.selection.push(employeeName);
+     }
+   };
+
+$scope.removeNotes = function(){
+  console.log('hit from fired remove note notebookCtrl')
+    notebookService.removeNotes($scope.selection).then(function(response){
+      console.log("update from delete return");
+      $scope.readAllNotes();
+    })
+};
 
 });
 

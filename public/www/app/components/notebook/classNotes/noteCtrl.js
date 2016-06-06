@@ -15,4 +15,13 @@ angular.module('studentSuccess').controller('noteCtrl', function($scope, noteboo
     })
   }
 
+  $scope.filterCondition={
+        operator: 'eq'
+    }
+
+    $scope.operators = [
+        {value: 'eq', displayName: 'equals', title: 'The equals operator does blah, blah'},
+        {value: 'neq', displayName: 'not equal', title: 'The not equals operator does yada yada'},
+        {value: 'ner', displayName: "don't care", title: "I'm not sure why this isn't working . . . "}
+     ]
 });
