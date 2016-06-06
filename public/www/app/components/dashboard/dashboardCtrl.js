@@ -5,7 +5,8 @@ angular.module('studentSuccess').controller('dashboardCtrl', function($scope, us
     console.log("get")
     taskService.getUserTasks().then(function(response) {
       console.log(response);
-      $scope.tasks = response.tasks;
+      $scope.subjects = response.subjects;
+      console.log(response.subjects);
     });
   };
 

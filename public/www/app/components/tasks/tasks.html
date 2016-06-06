@@ -18,12 +18,12 @@
           show-reorder="showReorder"
           can-swipe="listCanSwipe">
 
-      <ion-item class="item-divider " id="tasks-list-item-divider6"
-      ng-repeat="subject in subjects">
+<section ng-repeat="subject in subjects">
+      <ion-item class="item-divider " id="tasks-list-item-divider6">
       {{subject.title}}
-      </ion-item>
+    </ion-item>
 
-      <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in tasks | filter:searchTasks track by $index" can-reorder="true">
+      <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in subject.tasks | filter:searchTasks track by $index" can-reorder="true">
         <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
         <span class="item-note">Due: {{task.dueDate | date: "MMM d"}}</span>
         <ion-option-button class="button-positive"  ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
@@ -37,6 +37,7 @@
     </ion-reorder-button>
 
       </ion-item>
+</section>
   </ion-list>
 
       <!-- PLACEHOLDER TASK LIST -->

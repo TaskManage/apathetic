@@ -8,7 +8,7 @@ $scope.now = function(){
 
 $scope.getSubjects = function() {
   subjectService.getSubjects().then(function(response){
-    $scope.subjects = response;
+    $scope.subjects = response.subjects;
   });
 };
 

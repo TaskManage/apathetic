@@ -2,6 +2,7 @@ var Task = require('./TaskModel');
 var User = require('../users/UserModel');
 var jwt = require('jsonwebtoken');
 var config = require('../../config.js');
+var Subject = require('../subjects/SubjectModel');
 
 module.exports = {
 
@@ -18,6 +19,7 @@ module.exports = {
     },
 
     create: function(req, res, next) {
+      console.log(req.body);
       var token = jwt.verify(req.get('loginToken'), config.key);
         // req.body.creator = req.user._id;
         Task.create(req.body, function(err, response) {
@@ -26,7 +28,7 @@ module.exports = {
                 res.status(500).send(err)
             } else {
                 // console.log("THIS IS THE USER " + token._id);
-                User.findByIdAndUpdate(token._id, {
+                Subject.findByIdAndUpdate(req.body.subject, {
                     $addToSet: {
                         'tasks': response._id
                     }
@@ -51,7 +53,7 @@ module.exports = {
 
     getUserTasks: function(req, res, next) {
         var token = jwt.verify(req.get('loginToken'), config.key);
-        User.findById(token._id).populate('tasks').exec(function(err, response) {
+        User.findById(token._id).populate({path: 'subjects', populate: {path: 'tasks'} }).exec(function(err, response) {
             if (err) {
                 res.status(500).send(err);
             } else {
