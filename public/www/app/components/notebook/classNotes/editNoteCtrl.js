@@ -1,4 +1,4 @@
-angular.module('studentSuccess').controller('editNoteCtrl', function($scope, notebookService, $state, $ionicHistory, $stateParams) {
+angular.module('studentSuccess').controller('editNoteCtrl', function($scope, notebookService, $state, $ionicHistory, $stateParams, $timeout, $ionicPopup) {
 
 $ionicHistory.clearCache();
 
@@ -30,6 +30,19 @@ $scope.removeNote = function(){
     notebookService.removeNote($scope.id).then(function(response){
       console.log("update from delete return");
     })
-
 }
+
+$scope.showPopup = function() {
+  var myPopup = $ionicPopup.show({
+    title: 'Note Saved',
+    template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+    scope: $scope,
+  });
+  myPopup.then(function(res) {
+  });
+  $timeout(function() {
+     myPopup.close();
+  }, 1000);
+ };
+
 });
