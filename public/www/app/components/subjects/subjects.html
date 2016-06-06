@@ -10,7 +10,7 @@
             <ion-item class="item-icon-left item-icon-right  " id="classes-list-item63"
             ng-repeat="subject in subjects">
                 <i class="icon ion-ios-flask-outline"></i>{{subject.title}}
-                <span class="item-note">{{subject.startTime}}-{{subject.endTime}}</span>
+                <span class="item-note">{{subject.startTime | date: 'shortTime'}}-{{subject.endTime | date: 'shortTime'}}</span>
                 <ion-option-button class="button-positive"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
                   Edit
                 </ion-option-button>

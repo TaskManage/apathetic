@@ -12,19 +12,11 @@ angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskSe
     console.log("get")
     taskService.getUserTasks().then(function(response) {
       console.log(response);
-      $scope.tasks = response.tasks;
+      $scope.subjects = response.subjects;
     });
   };
 
   $scope.getTasks();
-
-$scope.getSubjects = function() {
-  subjectService.getSubjects().then(function(response){
-    $scope.subjects = response;
-  });
-};
-
-$scope.getSubjects();
 
 $scope.createTask = function(task) {
     taskService.createTask(task).then(function(response) {
