@@ -1,12 +1,12 @@
-angular.module("studentSuccess").service("notebookService", function($http){
+angular.module("studentSuccess").service("notebookService", function($http, ipService){
 
-//Creates a new note
+var ip = ipService.ip;
 
   this.readAllNotes = function(){
     console.log("hit from read all notes service")
     return $http({
       method: 'GET',
-      url: "http://192.168.0.220:3000/note/"
+      url: ip + '/note',
     }).then(function(response){
       return response.data
     })
@@ -16,7 +16,7 @@ angular.module("studentSuccess").service("notebookService", function($http){
     console.log("hit from addNote beginning-service")
     return $http({
       method:'POST',
-      url: "http://192.168.0.220:3000/note/",
+      url: ip + '/note/',
      data: noteInfo
     }).then(function(response){
       console.log(response.data);
@@ -28,17 +28,17 @@ angular.module("studentSuccess").service("notebookService", function($http){
     this.readUserNote = function(user){
       return $http({
         method:"GET",
-        url: "http://192.168.0.220:3000/note/" + user._id,
+        url: ip + '/note/' + user._id
       }).then(function(response){
         return response.data
       })
     }
 
-    this.updateNote = function(noteData, noteID){
-      return $http({
+    this.updateNote = function(selNote, noteID){
+      return  $http({
         method: "PUT",
-        url: "http://192.168.0.220:3000/note/" + noteId,
-        data: noteData
+        url: ip + '/note/' + noteID,
+        data: selNote
       }).then (function(response){
         return response.data
       })
@@ -46,20 +46,43 @@ angular.module("studentSuccess").service("notebookService", function($http){
 
 //gets a selected note
 this.readNote = function(noteID){
+  console.log('readNote reaches this far')
   return $http({
     method:'GET',
-    url: "http://192.168.0.220:3000/note/" + noteId
+    url: ip + '/readNote/' + noteID,
   }).then(function(response){
     return response.data
   })
 }
 
 //deletes a selected note
-this.removePage = function(noteID){
+this.removeNote = function(noteID){
   return $http({
     method: "DELETE",
-    url: "http://192.168.0.220:3000/note/" + noteId
+    url: ip + '/note/' + noteID,
   }).then(function(response){
   })
 }
+
+this.removeNotes = function(idArray) {
+    console.log("hit from removeNotes", idArray);
+    return $http({
+      method: 'PUT',
+      url: ip + '/deleteNote/',
+      data: {_id: idArray},
+    }).then(function(res) {
+    console.log(res.data);
+    }, function(error) {
+    console.log(error);
+    });
+  };
+
+// this.removeNote = function(noteID){
+//   return $http({
+//     method: "DELETE",
+//     url: ip + '/note/' + noteID,
+//   }).then(function(response){
+//   })
+// }
+
 });

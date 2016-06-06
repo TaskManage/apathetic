@@ -101,5 +101,17 @@ module.exports = {
           res.status(200).json(response);
         }
       })
+  },
+
+  DeleteMany: function(req, res, next){
+    console.log(req.body._id);
+    Note.find({_id:{$in:req.body._id}}).remove().exec(function(err, response){
+      console.log(response);
+        if(err){
+          res.status(500).json(err);
+        }else{
+          res.status(200).json(response);
+        }
+      })
   }
 }

@@ -10,26 +10,40 @@
 
 <!-- PLACEHOLDER NOTELIST -->
   <div ng-repeat="note in notes track by $index">
-    <a ui-seref="editTask({id: task._id})" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Edit Note
+    <div class="action-checkbox">
+      <input id="{{note.message}}" type="checkbox" value="{{note.message}}" ng-checked="selection.indexOf(note.message) > -1" ng-click="toggleSelection(note._id)"></input>
+      <label for="{{note.name}}"></label>
+      <a ui-sref="editNote({id: note._id})" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Edit Note
+      <!-- <p>{{note}}</p> -->
       <p>{{note.message}}</p>
+
       <!-- <ng-quill-editor ng-model="message" read-only="true" error-class="input-error"> -->
         <!-- should be right here: {{note.message}} -->
       <!-- </ng-quill-editor> -->
       </a>
-    </button>
+    </div>
+</div>
 
+<br>
+<br>
+<br>
+
+<button id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add" ng-click="removeNotes()">Remove Notes</button>
+
+<div ng-repeat="selected in selection" class="selected-item">
+  {{selected}}
+ </div>
 
   <!-- {{note.message}} -->
 
   <hr>
-</div>
-{{hi}}
+
 <!-- {{olo}} -->
-{{hello}}
+
 
         <!-- <ion-list id="notepad-list15" class=" ">
             <ion-item class="item-icon-left item-icon-right dark  " id="notepad-list-item69" ui-sref="tabsController.classNoteCards">
-                <i class="icon ion-bug"></i>Biology
+                 <i class="icon ion-bug"></i>Biology
                 <i class="icon ion-images icon-accessory"></i>
             </ion-item>
             <ion-item id="notepad-list-item62" class="  ">Mammals

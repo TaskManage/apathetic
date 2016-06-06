@@ -6,6 +6,22 @@
         <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Type your new note here!</p>
           <!-- <textarea></textarea> -->
         <!-- <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor> -->
+
+        <div>Operator is: {{filterCondition.operator}}</div>
+        <input placeholder="Enter the name of your note"></input>
+        <select ng-model="filterCondition.operator">
+           <option ng-repeat="operator in operators" title="{{operator.title}}" ng-selected="{{operator.value == filterCondition.operator}}" value="{{operator.value}}">{{operator.displayName}}</option>
+        </select>
+
+
+        <!-- <label class="item item-select " id="editToDo-select5">
+            <span class="input-label">Subject</span>
+            <select ng-model="task.class">
+                <option>Chemisty</option>
+                <option>Biology</option>
+                <option>Personal Taks</option>
+            </select>
+        </label> -->
         <textarea ng-model="message.message"></textarea>
         <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="addNote(message)">Save</a>
 
