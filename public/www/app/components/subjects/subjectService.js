@@ -10,19 +10,17 @@ var ip = ipService.ip;
       method: 'GET',
       url: ip + '/subjects'
     }).then(function(response) {
-      console.log(response.data);
       return response.data;
     });
   };
 
 
   this.findSubject = function(id) {
-    console.log("FIND SUBJECT HIT!", id);
     return $http({
       method: 'GET',
       url: ip + '/subjects/' + id
     }).then(function(response) {
-      console.log("RESPONSE DATA HIT", response.data);
+      console.log("FINDERS HIT", response.data);
       return response.data;
     });
   };
@@ -47,10 +45,10 @@ var ip = ipService.ip;
     });
   };
 
-  this.deleteSubject = function(id) {
+  this.deleteSubject = function(subject) {
     return $http({
       method: 'DELETE',
-      url: ip +  '/subjects/' + id
+      url: ip +  '/subjects/' + subject._id
     }).then(function(response) {
       return response;
     });
