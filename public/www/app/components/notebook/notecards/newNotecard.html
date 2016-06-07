@@ -5,13 +5,12 @@
         </form>
         <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Type your new note here!</p>
           <!-- <textarea></textarea> -->
-        <input ng-model = "message.name" place="place your text here"></input>
         <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
 
-        <select ng-model="message.subject">
-          <option ng-repeat="subject in subjects" value="{{subject._id}}">
-            {{subject.title}}
-          </option>
+        <div>Operator is: {{filterCondition.operator}}</div>
+        <input placeholder="Enter the name of your note"></input>
+        <select ng-model="filterCondition.operator">
+           <option ng-repeat="operator in operators" title="{{operator.title}}" ng-selected="{{operator.value == filterCondition.operator}}" value="{{operator.value}}">{{operator.displayName}}</option>
         </select>
 
 
@@ -23,6 +22,7 @@
                 <option>Personal Taks</option>
             </select>
         </label> -->
+        <textarea ng-model="message.message"></textarea>
         <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="addNote(message)">Save</a>
 
 <style>

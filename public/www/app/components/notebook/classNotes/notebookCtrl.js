@@ -1,16 +1,24 @@
-angular.module('studentSuccess').controller('notebookCtrl', function($scope, notebookService, $state, $ionicHistory) {
+angular.module('studentSuccess').controller('notebookCtrl', function($scope, notebookService, $state, $ionicHistory, subjectService) {
 
 $ionicHistory.clearCache();
 
-$scope.readAllNotes = function(){
-  console.log("hit from readAllNotes");
-  notebookService.readAllNotes().then(function(response){
-    console.log("here is my response, ", response)
-    $scope.notes = response;
+$scope.getOrderedClasses = function(){
+  notebookService.getOrderedClasses().then(function(response){
+    $scope.orderedNotes = response;
   })
- }
+}
 
-$scope.readAllNotes();
+$scope.getOrderedClasses();
+
+// $scope.readAllNotes = function(){
+//   console.log("hit from readAllNotes");
+//   notebookService.readAllNotes().then(function(response){
+//     console.log("here is my response, ", response)
+//     $scope.notes = response;
+//   })
+//  }
+
+// $scope.readAllNotes();
 
 
 $scope.selection=[];

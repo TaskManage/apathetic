@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 
-  var noteSchema = new mongoose.Schema({
+  var notecardSchema = new mongoose.Schema({
     name: {type: String},
     user: {type: mongoose.Schema.Types.ObjectId, ref:"User"},
     subject: {type: mongoose.Schema.Types.ObjectId, ref:"Class"},
-    message: {type: String},
+    front: {type: String},
+    back: {type: String},
     createdAt: {type: Date}
   })
 
-  module.exports = mongoose.model("Note", noteSchema)
+  module.exports = mongoose.model("Notecard", notecardSchema)

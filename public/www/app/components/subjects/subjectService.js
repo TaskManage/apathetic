@@ -1,13 +1,19 @@
-angular.module("studentSuccess").service("subjectService", function($http, ipService) {
+angular.module("studentSuccess").service("subjectService", function($http, ipService, $rootScope) {
 
-var ip = ipService.ip;
+  var ip = ipService.ip;
 
+    var loginToken = JSON.parse(localStorage.getItem('loginToken'));
+    $rootScope.$watch('tokenChange', function(ov, nv){
+      loginToken = JSON.parse(localStorage.getItem('loginToken'));
+    });
 
-
-  this.getSubjects = function() {
+this.getSubjects = function() {
     // return subjectList;
     return $http({
       method: 'GET',
+      headers: {
+        loginToken: loginToken
+      },
       url: ip + '/subjects'
     }).then(function(response) {
       return response.data;
@@ -53,4 +59,6 @@ var ip = ipService.ip;
       return response;
     });
   };
+
+  // this.getUserSubjects = function()
 });
