@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('studentSuccess', ['ionic', 'ionicUIRouter', 'ui.calendar', 'ngQuill'])
+angular.module('studentSuccess', ['ionic', 'ionicUIRouter', 'ui.calendar', 'ngQuill', 'ngSanitize'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

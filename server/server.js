@@ -14,6 +14,7 @@ var UserCtrl = require('./components/users/UserCtrl');
 var CalendarCtrl = require('./components/calendar/CalendarCtrl');
 var SubjectsCtrl = require('./components/subjects/SubjectsCtrl');
 var NotesCtrl = require('./components/notes/NotesCtrl');
+var NotecardCtrl = require('./components/notecards/NotecardCtrl');
 var TasksCtrl = require('./components/tasks/TasksCtrl');
 
 // SERVICES //
@@ -95,6 +96,15 @@ app.get("/readNote/:id", NotesCtrl.ReadOne);
 app.put("/note/:id", NotesCtrl.Update);
 app.delete("/note/:id", NotesCtrl.Delete);
 app.put("/deleteNote", NotesCtrl.DeleteMany);
+app.get("/readSubjects", NotesCtrl.getUserNotes);
+
+//------NOTECARDS-------//
+app.post("/notecard", NotecardCtrl.Create);
+app.get("/notecard", NotecardCtrl.Read);
+app.get("/readNotecard/:id", NotecardCtrl.ReadOne)
+app.put("/notecard/:id", NotecardCtrl.Update);
+app.delete("/notecard/:id", NotecardCtrl.Delete);
+app.put("/deleteNotecard", NotecardCtrl.DeleteMany);
 
 //-----TASKS-----//
 app.get('/tasks', TasksCtrl.read);
