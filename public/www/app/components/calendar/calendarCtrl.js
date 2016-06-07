@@ -1,10 +1,10 @@
-angular.module('studentSuccess').controller('calendarCtrl', function($scope, calendarService, uiCalendarConfig, $compile, $timeout, $ionicHistory, $state) {
+angular.module('studentSuccess').controller('calendarCtrl', function($scope, calendarService, uiCalendarConfig, $compile, $timeout, $ionicHistory, $state, $ionicPopup) {
 
 	$ionicHistory.clearCache();
 
 
 
-	var events = [];	
+	var events = [];
 
 	$scope.getEvent = function() {
 		calendarService.getEvent().then(function(res) {
@@ -18,7 +18,7 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 
       $('.fc-day.fc-sat').css('backgroundColor','#bce8f1');
       $('.fc-day.fc-sun').css('backgroundColor','#bce8f1');
-			
+
 		});
 
 		$scope.eve = events;
@@ -40,7 +40,7 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 		calendarService.deleteEvent(calId).then(function(calId) {
 			// console.log(calId + 'Event Deleted');
 			$state.reload();
-		
+
 		});
 	};
 
@@ -50,9 +50,9 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
     var m = date.getMonth();
     var y = date.getFullYear();
 
-   
-   
-    
+
+
+
     /* Test Data */
     var events = [
       {id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'blue', dow: [1,4]},
@@ -119,9 +119,22 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
         eventRender: $scope.eventRender
       }
     };
-    
+
     /* event sources array*/
     $scope.eventSources = [events];
-   
+
+		$scope.showPopup = function() {
+			var myPopup = $ionicPopup.show({
+				title: 'Event Saved',
+				template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+				scope: $scope,
+			});
+			myPopup.then(function(res) {
+			});
+			$timeout(function() {
+				 myPopup.close();
+			}, 1000);
+		 };
+
 
 });

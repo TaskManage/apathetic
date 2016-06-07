@@ -40,7 +40,7 @@ angular.module('studentSuccess')
         cache: false,
         resolve: {
           login: function($state, authService) {
-            console.log(JSON.parse(localStorage.getItem('loginToken')))
+
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
 
@@ -150,7 +150,7 @@ angular.module('studentSuccess')
           login: function($state, authService) {
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+
                 if (response.data.loggedIn) {
 
                 } else {
@@ -196,7 +196,7 @@ angular.module('studentSuccess')
           login: function($state, authService) {
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+
                 if (response.data.loggedIn) {
 
                 } else {
@@ -294,7 +294,7 @@ angular.module('studentSuccess')
       login: function($state, authService) {
         if (localStorage.getItem('loginToken')) {
           authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-              console.log(response);
+
             if (response.data.loggedIn) {
 
             } else {
@@ -467,7 +467,29 @@ angular.module('studentSuccess')
     url: '/newTask',
     cache: false,
     templateUrl: 'app/components/tasks/newTask.html',
-    controller: 'tasksCtrl'
+    controller: 'tasksCtrl',
+    resolve: {
+      login: function($state, authService) {
+
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+        user: function($state, authService){
+          if (localStorage.getItem('loginToken')) {
+            return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+          } else {
+
+          }
+        }
+      }
   })
 
 
@@ -488,7 +510,7 @@ angular.module('studentSuccess')
           login: function($state, authService) {
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+
                 if (response.data.loggedIn) {
 
                 } else {
@@ -592,7 +614,7 @@ angular.module('studentSuccess')
           login: function($state, authService) {
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
-                  console.log(response);
+
                 if (response.data.loggedIn) {
 
                 } else {

@@ -55,7 +55,7 @@ this.readNote = function(noteID){
   console.log('readNote reaches this far')
   return $http({
     method:'GET',
-    url: ip + '/readNote/' + noteID,
+    url: ip + '/readNote/' + noteID
   }).then(function(response){
     return response.data
   })
@@ -65,7 +65,7 @@ this.readNote = function(noteID){
 this.removeNote = function(noteID){
   return $http({
     method: "DELETE",
-    url: ip + '/note/' + noteID,
+    url: ip + '/note/' + noteID
   }).then(function(response){
   })
 }

@@ -23,10 +23,8 @@ var passport = require('./services/passport');
 
 // POLICIES //
 var isAuthed = function(req, res, next) {
-  console.log('isAuthed', req.get('loginToken'));
   if (req.get('loginToken')) {
     var token = jwt.verify(req.get('loginToken'), config.key);
-    console.log(token);
     User.findById(token._id).exec(function(err, response) {
       if (err) {
         res.status(401);
@@ -68,7 +66,7 @@ app.use(passport.session());
 //-----USERS-----//
 app.post('/users', UserCtrl.register);
 app.get('/me', isAuthed, UserCtrl.me);
-app.put('/users/:_id', isAuthed, UserCtrl.update);
+app.put('/user/:_id', isAuthed, UserCtrl.update);
 
 //-----CALENDAR-----//
 app.post('/events', CalendarCtrl.createEvent);
@@ -94,7 +92,7 @@ app.delete('/subjects/:id', SubjectsCtrl.delete);
 //-----NOTEBOOK-----//
 app.post("/note", NotesCtrl.Create);
 app.get("/note", NotesCtrl.Read);
-app.get("/readNote/:id", NotesCtrl.ReadOne)
+app.get("/readNote/:id", NotesCtrl.ReadOne);
 app.put("/note/:id", NotesCtrl.Update);
 app.delete("/note/:id", NotesCtrl.Delete);
 app.put("/deleteNote", NotesCtrl.DeleteMany);
@@ -111,6 +109,7 @@ app.put("/deleteNotecard", NotecardCtrl.DeleteMany);
 //-----TASKS-----//
 app.get('/tasks', TasksCtrl.read);
 app.get('/tasks/:id', TasksCtrl.find);
+app.get('/tasky', TasksCtrl.getUserTasks);
 app.post('/tasks', TasksCtrl.create);
 app.put('/tasks/:id', TasksCtrl.update);
 app.delete('/tasks/:id', TasksCtrl.delete);

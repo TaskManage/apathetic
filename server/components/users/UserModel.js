@@ -10,15 +10,6 @@ var User = new mongoose.Schema({
   subjects: [
     {type: mongoose.Schema.Types.ObjectId, ref: 'Subject'}
   ],
-  notes:[
-    {type: mongoose.Schema.Types.ObjectId, ref: 'Notes'}
-  ],
-  tasks: [
-    {type: mongoose.Schema.Types.ObjectId, ref: 'Task'}
-  ],
-  notes:[
-    {type: mongoose.Schema.Types.ObjectId, ref: 'Notes'}
-  ],
   events: [
     {type: mongoose.Schema.Types.ObjectId, ref: 'Events'}
   ],

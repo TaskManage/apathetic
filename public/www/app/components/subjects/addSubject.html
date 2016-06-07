@@ -36,14 +36,13 @@
         <form id="addAClass-form20" class="list ">
             <label class="item item-input " id="addAClass-input29">
                 <span class="input-label">Starts</span>
-                <input type="datetime" placeholder=""
+                <input type="datetime-local" placeholder=""
                 ng-model="subject.startTime">
             </label>
             <label class="item item-input " id="addAClass-input30">
                 <span class="input-label">Ends</span>
-                <input type="datetime" placeholder=""
+                <input type="datetime-local" placeholder=""
                 ng-model="subject.endTime">
-                >
             </label>
 
             <div class="spacer" style="width: 285px; height: 29px;"></div>
@@ -59,7 +58,7 @@
 
             <a ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-positive  button-block "
             ng-click="addSubject(subject)">Save Class</a>
-            <a ui-sref="tabsController.subjects" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
+            <a ui-sref="tabsController.subjects" id="addAClass-button41" class=" button button-assertive  button-block ">Cancel</a>
         </form>
     </ion-content>
 </ion-view>

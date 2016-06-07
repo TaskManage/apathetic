@@ -23,7 +23,9 @@
                 <option>Personal Taks</option>
             </select>
         </label> -->
-        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="addNote(message)">Save</a>
+
+        <textarea ng-model="message.message"></textarea>
+        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="showPopup(); addNote(message); ">Save</a>
 
 <style>
 .selectable {

@@ -3,15 +3,12 @@
         <h1 id="dashboard-heading7" style="color:#000000;text-align:center;" class=" ">Welcome, {{user.firstName}}</h1>
 
         <div class="item item-body " id="dashboard-list-item-container13">
-            <p id="dashboard-markdown13" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">Upcoming Events</p>
-            <ion-list id="dashboard-list11" class=" ">
+            <p id="dashboard-markdown13" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">Upcoming Classes</p>
+            <ion-list id="dashboard-list11" class=" " ng-repeat='subject in subjects'>
                 <ion-item class="item-icon-left  " id="dashboard-list-item56" ui-sref="tabsController.calendar">
-                    <i class="icon ion-ios-calendar-outline"></i>Math Class
-                    <span class="item-note">9am - 10am</span>
-                </ion-item>
-                <ion-item class="item-icon-left  " id="dashboard-list-item61" ui-sref="tabsController.calendar">
-                    <i class="icon ion-ios-calendar-outline"></i>Biology
-                    <span class="item-note">10am - 11am</span>
+                    <i class="icon ion-ios-calendar-outline"></i>{{subject.title}}
+                    <span class="item-note">{{subject.startTime | date: 'shortTime'}}-{{subject.endTime | date: 'shortTime'}}</span>
+<!-- As of now we don't have the timestamp for classes setup, but once we get that we will need to change subject.room to subject.time (or whatever it will be called)  -->
                 </ion-item>
             </ion-list>
         </div>
@@ -20,10 +17,16 @@
         <div class="item item-body " id="dashboard-list-item-container16">
             <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">What To-Do</p>
             <ion-list id="dashboard-list17" class=" ">
-                <ion-item class="item-icon-left  " id="dashboard-list-item59" ui-sref="tabsController.tasks">
-                    <i class="icon ion-ios-checkmark-outline"></i>Pizza Party</ion-item>
-                <ion-item class="item-icon-left  " id="dashboard-list-item60" ui-sref="tabsController.tasks">
-                    <i class="icon ion-ios-checkmark-outline"></i>Buy Milk</ion-item>
+              <section ng-repeat="subject in subjects">
+                    <ion-item class="item-divider " id="tasks-list-item-divider6">
+                    {{subject.title}}
+                  </ion-item>
+
+                    <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in subject.tasks | filter:searchTasks track by $index" can-reorder="true" ui-sref="tabsController.tasks">
+                      <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
+                      <span class="item-note">Due: {{task.dueDate | date: "MMM d"}}</span>
+                    </ion-item>
+              </section>
             </ion-list>
         </div>
     </ion-content>
