@@ -15,8 +15,9 @@ $scope.getSubjects = function() {
 $scope.getSubjects();
 
 
-$scope.addSubject = function(subject){
-  subjectService.createSubject(subject).then(function(response){
+$scope.addSubject = function(subject, repeat){
+  subjectService.createSubject(subject, repeat).then(function(response, repeat){
+  	console.log("repeat " + repeat);
     $scope.getSubjects();
     $state.go("tabsController.subjects", {reload: true});
   })

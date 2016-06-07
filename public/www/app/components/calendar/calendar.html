@@ -21,16 +21,16 @@
         </tab>
         
         <div>
+           <!--  <div ng-repeat="e in eve">
+                    {{e.title}}
+            </div> -->
+            <div>
+                <a ui-sref="newEvent" id="newEvent-button14" class=" button button-positive  button-block ">Add Event</a>
+            </div>
             <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
                 <h4>{{alertMessage}}</h4>
                 <button ui-sref="editEvent({id: date._id})">Edit</button>
                 <button ng-click="deleteEvent(date._id)">Delete</button>
-            </div>
-            <div ng-repeat="e in eve">
-                    {{e.title}}
-            </div>
-            <div>
-                <a ui-sref="newEvent" id="newEvent-button14" class=" button button-positive  button-block ">Add Event</a>
             </div>
         </div>              
                    

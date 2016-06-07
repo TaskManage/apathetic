@@ -20,11 +20,20 @@ angular.module('studentSuccess').service('calendarService', function($http, ipSe
 		});
 	};
 
-	this.createEvent = function(calEvent) {
+	this.createEvent = function(calEvent, repeat) {
 		return $http ({
 			method: 'POST',
 			url: ip + '/events',
-			data: calEvent
+			data: {
+				title: calEvent.title,
+				start: calEvent.start,
+				end: calEvent.end,
+				allDay: calEvent.allDay,
+				location: calEvent.location,
+				notes: calEvent.notes,
+				dow: repeat,
+				backgroundColor: calEvent.color
+			}
 		});
 	};
 

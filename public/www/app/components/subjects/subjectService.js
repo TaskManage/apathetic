@@ -25,11 +25,21 @@ var ip = ipService.ip;
     });
   };
 
-  this.createSubject = function(subject) {
+  this.createSubject = function(subject, repeat) {
     return $http({
       method: 'POST',
       url: ip + '/subjects',
-      data: subject
+      data: {
+        title: subject.title,
+        building: subject.building,
+        room: subject.room,
+        teacher: subject.teacher,
+        start: subject.start,
+        end: subject.end,
+        backgroundColor: subject.color,
+        dow: repeat
+
+      }
     }).then(function(response) {
       return response;
     });

@@ -489,12 +489,6 @@ angular.module('studentSuccess')
 
         }
       }
-    },
-    views: {
-      'tab5': {
-        templateUrl: 'app/components/subjects/editSubject.html',
-        controller: 'editSubjectCtrl'
-      },
     }
   })
 

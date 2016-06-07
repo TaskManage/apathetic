@@ -2,7 +2,7 @@
 
     <ion-content padding="true" class="has-header">
 
-        <form id="addAClass-form19" class="list " ng-submit="addSubject(subject)">
+        <form id="addAClass-form19" class="list ">
             <label class="item item-input " id="addAClass-input25">
                 <input type="text" placeholder="Subject"
                 ng-model="subject.title">
@@ -23,7 +23,7 @@
                 ng-model="subject.teacher">
             </label>
         </form>
-        <div id="addAClass-button-bar2" class=" button-bar ">
+      <!--   <div id="addAClass-button-bar2" class=" button-bar ">
             <button id="addAClass-button16" class=" button button-positive button-small button-block button-outline ">S</button>
             <button id="addAClass-button20" class=" button button-positive button-small button-block button-outline ">M</button>
             <button id="addAClass-button24" class=" button button-positive button-small button-block button-outline ">Tu</button>
@@ -31,19 +31,23 @@
             <button id="addAClass-button26" class=" button button-positive button-small button-block button-outline ">Th</button>
             <button id="addAClass-button27" class=" button button-positive button-small button-block button-outline ">F</button>
             <button id="addAClass-button28" class=" button button-positive button-small button-block button-outline ">S</button>
-        </div>
+        </div> -->
 
         <form id="addAClass-form20" class="list ">
             <label class="item item-input " id="addAClass-input29">
                 <span class="input-label">Starts</span>
-                <input type="datetime" placeholder=""
-                ng-model="subject.startTime">
+                <input type="datetime-local" placeholder="" ng-model="subject.start">
             </label>
             <label class="item item-input " id="addAClass-input30">
                 <span class="input-label">Ends</span>
-                <input type="datetime" placeholder=""
-                ng-model="subject.endTime">
-                >
+                <input type="datetime-local" placeholder="" ng-model="subject.end">
+                
+            </label>
+
+            <my-calendar></my-calendar>
+
+             <label class="item item-input " id="newEvent-input10">
+                <input type="text" placeholder="Class Color" ng-model="subject.color">
             </label>
 
             <div class="spacer" style="width: 285px; height: 29px;"></div>
@@ -58,7 +62,7 @@
             </label> -->
 
             <a ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-positive  button-block "
-            ng-click="addSubject(subject)">Save Class</a>
+            ng-click="addSubject(subject, repeat)">Save Class</a>
             <a ui-sref="tabsController.subjects" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
         </form>
     </ion-content>
