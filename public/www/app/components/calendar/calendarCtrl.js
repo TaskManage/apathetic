@@ -195,7 +195,24 @@ $scope.getSubjects();
     };
 
     /* Change View */
+    $scope.calMonth = "active";
     $scope.changeView = function(view,calendar) {
+      console.log(view);
+      if (view === 'agendaDay') {
+        $scope.calDay = "active";
+      } else {
+        $scope.calDay = "";
+      }
+       if (view === 'agendaWeek') {
+        $scope.calWeek = "active";
+      } else {
+        $scope.calWeek = "";
+      }
+       if (view === 'month') {
+        $scope.calMonth = "active";
+      } else {
+        $scope.calMonth = "";
+      }
       uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
 
     };

@@ -11,9 +11,9 @@
         <tab select="renderCalender('myCalendar1');">
             <div class="">
                 <div class="button-bar">
-                    <button class="button button-positive button-small button-block" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
-                    <button class="button button-positive button-small button-block" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
-                    <button class="button button-positive button-small button-block" ng-click="changeView('month', 'myCalendar1')">Month</button>
+                    <button ng-class="calDay" class="button button-positive button-small button-block" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
+                    <button ng-class="calWeek" class="button button-positive button-small button-block" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+                    <button ng-class="calMonth" class="button button-positive button-small button-block" ng-click="changeView('month', 'myCalendar1')">Month</button>
                 </div>
             </div>
             <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">
