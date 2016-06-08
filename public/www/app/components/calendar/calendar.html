@@ -11,14 +11,18 @@
         <tab select="renderCalender('myCalendar1');">
             <div class="">
                 <div class="button-bar">
-                    <button ng-class="calDay" class="button button-positive button-small button-block" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
-                    <button ng-class="calWeek" class="button button-positive button-small button-block" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+                    <button ng-class="calDay" class="button button-positive button-small button-block" ng-click="changeView('agendaDay', 'myCalendar1')">Day</button>
+                    <button ng-class="calWeek" class="button button-positive button-small button-block" ng-click="changeView('agendaWeek', 'myCalendar1')">Week</button>
                     <button ng-class="calMonth" class="button button-positive button-small button-block" ng-click="changeView('month', 'myCalendar1')">Month</button>
                 </div>
             </div>
             <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">
             </div>
         </tab>
+
+         <div>
+            <a ui-sref="newEvent" id="newEvent-button14" class=" button button-balanced  button-block ">Add Event</a>
+        </div>
 
 <ion-list can-swipe="listCanSwipe">
         <ion-item class="item">
@@ -38,35 +42,6 @@
             </div> -->
         </ion-item>
       </ion-list>
-
-        <div>
-            <a ui-sref="newEvent" id="newEvent-button14" class=" button button-balanced  button-block ">Add Event</a>
-        </div>
-    
-
-        <!-- <div class="list card " id="calendar-card21">
-            <div class=" item item-image" style="margin-left: -10px; width: calc(100% + 20px);">
-                <a style="display:block;" ui-sref="newEvent">
-                    <img src="img/mMu5cPPJT1O4KM1oxLXu_Screen Shot 2016-05-27 at 11.07.08 AM.png" width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
-                </a>
-            </div>
-        </div> -->
-
-<!-- END PLACEHOLDER CALENDAR -->
-
-<!-- PLACEHOLDER EVENT LIST -->
-      <!--   <ion-list id="calendar-list12" class=" ">
-            <ion-item id="calendar-list-item33" class="  ">Math Class
-                <span class="item-note">9:00am - 10:00am</span>
-            </ion-item>
-            <ion-item id="calendar-list-item34" class="  ">Biology
-                <span class="item-note">10:00am - 11:00am</span>
-            </ion-item>
-            <ion-item id="calendar-list-item35" class="  ">Lunch
-                <span class="item-note">11:00 am - Noon</span>
-            </ion-item>
-        </ion-list> -->
-<!-- END EVENT LIST -->
 
     </ion-content>
 </ion-view>
