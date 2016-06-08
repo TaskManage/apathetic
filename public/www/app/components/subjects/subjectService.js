@@ -8,7 +8,7 @@ angular.module("studentSuccess").service("subjectService", function($http, ipSer
     loginToken = JSON.parse(localStorage.getItem('loginToken'));
   });
 
-  this.getSubjects = function() {
+this.getSubjects = function() {
     // return subjectList;
     return $http({
       method: 'GET',
@@ -63,4 +63,6 @@ angular.module("studentSuccess").service("subjectService", function($http, ipSer
       return response;
     });
   };
+
+  // this.getUserSubjects = function()
 });

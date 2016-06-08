@@ -1,5 +1,8 @@
 var Note = require('./NotesModel.js');
 var User = require('../users/UserModel.js');
+var Subject = require('../subjects/SubjectModel.js')
+var jwt = require('jsonwebtoken');
+var config = require('../../config.js')
 
 module.exports = {
 
@@ -8,9 +11,9 @@ module.exports = {
   			if (err) {
   				res.status(500).send(err)
   			} else {
-  				User.findByIdAndUpdate(req.body.user, {
+  				Subject.findByIdAndUpdate(req.body.user, {
   					$addToSet: {
-  						'story': response
+  						'notes': response
   					}
   				},
            function (err, user) {
@@ -25,17 +28,39 @@ module.exports = {
   		})
   	},
 
+    readNotes: function(req, res, next) {
+          var token = jwt.verify(req.get('loginToken'), config.key);
+          User.findById(token._id).populate('notes').exec(function(err, response) {
+              if (err) {
+                  res.status(500).send(err);
+              } else {
+                  res.status(200).send(response);
+              }
+          })
+      },
 
-    Create: function(req, res, next) {
-      Note.create(req.body, function (err, response) {
-        if (err) {
-          res.status(500).send(err)
-        }
-        else {
-          res.status(200).send(response)
-        }
-      })
-    },
+    getUserNotes: function(req, res, next) {
+         var token = jwt.verify(req.get('loginToken'), config.key);
+         User.findById(token._id).populate({path: 'subjects', populate: {path: 'notes'} }).exec(function(err, response) {
+             if (err) {
+                 res.status(500).send(err);
+             } else {
+                 res.status(200).send(response);
+             }
+         })
+     },
+
+
+    // Create: function(req, res, next) {
+    //   Note.create(req.body, function (err, response) {
+    //     if (err) {
+    //       res.status(500).send(err)
+    //     }
+    //     else {
+    //       res.status(200).send(response)
+    //     }
+    //   })
+    // },
 
     Update: function(req, res, next){
       Note.findByIdAndUpdate(req.params.id, req.body, {new: true}, function(err, response) {
@@ -113,5 +138,5 @@ module.exports = {
           res.status(200).json(response);
         }
       })
-  }
+  },
 }

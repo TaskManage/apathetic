@@ -43,6 +43,7 @@ angular.module('studentSuccess')
 
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+
                 if (response.data.loggedIn) {
 
                 } else {
@@ -87,8 +88,10 @@ angular.module('studentSuccess')
         cache: false,
         resolve: {
           login: function($state, authService) {
+
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+
                 if (response.data.loggedIn) {
 
                 } else {
@@ -113,6 +116,7 @@ angular.module('studentSuccess')
         cache: false,
         resolve: {
           login: function($state, authService) {
+
             if (localStorage.getItem('loginToken')) {
               authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
                 if (response.data.loggedIn) {
@@ -309,11 +313,61 @@ angular.module('studentSuccess')
     }
   })
 
+  .state('noteCardsPage', {
+    url: '/noteCardsPage',
+    cache: false,
+    templateUrl: 'app/components/notebook/notecards/notecards.html',
+    controller: 'notecardsCtrl',
+    resolve: {
+    login: function($state, authService) {
+      console.log(JSON.parse(localStorage.getItem('loginToken')))
+      if (localStorage.getItem('loginToken')) {
+        authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+            console.log(response);
+          if (response.data.loggedIn) {
+
+          } else {
+            $state.go('login');
+          }
+        })
+      }
+    }
+  }
+})
+
   .state('editNotecard', {
     url: '/editNotecard',
     cache: false,
     templateUrl: 'app/components/notebook/notecards/editNotecard.html',
-    controller: 'notebookCtrl',
+    controller: 'editNotebookCtrl',
+    resolve: {
+      login: function($state, authService) {
+        if (localStorage.getItem('loginToken')) {
+          authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+            if (response.data.loggedIn) {
+
+            } else {
+              $state.go('login');
+            }
+          })
+        }
+      },
+        user: function($state, authService){
+          if (localStorage.getItem('loginToken')) {
+            return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+          } else {
+
+          }
+        }
+
+    }
+  })
+
+  .state('newNotecard', {
+    url: '/newNotecard',
+    cache: false,
+    templateUrl: 'app/components/notebook/notecards/newNotecard.html',
+    controller: 'newNotecardCtrl',
     resolve: {
       login: function($state, authService) {
         if (localStorage.getItem('loginToken')) {
