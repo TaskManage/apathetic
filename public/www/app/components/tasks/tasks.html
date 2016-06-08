@@ -26,7 +26,7 @@
       <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in subject.tasks | filter:searchTasks track by $index" can-reorder="true">
         <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
         <span class="item-note">Due: {{task.dueDate | date: "MMM d"}}</span>
-        <ion-option-button class="button-positive"  ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
+        <ion-option-button class="button-calm"  ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
           Edit
         </ion-option-button>
         <ion-option-button class="button-balanced" ng-click="removeTask(task); tasks.splice($index, 1); hideOptionButtons(); showCompletePopup()">

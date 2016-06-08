@@ -14,7 +14,7 @@
             ng-repeat="subject in subjects">
                 <i class="icon ion-university"></i>{{subject.title}}
                 <span class="item-note">{{subject.startTime | date: 'shortTime'}}-{{subject.endTime | date: 'shortTime'}}</span>
-                <ion-option-button class="button-positive"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
+                <ion-option-button class="button-calm"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
                   Edit
                 </ion-option-button>
             </ion-item>
