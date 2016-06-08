@@ -19,8 +19,7 @@
           show-reorder="showReorder"
           can-swipe="listCanSwipe">
 
-<section ng-repeat="subject in subjects">
-      <ion-item class="item-divider " id="tasks-list-item-divider6">
+      <ion-item class="item-divider " id="tasks-list-item-divider6" ng-if="subject.tasks.length > 0">
       {{subject.title}}
     </ion-item>
 
@@ -40,8 +39,7 @@
       </ion-item>
 </section>
   </ion-list>
-</section>
-</div>
+</span></div>
       <!-- PLACEHOLDER TASK LIST -->
 
       <!-- <ion-list  show-reorder="showReorder">

@@ -14,7 +14,7 @@
 <!-- PLACEHOLDER NOTELIST -->
     <ion-list id="dashboard-list17" class=" ">
         <section ng-repeat="order in orderedNotes.subjects track by $index">
-            <ion-item class="item-divider " id="tasks-list-item-divider6">
+            <ion-item class="item-divider " id="tasks-list-item-divider6" ng-if="order.notes.length > 0">
                 {{order.title}}
             </ion-item>
             <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="editNote({id: note._id})">
