@@ -7,18 +7,20 @@
         <ion-list id="classes-list9" class=" "          can-swipe="listCanSwipe"
 >
 <!-- DIVIDER -->
-            <ion-item class="item-divider " id="classes-list-item-divider10">Your Schedule</ion-item>
+            <ion-item class="item-divider " id="classes-list-item-divider10" ng-if="subjects.length > 0">Your Schedule</ion-item>
 
 <!-- START OF SUBJECT LIST -->
             <ion-item class="item-icon-left item-icon-right  " id="classes-list-item63"
             ng-repeat="subject in subjects">
                 <i class="icon ion-university"></i>{{subject.title}}
-                <span class="item-note">{{subject.startTime | date: 'shortTime'}}-{{subject.endTime | date: 'shortTime'}}</span>
+                <span class="item-note">{{subject.start | date: 'shortTime'}}-{{subject.end | date: 'shortTime'}}</span>
                 <ion-option-button class="button-positive"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
                   Edit
                 </ion-option-button>
             </ion-item>
           </div>
+
+          <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" " ng-if="subjects.length === 0">You need to schedule classes</p>
 
     </ion-content>
 </ion-view>

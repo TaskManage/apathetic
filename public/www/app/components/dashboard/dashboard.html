@@ -1,9 +1,12 @@
 <ion-view title="Dashboard" hide-back-button="true" id="page9" class=" ">
-    <ion-content padding="false" scroll="false" class="has-header">
-        <h1 id="dashboard-heading7" style="color:#000000;text-align:center;" class=" ">Welcome, {{user.firstName}}</h1>
+  <ion-content padding="false" scroll="false" class="has-header">
+    <h1 id="dashboard-heading7" style="color:#000000;text-align:center;" class=" ">Welcome, {{user.firstName}}</h1>
+    <div class="avatar-container">
+    <img class='avatar-img' gravatar-src="user.email" gravatar-size="100">
+  </div>
+   <ion-scroll direction="y" has-bouncing="true" style="height: 60vh">
 
-
-<div class="card">
+<div class="card" ng-if="subjects.length > 0">
         <div class="item item-divider " id="dashboard-list-item-container13">
             <p id="dashboard-markdown13" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">Upcoming Classes</p>
           </div>
@@ -11,15 +14,14 @@
             <ion-list id="dashboard-list11" class="item item-list" ng-repeat='subject in subjects'>
                 <ion-item class="item-icon-left  " id="dashboard-list-item56" ui-sref="tabsController.calendar">
                     <i class="icon ion-ios-calendar-outline"></i>{{subject.title}}
-                    <span class="item-note">{{subject.startTime | date: 'shortTime'}}-{{subject.endTime | date: 'shortTime'}}</span>
-<!-- As of now we don't have the timestamp for classes setup, but once we get that we will need to change subject.room to subject.time (or whatever it will be called)  -->
+                    <span class="item-note">{{subject.start | date: 'shortTime'}}-{{subject.end | date: 'shortTime'}}</span>
                 </ion-item>
             </ion-list>
         </div>
 
         <div class="spacer" style="width: 320px; height: 22px;"></div>
 
-    <div class="card">
+    <div class="card" ng-if="subjects.length > 0">
         <div class="item item-divider " id="dashboard-list-item-container16">
             <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">What To-Do</p>
           </div>
@@ -37,5 +39,7 @@
               </section>
             </ion-list>
     </div>
+    <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" " ng-if="subjects.length === 0">You have no upcoming events</p>
+    <ion-scroll>
     </ion-content>
 </ion-view>
