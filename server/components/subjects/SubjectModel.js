@@ -9,7 +9,13 @@ var SubjectSchema = new mongoose.Schema({
   end: {type: Date},
   icon: String,
   dow: [],
-  backgroundColor: {type: String}
+  backgroundColor: {type: String},
+  notes: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Note'}
+  ],
+  tasks: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'Task'}
+  ]
 });
 
 module.exports = mongoose.model('Subject', SubjectSchema);

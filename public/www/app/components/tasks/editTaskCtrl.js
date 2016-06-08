@@ -1,4 +1,4 @@
-angular.module('studentSuccess').controller('editTasksCtrl', function($scope, taskService, task, $ionicHistory, $state) {
+angular.module('studentSuccess').controller('editTasksCtrl', function($scope, taskService, task, $ionicHistory, $state, $ionicPopup, $timeout) {
 
 $ionicHistory.clearCache();
 
@@ -28,5 +28,17 @@ $scope.selectedTask.dueDate = new Date($scope.selectedTask.dueDate);
   };
 
 
+  $scope.showPopup = function() {
+    var myPopup = $ionicPopup.show({
+      title: 'Task Saved',
+      template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+      scope: $scope,
+    });
+    myPopup.then(function(res) {
+    });
+    $timeout(function() {
+       myPopup.close();
+    }, 1000);
+   };
 
 });

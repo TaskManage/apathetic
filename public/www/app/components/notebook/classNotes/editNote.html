@@ -6,10 +6,9 @@
         </form>
         <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Edit your note here!</p>
         <!-- <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor> -->
-        <textarea ng-model="message.messge"></textarea>
-        this is message {{message}}<br>
-        this is message.message {{message.message}}<br>
+        <textarea ng-model="selNote.message">{{selNote.message}}</textarea>
         <div class="spacer" style="width: 285px; height: 320px;"></div>
-        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="updateNote(message)">Save</a>
+        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="updateNote(); showPopup()">Save</a>
+        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="removeNote()">Remove</a>
     </ion-content>
 </ion-view>

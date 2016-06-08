@@ -1,8 +1,6 @@
 angular.module('studentSuccess').service('calendarService', function($http, ipService) {
 
-
 	var ip = ipService.ip;
-
 
 	this.getEvent = function() {
 		return $http ({

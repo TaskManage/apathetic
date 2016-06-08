@@ -8,7 +8,7 @@ $scope.newUser = {};
        console.log(response.data);
        localStorage.setItem('loginToken', JSON.stringify(response.data.loginToken))
 
-         setTimeout(function(){$rootScope.tokenChange = true; $state.go("tabsController.dashboard");},500)
+         setTimeout(function(){$rootScope.tokenChange = !$rootScope.tokenChange; $state.go("tabsController.dashboard");},500)
         //  $scope.newUser = ''
      } else {
        //error

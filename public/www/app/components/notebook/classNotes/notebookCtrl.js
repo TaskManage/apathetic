@@ -1,14 +1,62 @@
-angular.module('studentSuccess').controller('notebookCtrl', function($scope, notebookService) {
+angular.module('studentSuccess').controller('notebookCtrl', function($scope, notebookService, $state, $ionicHistory, $timeout, $ionicPopup) {
 
-$scope.readAllNotes = function(){
-  console.log("hit from readAllNotes");
-  notebookService.readAllNotes().then(function(response){
-    console.log("here is my response, ", response)
-    $scope.notes = response;
+$ionicHistory.clearCache();
+
+$scope.getOrderedClasses = function(){
+  notebookService.getOrderedClasses().then(function(response){
+    $scope.orderedNotes = response;
   })
- }
+}
 
-$scope.readAllNotes();
+$scope.getOrderedClasses();
+
+// $scope.readAllNotes = function(){
+//   console.log("hit from readAllNotes");
+//   notebookService.readAllNotes().then(function(response){
+//     console.log("here is my response, ", response)
+//     $scope.notes = response;
+//   })
+//  }
+
+// $scope.readAllNotes();
+
+
+$scope.selection=[];
+
+  $scope.toggleSelection = function toggleSelection(employeeName) {
+     var idx = $scope.selection.indexOf(employeeName);
+ 
+     if (idx > -1) {
+       $scope.selection.splice(idx, 1);
+     }
+ 
+     else {
+       $scope.selection.push(employeeName);
+     }
+   };
+
+$scope.removeNotes = function(){
+  console.log('hit from fired remove note notebookCtrl')
+    notebookService.removeNotes($scope.selection).then(function(response){
+      console.log("update from delete return");
+      $scope.readAllNotes();
+    })
+};
+
+$scope.showPopup = function() {
+  console.log("POPUP HIT");
+  var myPopup = $ionicPopup.show({
+    title: 'Note Saved',
+    template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+    scope: $scope,
+  });
+  myPopup.then(function(res) {
+  });
+  $timeout(function() {
+     myPopup.close();
+  }, 1000);
+ };
+
 
 });
 

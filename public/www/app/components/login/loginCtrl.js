@@ -5,7 +5,7 @@ angular.module('studentSuccess').controller('loginCtrl', function($scope, authSe
     console.log(response.data);
     if (response.data.login) {
       localStorage.setItem('loginToken', JSON.stringify(response.data.loginToken))
-         setTimeout(function(){$rootScope.tokenChange = true; $state.go("tabsController.dashboard");},500)
+         setTimeout(function(){console.log('change');$rootScope.tokenChange = !$rootScope.tokenChange; $state.go("tabsController.dashboard");},500)
     } else {
       //error
     }

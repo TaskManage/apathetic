@@ -13,7 +13,8 @@ $scope.selectSubject = function(subject){
 
 $scope.getSubjects = function() {
   subjectService.getSubjects().then(function(response){
-    $scope.subjects = response;
+    console.log(response);
+    $scope.subjects = response.subjects;
   });
 };
 

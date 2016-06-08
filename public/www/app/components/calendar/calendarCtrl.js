@@ -1,4 +1,6 @@
-angular.module('studentSuccess').controller('calendarCtrl', function($scope, calendarService, uiCalendarConfig, $compile, $timeout, $ionicHistory, $state, subjectService) {
+angular.module('studentSuccess').controller('calendarCtrl', function($scope, calendarService, uiCalendarConfig, $compile, $timeout, $ionicHistory, $state, subjectService, $ionicPopup) {
+
+
 
 	$ionicHistory.clearCache();
 
@@ -93,7 +95,7 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
   };
 
 
-	var events = [];	
+	var events = [];
 
 	$scope.getEvent = function() {
 		calendarService.getEvent().then(function(res) {
@@ -118,14 +120,15 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
   $scope.getSubjects = function() {
   subjectService.getSubjects().then(function(response){
      // console.log("getSubjects " + response);
-    
-    var event = response;
+      // $scope.subjects = response.subjects;
+    var event = response.subjects;
+    // console.log("subjects event " + event);
     for (var i = 0; i < event.length; i++) {
-      // console.log("event at i "+ event[i].title);
+      // console.log("Subjects  "+ event[i].title);
       events.push(event[i]);
     }
-    events.push({id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'blue', dow: [1,4, 1, 1], room: "This is some crap"});
-    // console.log("this is the events array " + events);
+    events.push({id: 999,title: 'Test',start: new Date( 16, 0),end: new Date( 20, 0),allDay: false, backgroundColor: 'red', dow: [1,4, 1, 1], room: "This is some crap"});
+    console.log("this is the events array " + events);
   });
 };
 
@@ -148,7 +151,7 @@ $scope.getSubjects();
 		calendarService.deleteEvent(calId).then(function(calId) {
 			// console.log(calId + 'Event Deleted');
 			$state.reload();
-		
+
 		});
 	};
 
@@ -158,9 +161,9 @@ $scope.getSubjects();
     var m = date.getMonth();
     var y = date.getFullYear();
 
-   
-   
-    
+
+
+
     /* Test Data */
     // var events = [
     //   {id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'red', dow: [0,1,2,3,4,5,6], room: "This is some crap"},
@@ -228,9 +231,22 @@ $scope.getSubjects();
         eventRender: $scope.eventRender
       }
     };
-    
+
     /* event sources array*/
     $scope.eventSources = [events];
-   
+
+		$scope.showPopup = function() {
+			var myPopup = $ionicPopup.show({
+				title: 'Event Saved',
+				template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+				scope: $scope,
+			});
+			myPopup.then(function(res) {
+			});
+			$timeout(function() {
+				 myPopup.close();
+			}, 1000);
+		 };
+
 
 });

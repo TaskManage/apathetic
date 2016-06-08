@@ -1,7 +1,12 @@
-angular.module("studentSuccess").service("authService", function($http, ipService) {
+angular.module("studentSuccess").service("authService", function($http, ipService, $rootScope) {
 
   var ip = ipService.ip;
   var loginToken = JSON.parse(localStorage.getItem('loginToken'));
+
+  $rootScope.$watch('tokenChange', function(ov, nv){
+
+    loginToken = JSON.parse(localStorage.getItem('loginToken'));
+  })
 
   this.login = function(user) {
     return $http({
@@ -41,7 +46,6 @@ angular.module("studentSuccess").service("authService", function($http, ipServic
   };
 
   this.registerUser = function(user) {
-    console.log(user);
     return $http({
       method: 'POST',
       url: ip + '/users',
@@ -52,6 +56,7 @@ angular.module("studentSuccess").service("authService", function($http, ipServic
   };
 
   this.editUser = function(id, user) {
+    console.log(user);
     return $http({
       method: 'PUT',
       url: ip + "/user/" + id,

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-sanitize": "^1.5.6",
     "bcryptjs": "^2.3.0",
     "express-session": "^1.13.0",
     "jsonwebtoken": "^7.0.0",

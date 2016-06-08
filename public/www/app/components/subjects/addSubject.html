@@ -45,6 +45,7 @@
             </label>
 
             <my-calendar></my-calendar>
+            
 
              <label class="item item-input " id="newEvent-input10">
                 <input type="text" placeholder="Class Color" ng-model="subject.color">
@@ -63,7 +64,8 @@
 
             <a ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-positive  button-block "
             ng-click="addSubject(subject, repeat)">Save Class</a>
-            <a ui-sref="tabsController.subjects" id="addAClass-button41" class=" button button-assertive  button-block ">Delete Class</a>
+            <a ui-sref="tabsController.subjects" id="addAClass-button41" class=" button button-assertive  button-block ">Cancel</a>
+
         </form>
     </ion-content>
 </ion-view>
