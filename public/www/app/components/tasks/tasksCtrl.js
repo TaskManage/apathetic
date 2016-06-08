@@ -28,7 +28,6 @@ $scope.createTask = function(task) {
     });
   };
 
-
   $scope.cancelTask = function(task) {
     $scope.task = {};
   };

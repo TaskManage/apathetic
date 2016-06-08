@@ -3,23 +3,28 @@
         <form id="notepad-form9" class="list ">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search Notes">
+                <input type="search" placeholder="Search Notes" ng-model="searchNotes">
             </label>
         </form>
         <a ui-sref="note" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Add a note!</a>
-        <a ui-sref='noteCardsPage'>Go to NoteCards</a>
+        <!-- <a ui-sref='noteCardsPage'>Go to NoteCards</a> -->
 
 <!-- {{orderedNotes}} -->
 
 <!-- PLACEHOLDER NOTELIST -->
     <ion-list id="dashboard-list17" class=" ">
-        <section ng-repeat="subject in subjects track by $index">
+        <section ng-repeat="order in orderedNotes.subjects track by $index">
             <ion-item class="item-divider " id="tasks-list-item-divider6">
-                {{subject.title}}
+                {{order.title}}
             </ion-item>
-            <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="note in subject.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="tabsController.notes">
+            <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="editNote({id: note._id})">
+                {{note.name}}
+                <ion-option-button class="button-assertive" ng-click="removeNote(note._id); order.splice($index, 1); hideOptionButtons()"">
+                  Delete
+                  <!--tasks.splice($index, 1); hideOptionButtons()"-->
+                </ion-option-button>
             </ion-item>
-        </section>
+         </section>
       </ion-list>
 
   <!-- <div ng-repeat="note in notes track by $index" class="ql-editor" contenteditable="false">
