@@ -1,9 +1,6 @@
 <div>
   <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
     <ion-side-menu-content>
-
-<!-- TOP MENU HEADER -->
-
       <ion-nav-bar class="bar-positive">
         <ion-nav-back-button></ion-nav-back-button>
         <ion-nav-buttons side="left">
@@ -19,9 +16,6 @@
       <ion-header-bar class="bar-royal">
         <div class="title">Account</div>
       </ion-header-bar>
-
-
-    <div class="card">
       <ion-content padding="false" class="side-menu-left has-header">
         <ion-list id="menu-list16" class=" " data-componentid="list16">
           <ion-item class="item-avatar  " id="menu-list-item31" data-componentid="list-item31">
@@ -41,13 +35,13 @@
             <input type="password" placeholder="Confirm Password" ng-model="confirm">
           </label>
         </form>
-        </div>
 
         <div class="spacer" data-componentid="spacer13" style="width: 0px; height: 100px;"></div>
 
-        <button class="button button-balanced button-block" menu-close ng-click="update(user._id, user); showPopup()">
+        <button class="button button-block button-balanced" menu-close ng-click="update(user._id, user); showPopup()">
           Confirm Changes
         </button>
+
         <!-- <form id="menu-form10" class="list " data-componentid="form10">
           <label class="item item-select " id="menu-select3" data-componentid="select3">
             <span class="input-label">Theme</span>
