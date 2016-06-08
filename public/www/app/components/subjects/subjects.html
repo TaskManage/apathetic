@@ -1,6 +1,9 @@
 <ion-view title="Subject Schedule" hide-back-button="true" id="page18" class=" ">
     <ion-content padding="true" class="has-header">
-        <a ui-sref="tabsController.addSubject" id="classes-button15" class=" button button-positive  button-block ">Add a class</a>
+        <a ui-sref="tabsController.addSubject" id="classes-button15" class=" button button-balanced  button-block ">Add a class</a>
+
+        <div class="card">
+
         <ion-list id="classes-list9" class=" "          can-swipe="listCanSwipe"
 >
 <!-- DIVIDER -->
@@ -9,12 +12,13 @@
 <!-- START OF SUBJECT LIST -->
             <ion-item class="item-icon-left item-icon-right  " id="classes-list-item63"
             ng-repeat="subject in subjects">
-                <i class="icon ion-ios-flask-outline"></i>{{subject.title}}
+                <i class="icon ion-university"></i>{{subject.title}}
                 <span class="item-note">{{subject.startTime | date: 'shortTime'}}-{{subject.endTime | date: 'shortTime'}}</span>
                 <ion-option-button class="button-positive"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
                   Edit
                 </ion-option-button>
             </ion-item>
+          </div>
 
     </ion-content>
 </ion-view>

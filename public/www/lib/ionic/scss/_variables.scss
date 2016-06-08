@@ -3,13 +3,13 @@
 // -------------------------------
 
 $light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
+$stable:                          #3F51B5 !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
-$royal:                           #886aea !default;
+$balanced:                        #4CAF50 !default;
+$energized:                       #FFC107 !default;
+$assertive:                       #FF5722 !default;
+$royal:                           #673AB7 !default;
 $dark:                            #444 !default;
 
 
@@ -36,8 +36,8 @@ $headings-font-family:            $font-family-base !default;
 $headings-font-weight:            500 !default;
 $headings-line-height:            1.2 !default;
 
-$base-background-color:           #fff !default;
-$base-color:                      #000 !default;
+$base-background-color:           $light !default;
+$base-color:                      #fffff !default;
 
 $link-color:                      $positive !default;
 $link-hover-color:                darken($link-color, 15%) !default;
@@ -70,7 +70,7 @@ $scroll-refresh-icon-color:       #666666 !default;
 $button-color:                    #222 !default;
 $button-block-margin:             10px !default;
 $button-clear-padding:            6px !default;
-$button-border-radius:            4px !default;
+$button-border-radius:            0px !default;
 $button-border-width:             1px !default;
 
 $button-font-size:                16px !default;
@@ -280,7 +280,7 @@ $tabs-default-text:               $tabs-stable-text !default;
 
 $tab-item-max-width:              150px !default;
 
-$tabs-off-opacity:                0.4 !default;
+$tabs-off-opacity:                0.7 !default;
 $tabs-striped-off-opacity:        $tabs-off-opacity !default;
 $tabs-striped-off-color:          #000 !default;
 $tabs-striped-border-width:       2px !default;
@@ -309,7 +309,7 @@ $item-thumbnail-width:            80px !default;
 $item-thumbnail-height:           80px !default;
 $item-thumbnail-margin:           10px !default;
 
-$item-divider-bg:                 #f5f5f5 !default;
+$item-divider-bg:                 #F5F5F5 !default;
 $item-divider-color:              #222 !default;
 $item-divider-padding:            5px 15px !default;
 
@@ -759,3 +759,55 @@ $z-index-click-block:             99999 !default;
 // -------------------------------
 
 $ios-statusbar-height:           20px !default;
+.button-block:after {
+	clear: both;
+}
+
+
+.button:after {
+	position: absolute;
+	top: -6px;
+	right: -6px;
+}
+
+
+.item-divider {
+	color: #222222;
+	background-color: #F5F5F5;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	min-height: 30px;
+	font-weight: 500;
+}
+
+
+.item {
+}
+
+
+.item {
+	background-color: #fff;
+	color: #444;
+	position: relative;
+	z-index: 2;
+	display: block;
+	margin: -1px;
+	padding: 16px;
+	border-width: 1px;
+	border-style: solid;
+	font-size: 16px;
+	border-color: #dddddd;
+}
+
+//
+//
+//
+//
+//
+//
+// .button.button-positive.button-clear {
+// 	border-color: transparent;
+// 	background: none;
+// 	box-shadow: none;
+// 	color: #387ef5;
+// }

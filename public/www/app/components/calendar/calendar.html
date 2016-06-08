@@ -7,37 +7,43 @@
        <div id ="c" class="calendar" ui-calendar="calOptions" ng-model="eventSources">  -->
 
 
-        
+
         <tab select="renderCalender('myCalendar1');">
-            <div class="btn-toolbar">
-                <div class="btn-group">
-                    <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
-                    <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
-                    <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+            <div class="">
+                <div class="button-bar">
+                    <button class="button button-positive button-small button-block" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
+                    <button class="button button-positive button-small button-block" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+                    <button class="button button-positive button-small button-block" ng-click="changeView('month', 'myCalendar1')">Month</button>
                 </div>
             </div>
-            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">   
+            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">
             </div>
         </tab>
-        
-        <div>
-           <!--  <div ng-repeat="e in eve">
-                    {{e.title}}
-            </div> -->
-            <div>
-                <a ui-sref="newEvent" id="newEvent-button14" class=" button button-positive  button-block ">Add Event</a>
-            </div>
+
+<ion-list can-swipe="listCanSwipe">
+        <ion-item class="item">
+
             <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
                 <h4>{{alertMessage}}</h4>
-                <button ui-sref="editEvent({id: date._id})">Edit</button>
-                <button ng-click="deleteEvent(date._id)">Delete</button>
+
+                <ion-option-button class="button-positive" ui-sref="editEvent({id: date._id})" ng-click="hideOptionButtons()">Edit
+              </ion-option-button>
+
+                <ion-option-button class="button-assertive" ng-click="deleteEvent(date._id); hideOptionButtons()">Delete</ion-option-button>
             </div>
           
-        </div>              
-                   
-        
-    </div>
-        
+                     
+            <!-- <div ng-repeat="e in eve">
+                    {{e.title}}
+            </div> -->
+        </ion-item>
+      </ion-list>
+
+        <div>
+            <a ui-sref="newEvent" id="newEvent-button14" class=" button button-balanced  button-block ">Add Event</a>
+        </div>
+    
+
         <!-- <div class="list card " id="calendar-card21">
             <div class=" item item-image" style="margin-left: -10px; width: calc(100% + 20px);">
                 <a style="display:block;" ui-sref="newEvent">

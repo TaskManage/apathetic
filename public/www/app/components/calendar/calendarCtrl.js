@@ -1,8 +1,8 @@
-angular.module('studentSuccess').controller('calendarCtrl', function($scope, calendarService, uiCalendarConfig, $compile, $timeout, $ionicHistory, $state, subjectService, $ionicPopup) {
-
+angular.module('studentSuccess').controller('calendarCtrl', function($scope, calendarService, uiCalendarConfig, $compile, $timeout, $ionicHistory, $state, subjectService, $ionicPopup, $ionicListDelegate) {
 
 
 	$ionicHistory.clearCache();
+	$scope.listCanSwipe = true;
 
   $scope.classSun = "";
   $scope.classMon = "";
@@ -234,6 +234,11 @@ $scope.getSubjects();
 
     /* event sources array*/
     $scope.eventSources = [events];
+
+		$scope.hideOptionButtons = function() {
+	    $ionicListDelegate.closeOptionButtons();
+	  };
+
 
 		$scope.showPopup = function() {
 			var myPopup = $ionicPopup.show({
