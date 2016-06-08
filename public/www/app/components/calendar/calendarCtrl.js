@@ -195,7 +195,7 @@ $scope.getSubjects();
     };
 
     /* Change View */
-    $scope.calWeek = "active";
+    $scope.calMonth = "active";
     $scope.changeView = function(view,calendar) {
       console.log(view);
       if (view === 'agendaDay') {
@@ -234,7 +234,7 @@ $scope.getSubjects();
     /* config object */
     $scope.uiConfig = {
       calendar:{
-        defaultView: 'agendaWeek',
+        // defaultView: 'agendaWeek',
         editable: true,
         header:{
           left: 'prev',
