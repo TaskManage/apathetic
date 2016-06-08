@@ -3,7 +3,7 @@ angular.module('studentSuccess')
     return {
       restrict: 'E',
       templateUrl: './app/components/hamburger/hamburger.html',
-      controller: function($scope, authService, $state) {
+      controller: function($scope, authService, $state, $ionicPopup, $timeout) {
         $scope.$state = $state;
 
         $scope.logout = function() {
@@ -16,6 +16,20 @@ angular.module('studentSuccess')
             $state.go("tabsController.dashboard");
           })
         }
+
+        $scope.showPopup = function() {
+          var myPopup = $ionicPopup.show({
+            title: 'Profile Saved',
+            template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+            scope: $scope,
+          });
+          myPopup.then(function(res) {
+            $state.includes('login');
+          });
+          $timeout(function() {
+             myPopup.close();
+          }, 1000);
+         };
 
 
       },

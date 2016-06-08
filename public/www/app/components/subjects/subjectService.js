@@ -8,14 +8,14 @@ angular.module("studentSuccess").service("subjectService", function($http, ipSer
     loginToken = JSON.parse(localStorage.getItem('loginToken'));
   });
 
-  this.getSubjects = function() {
+this.getSubjects = function() {
     // return subjectList;
     return $http({
       method: 'GET',
+      url: ip + '/subjects',
       headers: {
         loginToken: loginToken
-      },
-      url: ip + '/subjects'
+      },  
     }).then(function(response) {
       return response.data;
     });
@@ -32,14 +32,24 @@ angular.module("studentSuccess").service("subjectService", function($http, ipSer
     });
   };
 
-  this.createSubject = function(subject) {
+  this.createSubject = function(subject, repeat) {
     return $http({
       method: 'POST',
       url: ip + '/subjects',
       headers: {
         loginToken: loginToken
       },
-      data: subject
+      data: {
+        title: subject.title,
+        building: subject.building,
+        room: subject.room,
+        teacher: subject.teacher,
+        start: subject.start,
+        end: subject.end,
+        backgroundColor: subject.color,
+        dow: repeat
+
+      }
     }).then(function(response) {
       return response;
     });
@@ -63,4 +73,6 @@ angular.module("studentSuccess").service("subjectService", function($http, ipSer
       return response;
     });
   };
+
+  // this.getUserSubjects = function()
 });

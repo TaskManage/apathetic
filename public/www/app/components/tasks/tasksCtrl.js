@@ -1,4 +1,4 @@
-angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate, $ionicHistory, $state, user, subjectService) {
+angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskService, $ionicListDelegate, $ionicHistory, $state, user, subjectService, $ionicPopup, $timeout) {
   $scope.user = user.data.user;
 
   $ionicHistory.clearCache();
@@ -54,6 +54,20 @@ $scope.createTask = function(task) {
     $scope.tasks.splice(fromIndex, 1);
     $scope.tasks.splice(toIndex, 0, task);
   };
+
+  $scope.showPopup = function() {
+    var myPopup = $ionicPopup.show({
+      title: 'Task Created',
+      template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+      scope: $scope,
+    });
+    myPopup.then(function(res) {
+    });
+    $timeout(function() {
+       myPopup.close();
+    }, 1000);
+   };
+
 
 
   // TESTING REORDER SORTING//

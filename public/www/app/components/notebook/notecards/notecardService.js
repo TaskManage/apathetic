@@ -1,14 +1,8 @@
-angular.module("studentSuccess").service("notebookService", function($http, ipService, $rootScope){
+angular.module("studentSuccess").service("notecardService", function($http, ipService){
 
-  var ip = ipService.ip;
+var ip = ipService.ip;
 
-    var loginToken = JSON.parse(localStorage.getItem('loginToken'));
-    $rootScope.$watch('tokenChange', function(ov, nv){
-      loginToken = JSON.parse(localStorage.getItem('loginToken'));
-    });
-
-
-  this.readAllNotes = function(){
+  this.readAllNotecards = function(){
     console.log("hit from read all notes service")
     return $http({
       method: 'GET',
@@ -18,7 +12,7 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
     })
   }
 
-  this.addNote = function(noteInfo){
+  this.addNotecard = function(noteInfo){
     console.log("hit from addNote beginning-service")
     return $http({
       method:'POST',
@@ -31,7 +25,7 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
   }
 
 //gets all notes made by the user.
-    this.readUserNote = function(user){
+    this.readUserNotecard = function(user){
       return $http({
         method:"GET",
         url: ip + '/note/' + user._id
@@ -40,7 +34,7 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
       })
     }
 
-    this.updateNote = function(selNote, noteID){
+    this.updateNotecard = function(selNote, noteID){
       return  $http({
         method: "PUT",
         url: ip + '/note/' + noteID,
@@ -51,26 +45,26 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
     }
 
 //gets a selected note
-this.readNote = function(noteID){
+this.readNotecard = function(noteID){
   console.log('readNote reaches this far')
   return $http({
     method:'GET',
-    url: ip + '/readNote/' + noteID
+    url: ip + '/readNote/' + noteID,
   }).then(function(response){
     return response.data
   })
 }
 
 //deletes a selected note
-this.removeNote = function(noteID){
+this.removeNotecard = function(noteID){
   return $http({
     method: "DELETE",
-    url: ip + '/note/' + noteID
+    url: ip + '/note/' + noteID,
   }).then(function(response){
   })
 }
 
-this.removeNotes = function(idArray) {
+this.removeNotecards = function(idArray) {
     console.log("hit from removeNotes", idArray);
     return $http({
       method: 'PUT',
@@ -82,20 +76,6 @@ this.removeNotes = function(idArray) {
     console.log(error);
     });
   };
-
-  this.getOrderedClasses = function() {
-      // return subjectList;
-      return $http({
-        method: 'GET',
-        headers: {
-          loginToken: loginToken
-        },
-        url: ip + '/readSubjects'
-      }).then(function(response) {
-        return response.data;
-      });
-    };
-
 
 // this.removeNote = function(noteID){
 //   return $http({

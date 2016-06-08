@@ -1,4 +1,4 @@
-angular.module('studentSuccess').controller('editSubjectCtrl', function($scope, subjectService, $ionicHistory, $state, user, subject) {
+angular.module('studentSuccess').controller('editSubjectCtrl', function($scope, subjectService, $ionicHistory, $ionicPopup, $state, user, subject, $timeout) {
 
 $scope.user = user.data.user;
 
@@ -24,5 +24,31 @@ $scope.deleteSubject= function(subject){
   });
 };
 
+$scope.showConfirm = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Please Confirm',
+     template: 'Are you sure you want to delete this class?'
+   });
+   confirmPopup.then(function(res) {
+     if(res) {
+       $scope.deleteSubject($scope.selectedSubject);
+     } else {
+       console.log("");
+     }
+   });
+ };
+
+ $scope.showPopup = function() {
+   var myPopup = $ionicPopup.show({
+     title: 'ClassSaved',
+     template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
+     scope: $scope,
+   });
+   myPopup.then(function(res) {
+   });
+   $timeout(function() {
+      myPopup.close();
+   }, 1000);
+  };
 
 });
