@@ -8,7 +8,7 @@ $scope.readNote = function(){
   console.log("hello from readNote on edit page. Here is my id", $scope.id)
   notebookService.readNote($scope.id).then(function(response){
     console.log("return from edit readNote", response);
-    $scope.selNote = response;
+    $scope.message = response;
   })
 }
 

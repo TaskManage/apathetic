@@ -30,8 +30,8 @@
         <ion-option-button class="button-positive"  ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
           Edit
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="removeTask(task); tasks.splice($index, 1); hideOptionButtons()">
-          Delete
+        <ion-option-button class="button-balanced" ng-click="removeTask(task); tasks.splice($index, 1); hideOptionButtons(); showCompletePopup()">
+          Complete!
         </ion-option-button>
         <ion-reorder-button class="ion-navicon"
                         on-reorder="moveTask(task, $fromIndex, $toIndex)">
