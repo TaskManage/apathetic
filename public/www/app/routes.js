@@ -561,6 +561,7 @@ angular.module('studentSuccess')
 
         }
       }
+
     },
     // views: {
     //   'tab5': {

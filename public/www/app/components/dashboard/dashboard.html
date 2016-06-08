@@ -2,9 +2,13 @@
     <ion-content padding="false" scroll="false" class="has-header">
         <h1 id="dashboard-heading7" style="color:#000000;text-align:center;" class=" ">Welcome, {{user.firstName}}</h1>
 
-        <div class="item item-body " id="dashboard-list-item-container13">
+
+<div class="card">
+        <div class="item item-divider " id="dashboard-list-item-container13">
             <p id="dashboard-markdown13" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">Upcoming Classes</p>
-            <ion-list id="dashboard-list11" class=" " ng-repeat='subject in subjects'>
+          </div>
+
+            <ion-list id="dashboard-list11" class="item item-list" ng-repeat='subject in subjects'>
                 <ion-item class="item-icon-left  " id="dashboard-list-item56" ui-sref="tabsController.calendar">
                     <i class="icon ion-ios-calendar-outline"></i>{{subject.title}}
                     <span class="item-note">{{subject.startTime | date: 'shortTime'}}-{{subject.endTime | date: 'shortTime'}}</span>
@@ -14,11 +18,15 @@
         </div>
 
         <div class="spacer" style="width: 320px; height: 22px;"></div>
-        <div class="item item-body " id="dashboard-list-item-container16">
+
+    <div class="card">
+        <div class="item item-divider " id="dashboard-list-item-container16">
             <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">What To-Do</p>
+          </div>
+
             <ion-list id="dashboard-list17" class=" ">
               <section ng-repeat="subject in subjects">
-                    <ion-item class="item-divider " id="tasks-list-item-divider6">
+                    <ion-item class="item item-list " id="tasks-list-item-divider6">
                     {{subject.title}}
                   </ion-item>
 
@@ -28,6 +36,6 @@
                     </ion-item>
               </section>
             </ion-list>
-        </div>
+    </div>
     </ion-content>
 </ion-view>

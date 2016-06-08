@@ -1,5 +1,5 @@
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-@import "../www/lib/ionic/scss";
+@import "./../www/lib/ionic/scss/ionic.scss";
 body.platform-ios {
 	font-family: Lato, sans-serif;
 }
@@ -10,5 +10,46 @@ body.platform-ios {
 
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.tab-item,input,button,select,textarea {
 	font-family: inherit;
+}
+
+
+
+
+
+
+
+
+
+// ----------HEADER
+
+
+
+// ----------SIDEMENU
+
+
+
+
+// ----------DASHBOARD
+
+
+
+// ----------CALENDAR
+
+
+// ----------SUBJECTS
+
+
+
+// ----------NOTEBOOK
+
+
+// ----------TASKS
+
+
+// ----------FOOTER
+
+
+h1:first-child, .h1:first-child, h2:first-child, .h2:first-child, h3:first-child, .h3:first-child {
+	margin-top: 10px;
 }
 

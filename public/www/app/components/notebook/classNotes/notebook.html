@@ -9,6 +9,8 @@
         <a ui-sref="note" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Add a note!</a>
         <!-- <a ui-sref='noteCardsPage'>Go to NoteCards</a> -->
 
+<!-- {{orderedNotes}} -->
+
 <!-- PLACEHOLDER NOTELIST -->
     <ion-list id="dashboard-list17" class=" ">
         <section ng-repeat="order in orderedNotes.subjects track by $index">
@@ -44,7 +46,7 @@
 <br>
 <br>
 
-<button id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add" ng-click="removeNotes()">Remove Notes</button>
+<button id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-balanced  button-block icon-left ion-android-add" ng-click="removeNotes()">Remove Notes</button>
 
 <div ng-repeat="selected in selection" class="selected-item">
   {{selected}}
