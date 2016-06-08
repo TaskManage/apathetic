@@ -8,21 +8,24 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
     });
 
 
-  this.readAllNotes = function(){
-    console.log("hit from read all notes service")
-    return $http({
-      method: 'GET',
-      url: ip + '/note',
-    }).then(function(response){
-      return response.data
-    })
-  }
+  // this.readAllNotes = function(){
+  //   console.log("hit from read all notes service")
+  //   return $http({
+  //     method: 'GET',
+  //     url: ip + '/note',
+  //   }).then(function(response){
+  //     return response.data
+  //   })
+  // }
 
   this.addNote = function(noteInfo){
     console.log("hit from addNote beginning-service")
     return $http({
       method:'POST',
       url: ip + '/note/',
+      headers: {
+        loginToken: loginToken
+      },
      data: noteInfo
     }).then(function(response){
       console.log(response.data);
@@ -30,15 +33,15 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
     })
   }
 
-//gets all notes made by the user.
-    this.readUserNote = function(user){
-      return $http({
-        method:"GET",
-        url: ip + '/note/' + user._id
-      }).then(function(response){
-        return response.data
-      })
-    }
+// //gets all notes made by the user.
+//     this.readUserNote = function(user){
+//       return $http({
+//         method:"GET",
+//         url: ip + '/note/' + user._id
+//       }).then(function(response){
+//         return response.data
+//       })
+//     }
 
     this.updateNote = function(selNote, noteID){
       return  $http({

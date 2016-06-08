@@ -1,14 +1,64 @@
-<ion-view title="Note" hide-nav-bar="true" id="page15" class=" ">
+<ion-view title="Your Note" id="page14" class=" ">
+    <ion-content padding="true" class=" manual-remove-top-padding has-header">
+
+        <div class="spacer" style="width: 285px; height: 27px;"></div>
+
+        <form id="editToDo-form16" class="list " ng-submit="addTask(task)">
+            <label class="item item-input " id="editToDo-input16">
+                <input type="text" placeholder="Title" ng-model="message.name"></input>
+            </label>
+            <div class="spacer" style="width: 285px; height: 27px;"></div>
+
+            <div class="spacer" style="width: 285px; height: 31px;"></div>
+
+            <!-- <label class="item item-input " id="editToDo-textarea3">
+                <span class="input-label"></span><textarea placeholder="Notes" ng-model="message.message"></textarea>
+            </label> -->
+            <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error" class=""></ng-quill-editor>
+            <!-- <p ng-bind-html="selNote.message"></p> -->
+
+
+        <div class="spacer" style="width: 285px; height: 37px;"></div>
+
+        <a ui-sref="tabsController.notebook" ng-click="updateNote()"; "showPopup()"  id="editToDo-button11" class=" button button-positive  button-block " >Done</a>
+
+        <a ui-sref="tabsController.notebook" id="editToDo-button40" class="button button-assertive  button-block " ng-click="removeNote()">Delete</a>
+</form>
+    </ion-content>
+</ion-view>
+
+<style>
+#ql-editor-1 {
+  height: 150px;
+}
+.selectable{
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+}
+</style>
+
+
+
+
+
+
+
+
+<!-- <ion-view title="Note" hide-nav-bar="true" id="page15" class=" ">
     <ion-content padding="true" class="manual-ios-statusbar-padding">
         <div class="spacer" style="width: 285px; height: 51px;"></div>
         <form id="note-form11" class="list ">
             <h2 id="note-heading5" style="color:#C9C9C9;" class=" ">Edit your note here</h2>
         </form>
         <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Edit your note here!</p>
-        <!-- <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor> -->
-        <textarea ng-model="selNote.message">{{selNote.message}}</textarea>
+        <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+        <!-- <textarea ng-model="selNote.message">{{selNote.message}}</textarea>
         <div class="spacer" style="width: 285px; height: 320px;"></div>
         <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="updateNote(); showPopup()">Save</a>
         <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-positive  button-block " ng-click="removeNote()">Remove</a>
     </ion-content>
-</ion-view>
+</ion-view> -->
