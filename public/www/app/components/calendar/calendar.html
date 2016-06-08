@@ -7,8 +7,7 @@
        <div id ="c" class="calendar" ui-calendar="calOptions" ng-model="eventSources">  -->
 
 
-
-        <tab select="renderCalender('myCalendar1');">
+      <tab select="renderCalender('myCalendar1');">
             <div class="">
                 <div class="button-bar">
                     <button ng-class="calDay" class="button button-positive button-small button-block" ng-click="changeView('agendaDay', 'myCalendar1')">Day</button>
@@ -16,15 +15,21 @@
                     <button ng-class="calMonth" class="button button-positive button-small button-block" ng-click="changeView('month', 'myCalendar1')">Month</button>
                 </div>
             </div>
+<div class="card" style="padding: 10px;">
+
             <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">
             </div>
         </tab>
+</div>
+      
 
          <div>
             <a ui-sref="newEvent" id="newEvent-button14" class=" button button-balanced  button-block ">Add Event</a>
         </div>
 
-<ion-list can-swipe="listCanSwipe">
+<div class="card">
+    <ion-item class="item-divider">Events</ion-item>
+    <ion-list can-swipe="listCanSwipe">
         <ion-item class="item">
 
             <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
@@ -41,7 +46,9 @@
                     {{e.title}}
             </div> -->
         </ion-item>
-      </ion-list>
+</ion-list>
+</div>
+
 
     </ion-content>
 </ion-view>
