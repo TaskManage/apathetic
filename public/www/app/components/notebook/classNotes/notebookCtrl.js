@@ -10,6 +10,14 @@ $scope.getOrderedClasses = function(){
 
 $scope.getOrderedClasses();
 
+$scope.removeNote = function(id){
+  console.log('hit from fired remove note')
+    notebookService.removeNote(id).then(function(response){
+      console.log("update from delete return");
+      $scope.getOrderedClasses();
+    })
+}
+
 // $scope.readAllNotes = function(){
 //   console.log("hit from readAllNotes");
 //   notebookService.readAllNotes().then(function(response){
@@ -21,27 +29,27 @@ $scope.getOrderedClasses();
 // $scope.readAllNotes();
 
 
-$scope.selection=[];
+// $scope.selection=[];
+//
+//   $scope.toggleSelection = function toggleSelection(employeeName) {
+//      var idx = $scope.selection.indexOf(employeeName);
+//  
+//      if (idx > -1) {
+//        $scope.selection.splice(idx, 1);
+//      }
+//  
+//      else {
+//        $scope.selection.push(employeeName);
+//      }
+//    };
 
-  $scope.toggleSelection = function toggleSelection(employeeName) {
-     var idx = $scope.selection.indexOf(employeeName);
- 
-     if (idx > -1) {
-       $scope.selection.splice(idx, 1);
-     }
- 
-     else {
-       $scope.selection.push(employeeName);
-     }
-   };
-
-$scope.removeNotes = function(){
-  console.log('hit from fired remove note notebookCtrl')
-    notebookService.removeNotes($scope.selection).then(function(response){
-      console.log("update from delete return");
-      $scope.readAllNotes();
-    })
-};
+// $scope.removeNotes = function(){
+//   console.log('hit from fired remove note notebookCtrl')
+//     notebookService.removeNotes($scope.selection).then(function(response){
+//       console.log("update from delete return");
+//       $scope.readAllNotes();
+//     })
+// };
 
 $scope.showPopup = function() {
   console.log("POPUP HIT");

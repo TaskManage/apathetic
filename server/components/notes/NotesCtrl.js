@@ -6,27 +6,43 @@ var config = require('../../config.js')
 
 module.exports = {
 
-  Create: function (req, res, next) {
-  		Note.create(req.body, function (err, response) {
-  			if (err) {
-  				res.status(500).send(err)
-  			} else {
-  				Subject.findByIdAndUpdate(req.body.user, {
-  					$addToSet: {
-  						'notes': response
-  					}
-  				},
-           function (err, user) {
-  					console.log(user);
-  					if (err) {
-  						res.status(500).send(err)
-  					} else {
-  						res.status(200).send(response)
-  					}
-  				})
-  			}
-  		})
-  	},
+  // Create: function (req, res, next) {
+  //   var token = jwt.verify(req.get('loginToken'), config.key);
+  // 		Note.create(req.body, function (err, response) {
+  // 			if (err) {
+  // 				res.status(500).send(err)
+  // 			} else {
+  // 				Subject.findByIdAndUpdate(req.body.subject, {
+  // 					$addToSet: {
+  // 						'notes': response._id
+  // 					}
+  // 				}).exec(function(){
+  //           res.status(200).send(response);
+  //         })
+  // 			}
+  // 		});
+  // 	},
+
+  Create: function(req, res, next) {
+    console.log(req.body);
+    var token = jwt.verify(req.get('loginToken'), config.key);
+      // req.body.creator = req.user._id;
+      Note.create(req.body, function(err, response) {
+        // console.log(response);
+          if (err) {
+              res.status(500).send(err)
+          } else {
+              // console.log("THIS IS THE USER " + token._id);
+              Subject.findByIdAndUpdate(req.body.subject, {
+                  $addToSet: {
+                      'notes': response._id
+                  }
+              }).exec(function() {
+                  res.status(200).send(response);
+              })
+          }
+      });
+  },
 
     readNotes: function(req, res, next) {
           var token = jwt.verify(req.get('loginToken'), config.key);
