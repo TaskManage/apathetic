@@ -6,7 +6,7 @@
   </div>
    <ion-scroll direction="y" has-bouncing="true" style="height: 60vh">
 
-<div class="card">
+<div class="card" ng-if="subjects.length > 0">
         <div class="item item-divider " id="dashboard-list-item-container13">
             <p id="dashboard-markdown13" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">Upcoming Classes</p>
           </div>
@@ -21,7 +21,7 @@
 
         <div class="spacer" style="width: 320px; height: 22px;"></div>
 
-    <div class="card">
+    <div class="card" ng-if="subjects.length > 0">
         <div class="item item-divider " id="dashboard-list-item-container16">
             <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" ">What To-Do</p>
           </div>
@@ -39,6 +39,7 @@
               </section>
             </ion-list>
     </div>
+    <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" " ng-if="subjects.length === 0">You have no upcoming events</p>
     <ion-scroll>
     </ion-content>
 </ion-view>
