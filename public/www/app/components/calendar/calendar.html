@@ -22,6 +22,7 @@
 
 <ion-list can-swipe="listCanSwipe">
         <ion-item class="item">
+
             <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
                 <h4>{{alertMessage}}</h4>
 
@@ -30,17 +31,18 @@
 
                 <ion-option-button class="button-assertive" ng-click="deleteEvent(date._id); hideOptionButtons()">Delete</ion-option-button>
             </div>
-            <div ng-repeat="e in eve">
+          
+                     
+            <!-- <div ng-repeat="e in eve">
                     {{e.title}}
-            </div>
+            </div> -->
         </ion-item>
       </ion-list>
 
         <div>
             <a ui-sref="newEvent" id="newEvent-button14" class=" button button-balanced  button-block ">Add Event</a>
         </div>
-
-    </div>
+    
 
         <!-- <div class="list card " id="calendar-card21">
             <div class=" item item-image" style="margin-left: -10px; width: calc(100% + 20px);">

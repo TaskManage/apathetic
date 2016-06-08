@@ -12,10 +12,10 @@ this.getSubjects = function() {
     // return subjectList;
     return $http({
       method: 'GET',
+      url: ip + '/subjects',
       headers: {
         loginToken: loginToken
-      },
-      url: ip + '/subjects'
+      },  
     }).then(function(response) {
       return response.data;
     });
@@ -32,14 +32,24 @@ this.getSubjects = function() {
     });
   };
 
-  this.createSubject = function(subject) {
+  this.createSubject = function(subject, repeat) {
     return $http({
       method: 'POST',
       url: ip + '/subjects',
       headers: {
         loginToken: loginToken
       },
-      data: subject
+      data: {
+        title: subject.title,
+        building: subject.building,
+        room: subject.room,
+        teacher: subject.teacher,
+        start: subject.start,
+        end: subject.end,
+        backgroundColor: subject.color,
+        dow: repeat
+
+      }
     }).then(function(response) {
       return response;
     });
