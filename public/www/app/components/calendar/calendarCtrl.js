@@ -103,7 +103,11 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 			var event = res.data;
 			// console.log(event);
 			for (var i = 0; i < event.length; i++) {
-        
+        var momentObjStart = moment(event[i].start);
+        var momentObjEnd = moment(event[i].end);
+        event[i].start = momentObjStart.format("LLL");
+        event[i].end = momentObjEnd.format("LLL");
+
 				events.push(event[i]);
 				// console.log("event at i correct" + event[i].title);
 			}
@@ -118,24 +122,33 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 
 	$scope.getEvent();
 
+  var subject = [];
+
   $scope.getSubjects = function() {
   subjectService.getSubjects().then(function(response){
-     // console.log("getSubjects " + response);
-      // $scope.subjects = response.subjects;
-    var event = response.subjects;
+     // console.log("getSubjects " , response);
+    var sub = response.subjects;
     // console.log("Event length " + event.length);
-    for (var i = 0; i < event.length; i++) {
-      // console.log(event[i].start);
-        events.push(event[i]);
+    for (var i = 0; i < sub.length; i++) {
+        var momentObjStart = moment(sub[i].start);
+        var momentObjEnd = moment(sub[i].end);
+        sub[i].start = momentObjStart.format("LLL");
+        sub[i].end = momentObjEnd.format("LLL");
+        // event[i].stick = true;
+     
+        subject.push(sub[i]);
       
     }
-    // events.push({id: 999,title: 'Test',start: new Date( 16, 0),end: new Date( 20, 0),allDay: false, backgroundColor: 'red', dow: [1,4, 1, 1], room: "This is some crap"});
-    // events.push({id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0), stick: true,allDay: false,dow: [1]});
-    // console.log("this is the events array " + events);
+    // subject.push({id: 999,title: 'Test',start: new Date( 16, 0),end: new Date( 20, 0),allDay: false, backgroundColor: 'red', dow: [1], stick: true, room: "This is some crap"});
+    // subject.push({id: 999,title: 'Repeating Event',start: new Date(y, m, d,  16, 0), stick: true,allDay: false});
+    // events.push({id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'orange', dow: [0,1,2,3,4,5,6], stick: true, room: "This is some crap"})
+    // console.log("this is the subject array " , subject);
   });
 };
 
 $scope.getSubjects();
+
+
 
 
 	$scope.createEvent = function(calEvent, repeat) {
@@ -168,8 +181,8 @@ $scope.getSubjects();
 
 
     /* Test Data */
-    // var events = [
-    //   {id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'red', dow: [0,1,2,3,4,5,6], room: "This is some crap"},
+    // var subject = [
+    //   {id: 999,title: 'asdfasdfasdfasdfsd',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'black', dow: [0,1,2,3,4,5,6], room: "This is some crap", rendering: 'background'},
     //   {title: 'All Day Event',start: new Date(y, m, 1)},
     //   {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
     //   {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
@@ -235,15 +248,15 @@ $scope.getSubjects();
         $compile(element)($scope);
     };
 
-    /* config object */
-    // $scope.cal = function() {
-    //   $state.reload();
-    // };
+    $scope.next = function() {
+      console.log("next clicked");
+    };
 
     $scope.uiConfig = {
       calendar:{
         // defaultView: 'agendaWeek',
         editable: true,
+        nowIndicator: true,
         header:{
           left: 'prev',
           center: 'title',
@@ -253,12 +266,12 @@ $scope.getSubjects();
         eventClick: $scope.alertOnEventClick,
         eventDrop: $scope.alertOnDrop,
         eventResize: $scope.alertOnResize,
-        eventRender: $scope.eventRender
+        eventRender: $scope.eventRender,
       }
     };
 
     /* event sources array*/
-    $scope.eventSources = [events];
+    $scope.eventSources = [events, subject];
 
 		$scope.hideOptionButtons = function() {
 	    $ionicListDelegate.closeOptionButtons();
