@@ -103,6 +103,7 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 			var event = res.data;
 			// console.log(event);
 			for (var i = 0; i < event.length; i++) {
+        
 				events.push(event[i]);
 				// console.log("event at i correct" + event[i].title);
 			}
@@ -122,13 +123,15 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
      // console.log("getSubjects " + response);
       // $scope.subjects = response.subjects;
     var event = response.subjects;
-    // console.log("subjects event " + event);
+    // console.log("Event length " + event.length);
     for (var i = 0; i < event.length; i++) {
-      // console.log("Subjects  "+ event[i].title);
-      events.push(event[i]);
+      // console.log(event[i].start);
+        events.push(event[i]);
+      
     }
-    events.push({id: 999,title: 'Test',start: new Date( 16, 0),end: new Date( 20, 0),allDay: false, backgroundColor: 'red', dow: [1,4, 1, 1], room: "This is some crap"});
-    console.log("this is the events array " + events);
+    // events.push({id: 999,title: 'Test',start: new Date( 16, 0),end: new Date( 20, 0),allDay: false, backgroundColor: 'red', dow: [1,4, 1, 1], room: "This is some crap"});
+    // events.push({id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0), stick: true,allDay: false,dow: [1]});
+    // console.log("this is the events array " + events);
   });
 };
 
@@ -181,11 +184,12 @@ $scope.getSubjects();
       var m = new Date(start).getMonth();
       var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
       callback(events);
+
     };
 
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
-        $scope.alertMessage = (date.title + " " + date.location + ' ' + date.notes);
+        $scope.alertMessage = (date.title + " ");
         // console.log('Event Clicked' + date._id);
         $scope.date = date;
     };
@@ -197,7 +201,7 @@ $scope.getSubjects();
     /* Change View */
     $scope.calMonth = "active";
     $scope.changeView = function(view,calendar) {
-      console.log(view);
+      // console.log(view);
       if (view === 'agendaDay') {
         $scope.calDay = "active";
       } else {
@@ -232,6 +236,10 @@ $scope.getSubjects();
     };
 
     /* config object */
+    // $scope.cal = function() {
+    //   $state.reload();
+    // };
+
     $scope.uiConfig = {
       calendar:{
         // defaultView: 'agendaWeek',

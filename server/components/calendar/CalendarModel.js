@@ -7,7 +7,7 @@ var calEvent = new mongoose.Schema({
 	allDay: {type: String},
 	location: {type: String},
 	notes: {type: String},
-	// dow: {type: Array},
+	stick: {type: Boolean, default: true},
 	backgroundColor: {type: String}
 });
 
