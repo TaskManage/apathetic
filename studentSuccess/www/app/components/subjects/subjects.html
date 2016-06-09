@@ -1,0 +1,26 @@
+<ion-view title="Subject Schedule" hide-back-button="true" id="page18" class=" ">
+    <ion-content padding="true" class="has-header">
+        <a ui-sref="tabsController.addSubject" id="classes-button15" class=" button button-balanced  button-block ">Add a class</a>
+
+        <div class="card" ng-if="subjects.length > 0">
+
+        <ion-list id="classes-list9" class=" "          can-swipe="listCanSwipe"
+>
+<!-- DIVIDER -->
+            <ion-item class="item-divider " id="classes-list-item-divider10" ng-if="subjects.length > 0">Your Schedule</ion-item>
+
+<!-- START OF SUBJECT LIST -->
+            <ion-item class="item-icon-left item-icon-right  " id="classes-list-item63"
+            ng-repeat="subject in subjects">
+                <i class="icon ion-university"></i>{{subject.title}}
+                <span class="item-note">{{subject.start | date: 'shortTime'}}-{{subject.end | date: 'shortTime'}}</span>
+                <ion-option-button class="button-calm"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
+                  Edit
+                </ion-option-button>
+            </ion-item>
+          </div>
+
+          <p id="dashboard-markdown16" style="margin-top:0px;color:#222;font-size:24px;" class=" " ng-if="subjects.length === 0">You need to schedule classes</p>
+
+    </ion-content>
+</ion-view>

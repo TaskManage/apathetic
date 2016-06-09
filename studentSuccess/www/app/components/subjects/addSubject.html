@@ -1,0 +1,62 @@
+<ion-view title="Add a Subject" hide-back-button="true" id="page19" class=" ">
+
+    <ion-content padding="true" class="has-header">
+
+        <form id="addAClass-form19" class="list ">
+            <label class="item item-input " id="addAClass-input25">
+                <input type="text" placeholder="Subject"
+                ng-model="subject.title">
+            </label>
+
+            <div class="spacer" style="width: 285px; height: 37px;"></div>
+
+            <label class="item item-input " id="addAClass-input26">
+                <input type="text" placeholder="Building"
+                ng-model="subject.building">
+            </label>
+
+            <label class="item item-input " id="addAClass-input27">
+                <input type="text" placeholder="Room" ng-model="subject.room">
+            </label>
+            <label class="item item-input " id="addAClass-input28">
+                <input type="text" placeholder="Teacher"
+                ng-model="subject.teacher">
+            </label>
+        </form>
+
+        <form id="addAClass-form20" class="list ">
+            <label class="item item-input " id="addAClass-input29">
+                <span class="input-label">Starts</span>
+                <input type="datetime-local" placeholder="" ng-model="subject.start">
+            </label>
+            <label class="item item-input " id="addAClass-input30">
+                <span class="input-label">Ends</span>
+                <input type="datetime-local" placeholder="" ng-model="subject.end">
+
+            </label>
+
+            <my-calendar></my-calendar>
+
+
+             <label class="item item-input " id="newEvent-input10">
+                <input type="text" placeholder="Class Color" ng-model="subject.color">
+            </label>
+
+            <div class="spacer" style="width: 285px; height: 29px;"></div>
+
+            <!-- <label class="item item-input " id="addAClass-input31">
+                <span class="input-label">Starts</span>
+                <input type="date" placeholder="">
+            </label>
+            <label class="item item-input " id="addAClass-input32">
+                <span class="input-label">Ends</span>
+                <input type="date" placeholder="">
+            </label> -->
+
+            <a ui-sref="tabsController.subjects" id="addAClass-button30" class=" button button-calm  button-block "
+            ng-click="addSubject(subject, repeat)">Save Class</a>
+            <a ui-sref="tabsController.subjects" id="addAClass-button41" class=" button button-assertive  button-block ">Cancel</a>
+
+        </form>
+    </ion-content>
+</ion-view>

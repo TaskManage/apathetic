@@ -1,0 +1,40 @@
+<ion-view title="Note" hide-nav-bar="true" id="page15" class=" ">
+    <ion-content padding="true" class="manual-ios-statusbar-padding">
+        <form id="note-form11" class="list ">
+            <h2 id="note-heading5" style="color:#C9C9C9;" class=" ">Add a note here</h2>
+        </form>
+        <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Type your new note here!</p>
+          <!-- <textarea></textarea> -->
+        <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+
+        <div>Operator is: {{filterCondition.operator}}</div>
+        <input placeholder="Enter the name of your note"></input>
+        <select ng-model="filterCondition.operator">
+           <option ng-repeat="operator in operators" title="{{operator.title}}" ng-selected="{{operator.value == filterCondition.operator}}" value="{{operator.value}}">{{operator.displayName}}</option>
+        </select>
+
+
+        <!-- <label class="item item-select " id="editToDo-select5">
+            <span class="input-label">Subject</span>
+            <select ng-model="task.class">
+                <option>Chemisty</option>
+                <option>Biology</option>
+                <option>Personal Taks</option>
+            </select>
+        </label> -->
+        <textarea ng-model="message.message"></textarea>
+        <a ui-sref="tabsController.notebook" id="note-button13" class=" button button-calm  button-block " ng-click="addNote(message)">Save</a>
+
+<style>
+.selectable {
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+}
+</style>
+
+  </ion-content>
+</ion-view>

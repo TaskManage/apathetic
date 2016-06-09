@@ -1,0 +1,83 @@
+<ion-view title="New Note" id="page14" class=" ">
+    <ion-content padding="true" class=" manual-remove-top-padding has-header">
+
+
+<div class="card">
+
+
+        <form id="editToDo-form16" class="list " ng-submit="addTask(task)">
+            <label class="item item-input " id="editToDo-input16">
+                <input type="text" placeholder="Title" ng-model="message.name">
+            </label>
+            <label class="item item-select " id="editToDo-select5">
+                <span class="input-label">Subject</span>
+                <select ng-model="message.subject">
+                  <option ng-repeat="subject in subjects" value="{{subject._id}}">
+                    {{subject.title}}
+                  </option>
+                </select>
+            </label>
+          </div>
+
+
+<div class="card" style=" padding 10px;">
+
+              <ng-quill-editor class="selectable" ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+
+
+            </div>
+
+
+        <a ng-click="showPopup(); addNote(message);" id="editToDo-button11" class=" button button-calm  button-block " a ui-sref="tabsController.notebook" >Save Note</a>
+
+        <a ng-click="clearNote()" a ui-sref="tabsController.notebook" id="editToDo-button40" class="button button-assertive  button-block " >Cancel</a>
+</form>
+
+    </ion-content>
+</ion-view>
+
+
+<!-- <ion-view title="Note" hide-nav-bar="true" id="page15" class=" ">
+    <ion-content padding="true" class="manual-ios-statusbar-padding">
+        <form id="note-form11" class="list ">
+            <h2 id="note-heading5" style="color:#C9C9C9;" class=" ">Add a note here</h2>
+        </form>
+        <p id="note-markdown9" style="color:#AAAAAA;font-size:14px;" class=" ">Type your new note here!</p>
+           <textarea></textarea> -->
+        <!-- <input ng-model = "message.name" place="place your text here"></input>
+        <ng-quill-editor class='selectable' ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+
+        <select ng-model="message.subject">
+          <option ng-repeat="subject in subjects" value="{{subject._id}}">
+            {{subject.title}}
+          </option>
+        </select>
+ -->
+
+        <!-- <label class="item item-select " id="editToDo-select5">
+            <span class="input-label">Subject</span>
+            <select ng-model="task.class">
+                <option>Chemisty</option>
+                <option>Biology</option>
+                <option>Personal Taks</option>
+            </select>
+        </label> -->
+
+
+<style>
+#ql-editor-1 {
+  height: 150px;
+}
+
+.selectable{
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+}
+</style>
+
+  </ion-content>
+</ion-view>
