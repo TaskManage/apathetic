@@ -103,6 +103,13 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 			var event = res.data;
 			// console.log(event);
 			for (var i = 0; i < event.length; i++) {
+        var momentObjStart = moment(event[i].start);
+        var momentObjEnd = moment(event[i].end);
+        event[i].start = momentObjStart.format("LLL");
+        event[i].end = momentObjEnd.format("LLL");
+        event[i].borderColor = 'white';
+        event[i].borderRadius = '0';
+
 				events.push(event[i]);
 				// console.log("event at i correct" + event[i].title);
 			}
@@ -117,28 +124,32 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
 
 	$scope.getEvent();
 
+  var subject = [];
+
   $scope.getSubjects = function() {
   subjectService.getSubjects().then(function(response){
-     // console.log("getSubjects " + response);
-      // $scope.subjects = response.subjects;
-    var event = response.subjects;
-    // console.log("subjects event " + event);
-    for (var i = 0; i < event.length; i++) {
-      // console.log("Subjects  "+ event[i].title);
-      events.push(event[i]);
+     // console.log("getSubjects " , response);
+    var sub = response.subjects;
+    // console.log("Event length " + event.length);
+    for (var i = 0; i < sub.length; i++) {
+        var momentObjStart = moment(sub[i].start);
+        var momentObjEnd = moment(sub[i].end);
+        sub[i].start = momentObjStart.format("LLL");
+        sub[i].end = momentObjEnd.format("LLL");
+        sub[i].borderColor = 'white';
+     
+        subject.push(sub[i]);
+      
     }
-    events.push({id: 999,title: 'Test',start: new Date( 16, 0),end: new Date( 20, 0),allDay: false, backgroundColor: 'red', dow: [1,4, 1, 1], room: "This is some crap"});
-    console.log("this is the events array " + events);
   });
 };
 
 $scope.getSubjects();
 
 
+
+
 	$scope.createEvent = function(calEvent, repeat) {
-    // console.log("Repeat in createEvent" + repeat);
-    // console.log("End time" + calEvent.end);
-    // console.log(calEvent);
     if (calEvent.start && calEvent.end) {
       calendarService.createEvent(calEvent, repeat).then(function(calEvent, repeat) {
       $state.go("tabsController.calendar_tab2", {reload: true});
@@ -165,8 +176,8 @@ $scope.getSubjects();
 
 
     /* Test Data */
-    // var events = [
-    //   {id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'red', dow: [0,1,2,3,4,5,6], room: "This is some crap"},
+    // var subject = [
+    //   {id: 999,title: 'asdfasdfasdfasdfsd',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'black', dow: [0,1,2,3,4,5,6], room: "This is some crap", rendering: 'background'},
     //   {title: 'All Day Event',start: new Date(y, m, 1)},
     //   {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
     //   {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
@@ -174,6 +185,7 @@ $scope.getSubjects();
     //   {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
     //   {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29)}
     // ];
+    
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
       var s = new Date(start).getTime() / 1000;
@@ -181,11 +193,12 @@ $scope.getSubjects();
       var m = new Date(start).getMonth();
       var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
       callback(events);
+
     };
 
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
-        $scope.alertMessage = (date.title + " " + date.location + ' ' + date.notes);
+        $scope.alertMessage = (date.title + " ");
         // console.log('Event Clicked' + date._id);
         $scope.date = date;
     };
@@ -197,7 +210,7 @@ $scope.getSubjects();
     /* Change View */
     $scope.calMonth = "active";
     $scope.changeView = function(view,calendar) {
-      console.log(view);
+      // console.log(view);
       if (view === 'agendaDay') {
         $scope.calDay = "active";
       } else {
@@ -231,11 +244,15 @@ $scope.getSubjects();
         $compile(element)($scope);
     };
 
-    /* config object */
+    $scope.next = function() {
+      console.log("next clicked");
+    };
+
     $scope.uiConfig = {
       calendar:{
         // defaultView: 'agendaWeek',
         editable: true,
+        nowIndicator: true,
         header:{
           left: 'prev',
           center: 'title',
@@ -245,12 +262,12 @@ $scope.getSubjects();
         eventClick: $scope.alertOnEventClick,
         eventDrop: $scope.alertOnDrop,
         eventResize: $scope.alertOnResize,
-        eventRender: $scope.eventRender
+        eventRender: $scope.eventRender,
       }
     };
 
     /* event sources array*/
-    $scope.eventSources = [events];
+    $scope.eventSources = [events, subject];
 
 		$scope.hideOptionButtons = function() {
 	    $ionicListDelegate.closeOptionButtons();
