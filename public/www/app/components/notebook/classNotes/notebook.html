@@ -20,12 +20,10 @@
             <ion-item class="item-divider " id="tasks-list-item-divider6" ng-if="order.notes.length > 0">
                 {{order.title}}
             </ion-item>
-            <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="editNote({id: note._id})">
+            <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="viewNote({noteId: note._id})">
                 {{note.name}}
-                <ion-option-button class="button-assertive" ng-click="removeNote(note._id); order.splice($index, 1); hideOptionButtons()"">
-                  Delete
-                  <!--tasks.splice($index, 1); hideOptionButtons()"-->
-                </ion-option-button>
+                <ion-option-button class="button-calm"  ng-click="hideOptionButtons()" ui-sref="editNote({id: note._id})">
+                  Edit
             </ion-item>
          </section>
       </ion-list>

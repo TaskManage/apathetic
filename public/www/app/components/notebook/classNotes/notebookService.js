@@ -54,6 +54,17 @@ angular.module("studentSuccess").service("notebookService", function($http, ipSe
     }
 
 //gets a selected note
+this.getNote = function(noteID){
+  console.log('getNote reaches this far')
+  return $http({
+    method:'GET',
+    url: ip + '/getNote/' + noteID
+  }).then(function(response){
+    console.log("response", response)
+    return response.data;
+  })
+}
+
 this.readNote = function(noteID){
   console.log('readNote reaches this far')
   return $http({

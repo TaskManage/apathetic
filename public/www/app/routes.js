@@ -172,6 +172,39 @@ angular.module('studentSuccess')
     }
   })
 
+  .state('viewNote', {
+    url: '/note/:noteId',
+    templateUrl : "./app/components/notebook/classNotes/viewNote.html",
+    controller: 'viewNoteCtrl',
+    cache: false,
+    resolve: {
+          login: function($state, authService) {
+            if (localStorage.getItem('loginToken')) {
+              authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken'))).then(function(response) {
+
+                if (response.data.loggedIn) {
+
+                } else {
+                  $state.go('login');
+                }
+              })
+            }
+          },
+            user: function($state, authService){
+              if (localStorage.getItem('loginToken')) {
+                return authService.getCurrentUser(JSON.parse(localStorage.getItem('loginToken')));
+              } else {
+
+              }
+            },
+            noteDetail: function(notebookService, $stateParams) {
+              console.log($stateParams);
+               return notebookService.getNote($stateParams.noteId)
+            }
+
+        }
+  })
+
   /*
     The IonicUIRouter.js UI-Router Modification is being used for this route.
     To navigate to this route, do NOT use a URL. Instead use one of the following:
