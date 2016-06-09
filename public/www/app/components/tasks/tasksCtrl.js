@@ -69,7 +69,8 @@ $scope.createTask = function(task) {
 
    $scope.showCompletePopup = function() {
      var myPopup = $ionicPopup.show({
-       title: 'Task Completed',
+       title: 'Task Completed!',
+       subTitle: "Way to go!!!",
        template: '<ion-spinner icon="lines" style="margin-left:calc(50% - 14px)"></ion-spinner>',
        scope: $scope,
      });

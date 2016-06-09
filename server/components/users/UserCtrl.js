@@ -52,7 +52,9 @@ module.exports = {
 
     update: function(req, res, next) {
         User.findById(req.params._id, function(err, result) {
+          console.log(result);
           result.password = req.body.password;
+          result.email = req.body.email;
           result.save(function(err, result) {
             if (err) {
               res.status(500).send(err);
