@@ -14,21 +14,27 @@
 
 <!-- {{orderedNotes}} -->
 
-<!-- PLACEHOLDER NOTELIST -->
-    <ion-list id="dashboard-list17" class=" ">
+
         <section ng-repeat="order in orderedNotes.subjects track by $index">
-            <ion-item class="item-divider " id="tasks-list-item-divider6" ng-if="order.notes.length > 0">
+          <div class="card" ng-if="order.notes.length > 0">
+
+            <ion-item class="item-divider " id="tasks-list-item-divider6" >
                 {{order.title}}
             </ion-item>
-            <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="editNote({id: note._id})">
+            <ion-item class="item-icon-left item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="editNote({id: note._id})">
+              <i class="icon ion-ios-compose-outline"></i>
                 {{note.name}}
-                <ion-option-button class="button-assertive" ng-click="removeNote(note._id); order.splice($index, 1); hideOptionButtons()"">
+                <ion-option-button class="button-assertive" ng-click="showConfirm()">
                   Delete
                   <!--tasks.splice($index, 1); hideOptionButtons()"-->
                 </ion-option-button>
             </ion-item>
          </section>
-      </ion-list>
+    </div>
+
+    </ion-content>
+</ion-view>
+
 
   <!-- <div ng-repeat="note in notes track by $index" class="ql-editor" contenteditable="false">
     <div class="action-checkbox">
@@ -60,30 +66,3 @@
   <!-- <hr> -->
 
 <!-- {{olo}} -->
-
-
-        <!-- <ion-list id="notepad-list15" class=" ">
-            <ion-item class="item-icon-left item-icon-right dark  " id="notepad-list-item69" ui-sref="tabsController.classNoteCards">
-                 <i class="icon ion-bug"></i>Biology
-                <i class="icon ion-images icon-accessory"></i>
-            </ion-item>
-            <ion-item id="notepad-list-item62" class="  ">Mammals
-                <span class="item-note">Tues 5/19</span>
-            </ion-item>
-            <ion-item id="notepad-list-item24" class="  ">Sea Cucumbers
-                <span class="item-note">Wed 5/18</span>
-            </ion-item>
-            <ion-item class="item-icon-left item-icon-right dark  " id="notepad-list-item70">
-                <i class="icon ion-android-sad"></i>Math
-                <i class="icon ion-images icon-accessory"></i>
-            </ion-item>
-            <ion-item id="notepad-list-item25" class="  ">Imaginary Numbers
-                <span class="item-note">Mon 5/10</span>
-            </ion-item>
-            <ion-item id="notepad-list-item26" class="  ">How to add
-                <span class="item-note">Fri 5/20</span>
-            </ion-item>
-        </ion-list> -->
-<!-- END PLACEHOLDER    -->
-    </ion-content>
-</ion-view>
