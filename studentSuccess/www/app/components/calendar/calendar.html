@@ -1,0 +1,54 @@
+<ion-view title="Calendar" hide-back-button="true" id="page10" class=" ">
+    <ion-content padding="true" class="has-header">
+
+<!-- PLACE HOLDER CALENDAR IMAGE -->
+    <div>
+        <!-- <button class="btn btn-success" ng-click="changeView('agendaWeek')">AgendaWeek</button>
+       <div id ="c" class="calendar" ui-calendar="calOptions" ng-model="eventSources">  -->
+
+
+      <tab select="renderCalender('myCalendar1');">
+            <div class="">
+                <div class="button-bar">
+                    <button ng-class="calDay" class="button button-calm button-small button-block" ng-click="changeView('agendaDay', 'myCalendar1')">Day</button>
+                    <button ng-class="calWeek" class="button button-calm button-small button-block" ng-click="changeView('agendaWeek', 'myCalendar1')">Week</button>
+                    <button ng-class="calMonth" class="button button-calm button-small button-block" ng-click="changeView('month', 'myCalendar1')">Month</button>
+                </div>
+            </div>
+<div class="card" style="padding: 10px;">
+
+            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar">
+            </div>
+        </tab>
+</div>
+
+
+         <div>
+            <a ui-sref="newEvent" id="newEvent-button14" class=" button button-balanced  button-block ">Add Event</a>
+        </div>
+
+<div class="card" ng-show="alertMessage != undefined && alertMessage != ''">
+    <ion-item class="item-divider">Event</ion-item>
+    <ion-list can-swipe="listCanSwipe">
+        <ion-item class="item">
+
+            <div class="alert-success calAlert">
+                <h4>{{alertMessage}}</h4>
+
+                <ion-option-button class="button-calm" ui-sref="editEvent({id: date._id})" ng-click="hideOptionButtons()">Edit
+              </ion-option-button>
+
+                <ion-option-button class="button-assertive" ng-click="deleteEvent(date._id); hideOptionButtons()">Delete</ion-option-button>
+            </div>
+
+
+            <!-- <div ng-repeat="e in eve">
+                    {{e.title}}
+            </div> -->
+        </ion-item>
+</ion-list>
+</div>
+
+
+    </ion-content>
+</ion-view>

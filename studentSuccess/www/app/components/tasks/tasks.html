@@ -1,0 +1,41 @@
+<ion-view title="Tasks" hide-back-button="true" id="page12" class=" ">
+  <ion-content padding="true" class="has-header">
+    <ion-list id="tasks-list8" class=" ">
+      <label class="item item-input" name="Note Search Bar">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Search Tasks" ng-model="searchTasks">
+      </label>
+    </ion-list>
+    
+    <a ui-sref="newTask" id="tasks-button12" class=" button button-balanced  button-block ">Add a Task</a>
+
+    <!-- <button class="button button-positive" ng-click="switchReorder()">
+                Reorder
+            </button> -->
+<section ng-repeat="subject in subjects">
+<div class="card" ng-if="subject.tasks.length > 0">
+    <ion-list id="tasks-list10"
+          class=" "
+          show-reorder="showReorder"
+          can-swipe="listCanSwipe">
+
+      <ion-item class="item-divider " id="tasks-list-item-divider6" ng-if="subject.tasks.length > 0">
+      {{subject.title}}
+    </ion-item>
+
+      <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in subject.tasks | filter:searchTasks track by $index" can-reorder="true">
+        <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
+        <span class="item-note">Due: {{task.dueDate | date: "MMM d"}}</span>
+        <ion-option-button class="button-calm"  ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
+          Edit
+        </ion-option-button>
+        <ion-option-button class="button-balanced" ng-click="removeTask(task); tasks.splice($index, 1); hideOptionButtons(); showCompletePopup()">
+          Complete!
+        </ion-option-button>
+        <!-- <ion-reorder-button class="ion-navicon"
+                        on-reorder="moveTask(task, $fromIndex, $toIndex)">
+    </ion-reorder-button> -->
+
+      </ion-item>
+    </ion-content>
+  </ion-view>
