@@ -107,6 +107,8 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
         var momentObjEnd = moment(event[i].end);
         event[i].start = momentObjStart.format("LLL");
         event[i].end = momentObjEnd.format("LLL");
+        event[i].borderColor = 'white';
+        event[i].borderRadius = '0';
 
 				events.push(event[i]);
 				// console.log("event at i correct" + event[i].title);
@@ -134,15 +136,11 @@ angular.module('studentSuccess').controller('calendarCtrl', function($scope, cal
         var momentObjEnd = moment(sub[i].end);
         sub[i].start = momentObjStart.format("LLL");
         sub[i].end = momentObjEnd.format("LLL");
-        // event[i].stick = true;
+        sub[i].borderColor = 'white';
      
         subject.push(sub[i]);
       
     }
-    // subject.push({id: 999,title: 'Test',start: new Date( 16, 0),end: new Date( 20, 0),allDay: false, backgroundColor: 'red', dow: [1], stick: true, room: "This is some crap"});
-    // subject.push({id: 999,title: 'Repeating Event',start: new Date(y, m, d,  16, 0), stick: true,allDay: false});
-    // events.push({id: 999,title: 'Test',start: new Date(y, m, d - 1, 16, 0),allDay: false, backgroundColor: 'orange', dow: [0,1,2,3,4,5,6], stick: true, room: "This is some crap"})
-    // console.log("this is the subject array " , subject);
   });
 };
 
@@ -152,9 +150,6 @@ $scope.getSubjects();
 
 
 	$scope.createEvent = function(calEvent, repeat) {
-    // console.log("Repeat in createEvent" + repeat);
-    // console.log("End time" + calEvent.end);
-    // console.log(calEvent);
     if (calEvent.start && calEvent.end) {
       calendarService.createEvent(calEvent, repeat).then(function(calEvent, repeat) {
       $state.go("tabsController.calendar_tab2", {reload: true});
@@ -190,6 +185,7 @@ $scope.getSubjects();
     //   {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
     //   {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29)}
     // ];
+    
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
       var s = new Date(start).getTime() / 1000;
