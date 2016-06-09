@@ -9732,7 +9732,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .tab-item, input, button, 
 
 #dashboard-profile-header {
   padding-bottom: 20px;
-  background-color: #1976D2;
+  background-color: #673AB7;
   color: #fff; }
 
 .avatar-container {
@@ -9746,15 +9746,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .tab-item, input, button, 
   line-height: 2.5em;
   background-color: #1976D2;
   color: #fff;
-  margin-top: 0px;
-  font-size: 2em; }
+  margin-top: 0px; }
 
 #dashboard-task-card-header {
   line-height: 2.5em;
   background-color: #1976D2;
   color: #fff;
-  margin-top: 0px;
-  font-size: 2em; }
+  margin-top: 0px; }
 
 #dashboard-task-divider {
   background-color: #9FA8DA; }

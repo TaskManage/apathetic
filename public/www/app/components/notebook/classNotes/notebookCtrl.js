@@ -52,6 +52,34 @@ $scope.removeNote = function(id){
 //     })
 // };
 
+$scope.showConfirm = function() {
+   var confirmPopup = $ionicPopup.show({
+     title: 'Please Confirm',
+     template: 'Are you sure you want to delete this note?',
+     buttons: [
+       {
+         text: '<b>Cancel</b>',
+         type: 'button-calm',
+       },
+       {
+         text: '<b>Delete</b>',
+         type:'button-assertive',
+         onTap: function() {
+           $scope.removeNote(note._id);
+         }
+       }
+     ]
+   });
+   confirmPopup.then(function(res) {
+     if(res) {
+       $scope.removeNote(note._id);
+     } else {
+       console.log("");
+     }
+   });
+ };
+
+
 $scope.showPopup = function() {
   console.log("POPUP HIT");
   var myPopup = $ionicPopup.show({

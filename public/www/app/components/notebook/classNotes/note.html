@@ -1,7 +1,9 @@
 <ion-view title="New Note" id="page14" class=" ">
     <ion-content padding="true" class=" manual-remove-top-padding has-header">
 
-        <div class="spacer" style="width: 285px; height: 27px;"></div>
+
+<div class="card">
+
 
         <form id="editToDo-form16" class="list " ng-submit="addTask(task)">
             <label class="item item-input " id="editToDo-input16">
@@ -15,20 +17,22 @@
                   </option>
                 </select>
             </label>
-            <div class="spacer" style="width: 285px; height: 27px;"></div>
-
-            <div class="spacer" style="width: 285px; height: 31px;"></div>
-
-              <ng-quill-editor class="selectable" style="height:200px" ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+          </div>
 
 
+<div class="card" style=" padding 10px;">
 
-        <div class="spacer" style="width: 285px; height: 37px;"></div>
+              <ng-quill-editor class="selectable" ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+
+
+            </div>
+
 
         <a ng-click="showPopup(); addNote(message);" id="editToDo-button11" class=" button button-calm  button-block " a ui-sref="tabsController.notebook" >Save Note</a>
 
         <a ng-click="clearNote()" a ui-sref="tabsController.notebook" id="editToDo-button40" class="button button-assertive  button-block " >Cancel</a>
 </form>
+
     </ion-content>
 </ion-view>
 
