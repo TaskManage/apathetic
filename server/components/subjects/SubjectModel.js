@@ -8,7 +8,7 @@ var SubjectSchema = new mongoose.Schema({
   start: Date,
   end: Date,
   icon: String,
-  dow: [],
+  dow: {type: Array},
   backgroundColor: {type: String},
   notes: [
     {type: mongoose.Schema.Types.ObjectId, ref: 'Note'}

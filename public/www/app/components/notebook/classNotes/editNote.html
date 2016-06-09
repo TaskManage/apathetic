@@ -1,24 +1,21 @@
 <ion-view title="Your Note" id="page14" class=" ">
     <ion-content padding="true" class=" manual-remove-top-padding has-header">
 
-        <div class="spacer" style="width: 285px; height: 27px;"></div>
-
+<div class="card">
         <form id="editToDo-form16" class="list " ng-submit="addTask(task)">
             <label class="item item-input " id="editToDo-input16">
                 <input type="text" placeholder="Title" ng-model="message.name"></input>
             </label>
-            <div class="spacer" style="width: 285px; height: 27px;"></div>
-
-            <div class="spacer" style="width: 285px; height: 31px;"></div>
+</div>
 
             <!-- <label class="item item-input " id="editToDo-textarea3">
                 <span class="input-label"></span><textarea placeholder="Notes" ng-model="message.message"></textarea>
             </label> -->
+            <div class="card">
+
             <ng-quill-editor ng-model="message.message" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error" class=""></ng-quill-editor>
             <!-- <p ng-bind-html="selNote.message"></p> -->
-
-
-        <div class="spacer" style="width: 285px; height: 37px;"></div>
+      </div>
 
         <a ui-sref="tabsController.notebook" ng-click="updateNote()"; "showPopup()"  id="editToDo-button11" class=" button button-calm  button-block " >Done</a>
 

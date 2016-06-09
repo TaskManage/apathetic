@@ -2,6 +2,8 @@ angular.module('studentSuccess').controller('notebookCtrl', function($scope, not
 
 $ionicHistory.clearCache();
 
+$scope.listCanSwipe = true;
+
 $scope.getNote = function(id) {
    $state.go('tabsController.viewNote', {noteId: id})
 }
@@ -55,6 +57,34 @@ $scope.removeNote = function(id){
 //       $scope.readAllNotes();
 //     })
 // };
+
+$scope.showConfirm = function() {
+   var confirmPopup = $ionicPopup.show({
+     title: 'Please Confirm',
+     template: 'Are you sure you want to delete this note?',
+     buttons: [
+       {
+         text: '<b>Cancel</b>',
+         type: 'button-calm',
+       },
+       {
+         text: '<b>Delete</b>',
+         type:'button-assertive',
+         onTap: function() {
+           $scope.removeNote(note._id);
+         }
+       }
+     ]
+   });
+   confirmPopup.then(function(res) {
+     if(res) {
+       $scope.removeNote(note._id);
+     } else {
+       console.log("");
+     }
+   });
+ };
+
 
 $scope.showPopup = function() {
   console.log("POPUP HIT");
