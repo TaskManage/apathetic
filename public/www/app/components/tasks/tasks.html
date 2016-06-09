@@ -18,8 +18,7 @@
           show-reorder="showReorder"
           can-swipe="listCanSwipe">
 
-<section ng-repeat="subject in subjects">
-      <ion-item class="item-divider " id="tasks-list-item-divider6">
+      <ion-item class="item-divider " id="tasks-list-item-divider6" ng-if="subject.tasks.length > 0">
       {{subject.title}}
     </ion-item>
 
@@ -32,29 +31,10 @@
         <ion-option-button class="button-balanced" ng-click="removeTask(task); tasks.splice($index, 1); hideOptionButtons(); showCompletePopup()">
           Complete!
         </ion-option-button>
-        <ion-reorder-button class="ion-navicon"
+        <!-- <ion-reorder-button class="ion-navicon"
                         on-reorder="moveTask(task, $fromIndex, $toIndex)">
-    </ion-reorder-button>
+    </ion-reorder-button> -->
 
       </ion-item>
-</section>
-  </ion-list>
-<!-- </section> -->
-</div>
-      <!-- PLACEHOLDER TASK LIST -->
-
-      <!-- <ion-list  show-reorder="showReorder">
-
-              <ion-item ng-repeat="item in items"
-                        item="item"
-                         class="item-remove-animate">
-                Item {{ item.id }}
-                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-              </ion-item>
-
-            </ion-list> -->
-
-    <!-- END PLACEHOLDER -->
-
-  </ion-content>
-</ion-view>
+    </ion-content>
+  </ion-view>

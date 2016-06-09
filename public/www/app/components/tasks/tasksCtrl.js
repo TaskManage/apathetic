@@ -11,8 +11,8 @@ angular.module('studentSuccess').controller('tasksCtrl', function($scope, taskSe
   $scope.getTasks = function() {
     console.log("get")
     taskService.getUserTasks().then(function(response) {
-      console.log(response);
       $scope.subjects = response.subjects;
+      console.log($scope.subjects);
     });
   };
 
