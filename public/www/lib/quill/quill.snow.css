@@ -248,17 +248,31 @@
   display: block;
 }
 .ql-snow.ql-toolbar {
-  box-sizing: border-box;
-  padding: 8px;
+  box-sizing: border-box;;
+  padding: 10px;
   user-select: none;
-  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -webkit-user-select: none;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: space-around;
+  flex-wrap: nowrap;;
 }
 .ql-snow.ql-toolbar .ql-format-group {
-  display: inline-block;
-  margin-right: 15px;
-  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;;
+  /* vertical-align: middle; */;
+  /* vertical-align: middle; */;
+  /* vertical-align: middle; */;
+  /* vertical-align: middle; */;
+  /* vertical-align: middle; */;;;
 }
 .ql-snow.ql-toolbar .ql-format-separator {
   box-sizing: border-box;
@@ -282,24 +296,24 @@
   box-sizing: border-box;
   cursor: pointer;
   text-align: center;
-  width: 24px;
+  width: 30px;
 }
 .ql-snow.ql-toolbar .ql-picker {
   box-sizing: border-box;
-  color: #444;
   display: inline-block;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 14px;
   font-weight: 500;
   position: relative;
+  color: #222;
 }
 .ql-snow.ql-toolbar .ql-picker .ql-picker-label {
   box-sizing: border-box;
   display: inline-block;
   height: 24px;
   line-height: 24px;
-  vertical-align: middle;
   background-color: #fff;
+  vertical-align: middle;
   background-position: right center;
   background-repeat: no-repeat;
   background-size: 18px 18px;
@@ -649,7 +663,7 @@
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
   .ql-snow.ql-toolbar .ql-picker .ql-picker-label {
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAIVBMVEUAAABCQkJDQ0NDQ0NERERERERERERERERERERERERERERehmmoAAAACnRSTlMATVRbaeXo6fz+NPhZJgAAAF9JREFUKM9jYBjkQC0JXYS5a4UBmpDFqlXN6IpWrUJTprEKCJpQhLJAQsswhZaiCImDhAJp5kMxkPGJZLjLEiQ0GUWIZdaqVSsdUM33XLVqCpqVLLPQFTEwmAcP9qQAAFUgKabkwE6gAAAAAElFTkSuQmCC");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAIVBMVEUAAABCQkJDQ0NDQ0NERERERERERERERERERERERERERERehmmoAAAACnRSTlMATVRbaeXo6fz+NPhZJgAAAF9JREFUKM9jYBjkQC0JXYS5a4UBmpDFqlXN6IpWrUJTprEKCJpQhLJAQsswhZaiCImDhAJp5kMxkPGJZLjLEiQ0GUWIZdaqVSsdUM33XLVqCpqVLLPQFTEwmAcP9qQAAFUgKabkwE6gAAAAAElFTkSuQmCC");
   }
   .ql-snow.ql-toolbar .ql-picker.ql-expanded .ql-picker-label {
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkBAMAAAATLoWrAAAAJFBMVEWqqqr////AwMDAwMDAwMDBwcHBwcHBwcHBwcHBwcHBwcHBwcEexLCPAAAAC3RSTlMAAE1UW2nl6On8/tZA57EAAABxSURBVHjazc4hFkBAGMTxL3AAp+AGniYiyaLnBETHoKkknbc7l7OrzW7zhP3HX5mRxCskEsknEaZoU6VDNbAyRRugSqICpoVotnT7dBFllnpefPuHUpjGD78aSztRfAK65cUOOIQpPnXrkFSDEFFB0APtK1HCkKpz1wAAAABJRU5ErkJggg==");
