@@ -17,9 +17,6 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.tab-item,input,button,select,textarea
 
 
 
-
-
-
 // ----------HEADER
 
 
@@ -28,8 +25,49 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.tab-item,input,button,select,textarea
 
 
 
-
 // ----------DASHBOARD
+
+#dashboard-profile-card {
+	padding-bottom: 20px;
+}
+
+#dashboard-profile-header {
+	padding-bottom: 20px;
+	background-color: $calm;
+	color: $light;
+}
+
+.avatar-container {
+	padding-top: 20px;
+	text-align: center;
+}
+
+.avatar-img {
+	border-radius: 50%;
+}
+
+#dashboard-subject-card-header {
+	line-height: 2.5em;
+	background-color: $calm;
+	color: #fff;
+	margin-top:0px;
+	font-size: 2em;
+}
+
+#dashboard-task-card-header {
+	line-height: 2.5em;
+	background-color: $calm;
+	color: #fff;
+	margin-top:0px;
+	font-size: 2em;
+}
+
+#dashboard-task-divider {
+	background-color: #9FA8DA;
+}
+
+
+
 
 
 
@@ -52,4 +90,3 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.tab-item,input,button,select,textarea
 h1:first-child, .h1:first-child, h2:first-child, .h2:first-child, h3:first-child, .h3:first-child {
 	margin-top: 10px;
 }
-

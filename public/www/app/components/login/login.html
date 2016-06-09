@@ -1,4 +1,4 @@
-<ion-view title="Login" hide-back-button="true" id="page6" class=" ">
+<ion-view title="Login" hide-back-button="true" id="login-header" class="bar-royal">
     <ion-content padding="true" class="has-header">
         <form id="login-form1" class="list ">
             <ion-list id="login-list1" class=" ">
@@ -11,8 +11,8 @@
                     <input type="password" placeholder="Password" ng-model="credentials.password">
                 </label>
             </ion-list>
-            <a id="login-button1" class=" button button-positive  button-block " ng-click="login(credentials)">Log in</a>
-            <a ui-sref="signup" id="login-button2" class=" button button-positive  button-block button-clear ">Or create an account</a>
+            <a id="login-button1" class=" button button-balanced  button-block " ng-click="login(credentials)" style="font-weight:600;">Log In</a>
+            <a ui-sref="signup" id="login-button2" class=" button button-calm  button-block" style="font-weight:600;">Or Create an Account</a>
         </form>
     </ion-content>
 </ion-view>

@@ -1,12 +1,15 @@
 <ion-view title="Notebook" hide-back-button="true" id="page11" class=" ">
     <ion-content padding="true" class="has-header">
+      <ion-list id="notepad-form20" class="">
         <form id="notepad-form9" class="list ">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="search" placeholder="Search Notes" ng-model="searchNotes">
             </label>
         </form>
-        <a ui-sref="note" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Add a note!</a>
+      </ion-list>
+
+        <a ui-sref="note" id="notepad-button8" class=" button button-balanced  button-block">Add a Note</a>
         <!-- <a ui-sref='noteCardsPage'>Go to NoteCards</a> -->
 
 <!-- {{orderedNotes}} -->
@@ -14,7 +17,7 @@
 <!-- PLACEHOLDER NOTELIST -->
     <ion-list id="dashboard-list17" class=" ">
         <section ng-repeat="order in orderedNotes.subjects track by $index">
-            <ion-item class="item-divider " id="tasks-list-item-divider6">
+            <ion-item class="item-divider " id="tasks-list-item-divider6" ng-if="order.notes.length > 0">
                 {{order.title}}
             </ion-item>
             <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="editNote({id: note._id})">

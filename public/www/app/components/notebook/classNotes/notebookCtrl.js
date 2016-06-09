@@ -5,6 +5,7 @@ $ionicHistory.clearCache();
 $scope.getOrderedClasses = function(){
   notebookService.getOrderedClasses().then(function(response){
     $scope.orderedNotes = response;
+    // console.log($scope.orderedNotes);
   })
 }
 
