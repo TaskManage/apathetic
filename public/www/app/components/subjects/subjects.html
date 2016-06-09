@@ -14,13 +14,13 @@
             ng-repeat="subject in subjects">
                 <i class="icon ion-university"></i>{{subject.title}}
                 <span class="item-note">{{subject.start | date: 'shortTime'}}-{{subject.end | date: 'shortTime'}}</span>
-                <ion-option-button class="button-positive"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
+                <ion-option-button class="button-calm"   ng-click="selectSubject(subject); hideOptionButtons()" ui-sref="editSubject({id: subject._id})">
                   Edit
                 </ion-option-button>
             </ion-item>
           </div>
 
-          <p id="dashboard-markdown16" style="margin-top:0px;color:#000000;font-size:24px;" class=" " ng-if="subjects.length === 0">You need to schedule classes</p>
+          <p id="dashboard-markdown16" style="margin-top:0px;color:#222;font-size:24px;" class=" " ng-if="subjects.length === 0">You need to schedule classes</p>
 
     </ion-content>
 </ion-view>

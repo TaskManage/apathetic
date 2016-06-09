@@ -25,9 +25,22 @@ $scope.deleteSubject= function(subject){
 };
 
 $scope.showConfirm = function() {
-   var confirmPopup = $ionicPopup.confirm({
+   var confirmPopup = $ionicPopup.show({
      title: 'Please Confirm',
-     template: 'Are you sure you want to delete this class?'
+     template: 'Are you sure you want to delete this class?',
+     buttons: [
+       {
+         text: '<b>Cancel</b>',
+         type: 'button-calm',
+       },
+       {
+         text: '<b>Delete</b>',
+         type:'button-assertive',
+         onTap: function() {
+           $scope.deleteSubject($scope.selectedSubject);
+         }
+       }
+     ]
    });
    confirmPopup.then(function(res) {
      if(res) {

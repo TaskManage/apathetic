@@ -3,14 +3,14 @@
 // -------------------------------
 
 $light:                           #fff !default;
-$stable:                          #E3F2FD !default;
-$positive:                        #2196F3 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #4CAF50 !default;
+$stable:                          #E8EAF6 !default;
+$positive:                        #3F51B5 !default;
+$calm:                            #1976D2 !default;
+$balanced:                        #43A047 !default;
 $energized:                       #FFC107 !default;
 $assertive:                       #FF5722 !default;
 $royal:                           #673AB7 !default;
-$dark:                            #444 !default;
+$dark:                            #222 !default;
 
 
 // Base
@@ -94,13 +94,13 @@ $button-bar-button-padding:       8px !default;
 $button-bar-button-icon-size:     20px !default;
 
 $button-light-bg:                 $light !default;
-$button-light-text:               #444 !default;
+$button-light-text:               #222 !default;
 $button-light-border:             #ddd !default;
 $button-light-active-bg:          #fafafa !default;
 $button-light-active-border:      #ccc !default;
 
 $button-stable-bg:                $stable !default;
-$button-stable-text:              #444 !default;
+$button-stable-text:              #222 !default;
 $button-stable-border:            #b2b2b2 !default;
 $button-stable-active-bg:         #e5e5e5 !default;
 $button-stable-active-border:     #a2a2a2 !default;
@@ -309,7 +309,7 @@ $item-thumbnail-width:            80px !default;
 $item-thumbnail-height:           80px !default;
 $item-thumbnail-margin:           10px !default;
 
-$item-divider-bg:                 #F5F5F5 !default;
+$item-divider-bg:                 #9FA8DA !default;
 $item-divider-color:              #222 !default;
 $item-divider-padding:            5px 15px !default;
 
@@ -762,42 +762,37 @@ $ios-statusbar-height:           20px !default;
 .button-block:after {
 	clear: both;
 }
-
-
-.button:after {
-	position: absolute;
-	top: -6px;
-	right: -6px;
-}
-
-
-.item-divider {
-	color: #222222;
-	background-color: #F5F5F5;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	min-height: 30px;
-	font-weight: 500;
-}
-
-
-.item {
-}
-
-
-.item {
-	background-color: #fff;
-	color: #444;
-	position: relative;
-	z-index: 2;
-	display: block;
-	margin: -1px;
-	padding: 16px;
-	border-width: 1px;
-	border-style: solid;
-	font-size: 16px;
-	border-color: #dddddd;
-}
+//
+//
+// .button:after {
+// 	position: absolute;
+// 	top: -6px;
+// 	right: -6px;
+// }
+//
+//
+// .item-divider {
+// 	color: #222;
+// 	background-color: #7986CB;
+// 	padding-top: 8px;
+// 	padding-bottom: 8px;
+// 	min-height: 30px;
+// 	font-weight: 500;
+// }
+//
+// .item {
+// 	background-color: #C5CAE9;
+// 	color: #222;
+// 	position: relative;
+// 	z-index: 2;
+// 	display: block;
+// 	margin: -1px;
+// 	padding: 16px;
+// 	border-width: 1px;
+// 	border-style: solid;
+// 	font-size: 16px;
+// 	border-color: #dddddd;
+// }
 
 //
 //

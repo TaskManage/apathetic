@@ -7,13 +7,12 @@
       </label>
     </ion-list>
     <a ui-sref="newTask" id="tasks-button12" class=" button button-balanced  button-block ">Add a Task</a>
-    <div class="spacer" style="width: 285px; height: 10px;"></div>
 
     <!-- <button class="button button-positive" ng-click="switchReorder()">
                 Reorder
             </button> -->
-<section ng-repeat="subject in subjects">
-<div class="card" ng-if="subject.tasks.length > 0">
+<!-- <section ng-repeat="subject in subjects"> -->
+<!-- <div class="card" ng-if="subject.tasks.length > 0"> -->
     <ion-list id="tasks-list10"
           class=" "
           show-reorder="showReorder"
@@ -26,34 +25,16 @@
       <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in subject.tasks | filter:searchTasks track by $index" can-reorder="true">
         <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
         <span class="item-note">Due: {{task.dueDate | date: "MMM d"}}</span>
-        <ion-option-button class="button-positive"  ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
+        <ion-option-button class="button-calm"  ng-click="selectTask(task); hideOptionButtons()" ui-sref="editTask({id: task._id})">
           Edit
         </ion-option-button>
         <ion-option-button class="button-balanced" ng-click="removeTask(task); tasks.splice($index, 1); hideOptionButtons(); showCompletePopup()">
           Complete!
         </ion-option-button>
-        <ion-reorder-button class="ion-navicon"
+        <!-- <ion-reorder-button class="ion-navicon"
                         on-reorder="moveTask(task, $fromIndex, $toIndex)">
-    </ion-reorder-button>
+    </ion-reorder-button> -->
 
       </ion-item>
-</section>
-  </ion-list>
-</span></div>
-      <!-- PLACEHOLDER TASK LIST -->
-
-      <!-- <ion-list  show-reorder="showReorder">
-
-              <ion-item ng-repeat="item in items"
-                        item="item"
-                         class="item-remove-animate">
-                Item {{ item.id }}
-                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-              </ion-item>
-
-            </ion-list> -->
-
-    <!-- END PLACEHOLDER -->
-
-  </ion-content>
-</ion-view>
+    </ion-content>
+  </ion-view>

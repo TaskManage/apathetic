@@ -18,8 +18,8 @@
                 <span class="input-label">Ends</span>
                 <input type="datetime-local" placeholder="" ng-model="calEvent.end">
             </label>
-        
-            
+
+
 
             <label class="item item-input " id="newEvent-textarea1">
                 <span class="input-label"></span><textarea placeholder="Notes" ng-model="calEvent.notes"></textarea>
@@ -28,7 +28,7 @@
                 <input type="text" placeholder="Event Color" ng-model="calEvent.color">
             </label>
         </form>
-        <a  id="newEvent-button14" class=" button button-positive  button-block " ng-click="createEvent(calEvent, repeat); showPopup()">Save Event</a>
+        <a  id="newEvent-button14" class=" button button-calm  button-block " ng-click="createEvent(calEvent, repeat); showPopup()">Save Event</a>
 
         <a ui-sref="tabsController.calendar_tab2" id="newEvent-button39" class=" button button-assertive  button-block ">Cancel</a>
     </ion-content>
