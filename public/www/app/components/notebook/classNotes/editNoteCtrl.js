@@ -17,7 +17,7 @@ $scope.readNote();
 
   $scope.updateNote = function(){
     console.log("hit from fired edit note")
-      notebookService.updateNote($scope.selNote, $scope.id).then(function(response){
+      notebookService.updateNote($scope.message, $scope.id).then(function(response){
         console.log("update from edit return", response);
       // $scope.saveArr.push(response);
       // $scope.storyId = response._id;

@@ -2,6 +2,12 @@ angular.module('studentSuccess').controller('notebookCtrl', function($scope, not
 
 $ionicHistory.clearCache();
 
+$scope.listCanSwipe = true;
+
+$scope.getNote = function(id) {
+   $state.go('tabsController.viewNote', {noteId: id})
+}
+
 $scope.getOrderedClasses = function(){
   notebookService.getOrderedClasses().then(function(response){
     $scope.orderedNotes = response;

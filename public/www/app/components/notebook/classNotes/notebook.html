@@ -1,51 +1,51 @@
 <ion-view title="Notebook" hide-back-button="true" id="page11" class=" ">
-    <ion-content padding="true" class="has-header">
-      <ion-list id="notepad-form20" class="">
-        <form id="notepad-form9" class="list ">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search Notes" ng-model="searchNotes">
-            </label>
-        </form>
+  <ion-content padding="true" class="has-header">
+    <ion-list id="notepad-form20" class="">
+      <form id="notepad-form9" class="list ">
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" placeholder="Search Notes" ng-model="searchNotes">
+        </label>
+      </form>
+    </ion-list>
+
+    <a ui-sref="note" id="notepad-button8" class=" button button-balanced  button-block">Add a Note</a>
+    <!-- <a ui-sref='noteCardsPage'>Go to NoteCards</a> -->
+
+    <!-- {{orderedNotes}} -->
+
+
+    <section ng-repeat="order in orderedNotes.subjects track by $index">
+      <div class="card" ng-if="order.notes.length > 0">
+<ion-list can-swipe="listCanSwipe">
+        <ion-item class="item-divider " id="tasks-list-item-divider6">
+          {{order.title}}
+        </ion-item>
+        <ion-item class="item-icon-left item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="viewNote({noteId: note._id})">
+          <i class="icon ion-ios-compose-outline"></i> {{note.name}}
+          <ion-option-button class="button-calm" ui-sref="editNote({id: note._id})">
+            Edit
+            <!--tasks.splice($index, 1); hideOptionButtons()"-->
+          </ion-option-button>
+        </ion-item>
       </ion-list>
+    </section>
+          </div>
 
-        <a ui-sref="note" id="notepad-button8" class=" button button-balanced  button-block">Add a Note</a>
-        <!-- <a ui-sref='noteCardsPage'>Go to NoteCards</a> -->
-
-<!-- {{orderedNotes}} -->
-
-
-        <section ng-repeat="order in orderedNotes.subjects track by $index">
-          <div class="card" ng-if="order.notes.length > 0">
-
-            <ion-item class="item-divider " id="tasks-list-item-divider6" >
-                {{order.title}}
-            </ion-item>
-            <ion-item class="item-icon-left item-remove-animate " id="tasks-list-item10" ng-repeat="note in order.notes | filter:searchNotes track by $index" can-reorder="true" ui-sref="editNote({id: note._id})">
-              <i class="icon ion-ios-compose-outline"></i>
-                {{note.name}}
-                <ion-option-button class="button-assertive" ng-click="showConfirm()">
-                  Delete
-                  <!--tasks.splice($index, 1); hideOptionButtons()"-->
-                </ion-option-button>
-            </ion-item>
-         </section>
-    </div>
-
-    </ion-content>
+  </ion-content>
 </ion-view>
 
 
-  <!-- <div ng-repeat="note in notes track by $index" class="ql-editor" contenteditable="false">
+<!-- <div ng-repeat="note in notes track by $index" class="ql-editor" contenteditable="false">
     <div class="action-checkbox">
       <input id="{{note.message}}" type="checkbox" value="{{note.message}}" ng-checked="selection.indexOf(note.message) > -1" ng-click="toggleSelection(note._id)"></input>
       <label for="{{note.name}}"></label>
       <a ui-sref="editNote({id: note._id})" id="notepad-button8" style="border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block icon-left ion-android-add ">Edit Note
       <p>{{note}}</p> -->
-      <!-- <p ng-bind-html="note.message"></p>
+<!-- <p ng-bind-html="note.message"></p>
 
       <ng-quill-editor ng-model="message" read-only="true" error-class="input-error"> -->
-        <!-- should be right here: {{note.message}}
+<!-- should be right here: {{note.message}}
       <!-- </ng-quill-editor>
       </a>
     </div>
@@ -63,6 +63,6 @@
 
   {{note.message}} -->
 
-  <!-- <hr> -->
+<!-- <hr> -->
 
 <!-- {{olo}} -->
