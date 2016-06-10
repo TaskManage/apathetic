@@ -2,14 +2,13 @@
     <ion-content padding="true" class=" manual-remove-top-padding has-header">
 
         <div class="spacer" style="width: 285px; height: 27px;"></div>
-{{selectedTask}}
         <form id="editToDo-form16" class="list " ng-submit="updateTask(selectedTask)">
             <label class="item item-input " id="editToDo-input16">
                 <input type="text" placeholder="" ng-model="selectedTask.title">
             </label>
             <label class="item item-select " id="editToDo-select5">
                 <span class="input-label">Subject</span>
-                <select ng-model="task.class">
+                <select ng-model="selectedTask.class">
                     <option>Chemisty</option>
                     <option>Biology</option>
                     <option>Personal Taks</option>
@@ -20,7 +19,7 @@
 
             <label class="item item-input " id="editToDo-input22">
                 <span class="input-label">Due Date</span>
-                <input type="date" placeholder="{{selectedTask.dueDate}}" ng-model="task.dueDate">
+                <input type="date" placeholder="{{selectedTask.dueDate}}" ng-model="selectedTask.dueDate">
             </label>
 
             <div class="spacer" style="width: 285px; height: 31px;"></div>
@@ -33,9 +32,9 @@
 
         <div class="spacer" style="width: 285px; height: 37px;"></div>
 
-        <a ng-click="updateTask(task)" ui-sref="tabsController.tasks_tab4" id="editToDo-button11" class=" button button-positive  button-block " >Update Task</a>
+        <a ng-click="updateTask(selectedTask); showPopup()" id="editToDo-button11" class=" button button-calm  button-block " >Save Task</a>
 
-        <a ui-sref="tabsController.tasks_tab4" id="editToDo-button40" class=" button button-assertive  button-block ">Delete</a>
+        <a ng-click="deleteTask(selectedTask)" id="editToDo-button40" class=" button button-assertive  button-block ">Delete</a>
 </form>
     </ion-content>
 </ion-view>

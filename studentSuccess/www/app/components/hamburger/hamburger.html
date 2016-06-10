@@ -1,0 +1,62 @@
+<div>
+  <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
+    <ion-side-menu-content drag-content="false">
+      <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$state.includes('login')"></button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+      <ion-nav-view></ion-nav-view>
+    </ion-side-menu-content>
+
+    <!-- Side Slideout Menu - SHOULD BE IN A DIRECTIVE -->
+
+    <ion-side-menu side="left" id="side-menu21" ng-hide="$state.includes('login')">
+      <ion-header-bar class="bar-royal">
+        <div class="title">Account</div>
+      </ion-header-bar>
+      <ion-content padding="false" class="side-menu-left has-header">
+        <ion-list id="menu-list16" class=" " data-componentid="list16">
+          <ion-item class="item-avatar  " id="menu-list-item31" data-componentid="list-item31">
+            <img gravatar-src="user.email" gravatar-size="100">
+            <h2>{{user.firstName}}</h2>
+            <p>{{user.lastName}}</p>
+          </ion-item>
+        </ion-list>
+        <form id="menu-form14" class="list " data-componentid="form14">
+          <label class="item item-input " id="menu-input13" data-componentid="input13">
+            <input type="email" placeholder="Email" ng-model="user.email">
+          </label>
+          <label class="item item-input " id="menu-input12" data-componentid="input12">
+            <input type="password" placeholder="Change your password" ng-model="user.password">
+          </label>
+          <label class="item item-input " id="menu-input14" data-componentid="input14">
+            <input type="password" placeholder="Confirm Password" ng-model="confirm">
+          </label>
+        </form>
+
+        <div class="spacer" data-componentid="spacer13" style="width: 0px; height: 100px;"></div>
+
+        <button class="button button-block button-calm" menu-close ng-click="update(user._id, user); showPopup()">
+          Confirm Changes
+        </button>
+
+        <!-- <form id="menu-form10" class="list " data-componentid="form10">
+          <label class="item item-select " id="menu-select3" data-componentid="select3">
+            <span class="input-label">Theme</span>
+            <select>
+              <option>Light</option>
+              <option>Dark</option>
+              <option>Blue</option>
+              <option>Green</option>
+              <option>Pink</option>
+              <option>Red</option>
+            </select>
+          </label>
+        </form> -->
+        <a menu-close="" id="menu-button10" class=" button button-assertive  button-block " data-componentid="button10" ng-click="logout()">Logout</a>
+      </ion-content>
+    </ion-side-menu>
+  </ion-side-menus>
+</div>

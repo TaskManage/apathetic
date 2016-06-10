@@ -1,72 +1,73 @@
-angular.module("studentSuccess").service("taskService", function($http) {
+angular.module("studentSuccess").service("taskService", function($http, ipService, $rootScope) {
 
-  // var dummyTask = {
-  //   id: "12345",
-  //   creator: "Jane Snow",
-  //   createdAt: Date.now,
-  //   title: "Buy Milk at store",
-  //   priority: 1,
-  //   reminder: 4,
-  //   allDay: false,
-  //   subject: "Personal",
-  //   dueDate: new Date(),
-  //   notes: "Buy 2% and use the coupon"
-  // };
+  var ip = ipService.ip;
+  var loginToken = JSON.parse(localStorage.getItem('loginToken'));
 
-  var dummyTask = [
-    {
-      title: "Buy Milk",
-      dueDate: "May 5th"
-    },
-    {
-      title: "Deposit Check",
-      dueDate: "May 6th"
-    }
-  ];
+  $rootScope.$watch('tokenChange', function(ov, nv){
+
+    loginToken = JSON.parse(localStorage.getItem('loginToken'));
+  });
 
   this.getTasks = function() {
-    return dummyTask;
-    // return $http({
-    //   method: 'GET',
-    //   url: '/tasks'
-    // }).then(function(response) {
-    //   return response;
-    // });
+    return $http({
+      method: 'GET',
+      url: ip + '/tasks'
+    }).then(function(response) {
+      return response.data;
+    });
+  };
+
+  this.getUserTasks = function(user) {
+    return $http({
+      method: 'GET',
+      url: ip + '/tasky',
+      headers: {
+        loginToken: loginToken
+      }
+    }).then(function(response) {
+      return response.data;
+    })
   };
 
   this.getTask = function(id) {
     return $http({
       method: 'GET',
-      url: '/tasks?_id=' + id
+      url: ip + '/tasks/' + id,
+      headers: {
+        loginToken: loginToken
+      }
     }).then(function(response) {
-      return response;
+      return response.data;
     });
   };
 
-  this.createTask = function(tasks) {
+  this.createTask = function(task) {
     return $http({
       method: 'POST',
-      url: '/tasks',
+      url: ip + '/tasks',
+      headers: {
+        loginToken: loginToken
+      },
       data: task
     }).then(function(response) {
       return response;
     });
   };
 
-  this.updateTask = function(id, tasks) {
+  this.updateTask = function(task) {
     return $http({
       method: 'PUT',
-      url: "/tasks/" + id,
+      url: ip + "/tasks/" + task._id,
       data: task
     }).then(function(response) {
       return response;
     });
   };
 
-  this.deleteTask = function(id) {
+  this.deleteTask = function(task) {
     return $http({
       method: 'DELETE',
-      url: '/tasks/' + id
+      url: ip + '/tasks/' + task._id
     }).then(function(response) {
       return response;
     });

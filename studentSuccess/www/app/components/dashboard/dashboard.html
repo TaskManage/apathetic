@@ -1,0 +1,51 @@
+<ion-view title="Dashboard" hide-back-button="true" id="page9" class=" ">
+  <ion-content padding="false" scroll="false" class="has-header">
+
+    <div class="card" id="dashboard-profile-card">
+      <div class="item item-divider" id="dashboard-profile-header">
+    <h1 style="text-align:center;" class=" ">Welcome, {{user.firstName}}</h1>
+  </div>
+    <div class="avatar-container">
+    <img class='avatar-img' gravatar-src="user.email" gravatar-size="100">
+  </div>
+</div>
+
+   <ion-scroll direction="y" has-bouncing="true" style="height: 60vh">
+
+
+<div class="card" ng-if="subjects.length > 0">
+        <div class="item item-divider " id="dashboard-subject-card-header">
+            <p id="dashboard-markdown13" style="color:#fff;font-size:24px;" class=" "><b>Upcoming Classes</b></p>
+          </div>
+
+            <ion-list id="dashboard-subject-list" class="item item-list" ng-repeat='subject in subjects'>
+                <ion-item class="item-icon-left  " id="dashboard-list-item56" ui-sref="tabsController.calendar">
+                    <i class="icon ion-ios-calendar-outline"></i>{{subject.title}}
+                    <span class="item-note">{{subject.start | date: 'shortTime'}}-{{subject.end | date: 'shortTime'}}</span>
+                </ion-item>
+            </ion-list>
+        </div>
+
+
+    <div class="card" ng-if="subjects.length > 0">
+        <div class="item item-divider " id="dashboard-task-card-header">
+            <p id="dashboard-markdown16" style="color: white;font-size:24px;" class=" "><b>What To-Do</b></p>
+          </div>
+
+            <ion-list id="dashboard-list17" class=" ">
+              <section ng-repeat="subject in subjects">
+                    <ion-item class="item item-list" id="dashboard-task-divider" style="color: #222; font-size:1.5em">
+                    {{subject.title}}
+                  </ion-item>
+
+                    <ion-item class="item-icon-left item-icon-right item-remove-animate " id="tasks-list-item10" ng-repeat="task in subject.tasks | filter:searchTasks track by $index" can-reorder="true" ui-sref="tabsController.tasks">
+                      <i class="icon ion-ios-checkmark-outline"></i> {{task.title}}
+                      <span class="item-note">Due: {{task.dueDate | date: "MMM d"}}</span>
+                    </ion-item>
+              </section>
+            </ion-list>
+    </div>
+    <p id="dashboard-markdown16" style="margin-top:0px;color:#222;font-size:24px;" class=" " ng-if="subjects.length === 0">You have no upcoming events</p>
+    <ion-scroll>
+    </ion-content>
+</ion-view>
