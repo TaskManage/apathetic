@@ -24,7 +24,7 @@ angular.module('studentSuccess', ['ionic', 'ionicUIRouter', 'ui.calendar', 'ngQu
 });
 
 angular.module('studentSuccess').config([
-  'gravatarServiceProvider', function(gravatarServiceProvider) {
+  'gravatarServiceProvider', "$ionicConfigProvider", function(gravatarServiceProvider, $ionicConfigProvider) {
     gravatarServiceProvider.defaults = {
       size     : 100,
       "default": 'mm'  // Mystery man as default for missing avatars
@@ -35,10 +35,12 @@ angular.module('studentSuccess').config([
 
     // Force protocol
     gravatarServiceProvider.protocol = 'http';
-
+  $ionicConfigProvider.tabs.position('bottom');
     // Override URL generating function
     // gravatarServiceProvider.urlFunc = function(options) {
       // Code to generate custom URL
     // };
   }
+
+
 ]);
