@@ -1,5 +1,5 @@
 <div>
-  <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
+  <ion-side-menus id="phone-content" enable-menu-with-back-views="false" data-componentid="side-menu21">
     <ion-side-menu-content drag-content="false">
       <ion-nav-bar class="bar-positive">
         <ion-nav-back-button></ion-nav-back-button>
@@ -11,8 +11,7 @@
     </ion-side-menu-content>
 
     <!-- Side Slideout Menu - SHOULD BE IN A DIRECTIVE -->
-
-    <ion-side-menu side="left" id="side-menu21" ng-hide="$state.includes('login')">
+    <ion-side-menu side="left" id="side-menu21" ng-hide="$state.includes('login')" style="width: 278px;height: 490px;margin-left: auto;margin-top: auto;margin-bottom: auto;margin-right: auto;">
       <ion-header-bar class="bar-royal">
         <div class="title">Account</div>
       </ion-header-bar>

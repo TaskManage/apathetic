@@ -49,7 +49,7 @@ app.use(session({
   resave: false
 }));
 
-app.use(express.static(__dirname + './../public'));
+app.use(express.static(__dirname + './../studentSuccess'));
 app.use(function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
