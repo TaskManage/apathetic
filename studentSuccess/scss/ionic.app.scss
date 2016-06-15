@@ -13,7 +13,35 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.tab-item,input,button,select,textarea
 }
 
 
+@media (max-width: 768px) {
+	.phone-holder {
+		width: auto;
+		height: auto;
+		border: 1px solid red;
+	}
+	#phone-content {
+		width: 100% !important;
+    height: 100% !important;
+	}
+}
 
+.phone-holder {
+	background-image: url("../img/phone.jpg");
+	height: 100vh;
+	width: 100vw;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 980px;
+}
+
+#phone-content {
+	width: 302px;
+	height: 536px;
+	margin-left: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: auto;
+}
 
 
 
