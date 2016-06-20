@@ -22,7 +22,7 @@ happen.
 
 [Ben Valentine](https://github.com/biggrizzly11)
 
-[Jason Allen]()
+[Jason Allen](https://github.com/allenjason14)
 
 [Cole Hartog](https://github.com/ColeHartog)
  
