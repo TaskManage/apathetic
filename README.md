@@ -10,7 +10,7 @@ happen.
 
 #### Breakdown of responsibilities:
 
-## [Mark Alan Chapman](https://github.com/mchapman101)
+# [Mark Alan Chapman](https://github.com/mchapman101)
 * Lead Designer
 * Created initial wireframes and overal app design
 * Created the Tasks and Subjects Components, front to back
@@ -18,11 +18,11 @@ happen.
 * Styled the app following the guideline set by [Google's Material Design](https://material.google.com/)
 * Reponsible for building the app and porting to iOS
 
-## [Hayden Jacobson](https://github.com/haydenguitar411)
+# [Hayden Jacobson](https://github.com/haydenguitar411)
 
-## [Ben Valentine](https://github.com/biggrizzly11)
+# [Ben Valentine](https://github.com/biggrizzly11)
 
-## [Jason Allen]()
+# [Jason Allen]()
 
-## [Cole Hartog](https://github.com/ColeHartog)
+# [Cole Hartog](https://github.com/ColeHartog)
  
