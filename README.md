@@ -19,6 +19,10 @@ happen.
 * Reponsible for building the app and porting to iOS
 
 [Hayden Jacobson](https://github.com/haydenguitar411)
+* Responsible for local authentication with JSON Web Tokens
+* Created user schemas and managed the user data front to back
+* Responsible for buiding the application onto an andriod device
+* Responsible for hosting the project live on [desktop browsers](http://107.170.64.13/#/login)
 
 [Ben Valentine](https://github.com/biggrizzly11)
 
