@@ -2,8 +2,7 @@
 
 We were tasked with the creation of application that would assist students with tracking their schedule of classes, taking notes 
 and a todo list of things a student might want to track. We decided to develop the app utilizing the Ionic framework and creating a 
-mobile native app for iOS and Android. Our initial goals were to launch the mobile app and the desktop web app together, but that didn't
-happen. 
+mobile native app for iOS and Android. Our initial goals were to launch the mobile app and the desktop web app together, but that didn't happen. 
 
 #### Technologies involved: 
 • AngularJS • Express • MongoDB / Mongoose • NodeJS • Ionic Framework • CalanderIO • Quill Notepad • WebTokens • LocalAuth • MomentJS
